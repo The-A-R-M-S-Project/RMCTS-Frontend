@@ -16,7 +16,9 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item" role="presentation">
-              <a class="nav-link"><router-link to="/login">Login</router-link></a>
+              <a class="nav-link"
+                ><router-link to="/login">Login</router-link></a
+              >
             </li>
           </ul>
         </div>
