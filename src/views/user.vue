@@ -5,7 +5,7 @@
     <div class="container fluid">
       <div class="row">
         <div class="col-sm-3">
-          for side nav an soooooooooooooooooooooooooooo on
+          <SideNav />
         </div>
         <div class="col-sm-9">for main body (wider)</div>
       </div>
@@ -17,10 +17,12 @@
 
 <script>
 import Navbar from "@/components/User/Navigation";
+import SideNav from "@/components/User/SideNav";
 export default {
   name: "user",
   components: {
-    Navbar
+    Navbar,
+    SideNav
   }
 };
 </script>
