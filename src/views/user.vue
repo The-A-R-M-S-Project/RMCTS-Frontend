@@ -4,10 +4,12 @@
     <Navbar />
     <div class="container fluid">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-3 pt-1 pl-4 pr-1">
           <SideNav />
         </div>
-        <div class="col-sm-9">for main body (wider)</div>
+        <div class="col-sm-9 pt-1 pl-1 pr-2">
+          <router-link />
+        </div>
       </div>
     </div>
   </div>

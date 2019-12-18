@@ -22,7 +22,7 @@
 
 <style>
 .navbar {
-  background-color: rgb(199, 255, 255);
+  background-color: rgba(199, 255, 255, 0.7);
 }
 .active {
   background-color: rgb(255, 255, 255);
@@ -35,13 +35,6 @@
 /*eslint-disable*/
 export default {
     name: "navigation",
-    data(){
-        return {
-            isActive : (val) => {
-                return currentRoute === val ? 'active': ''
-            }
-        }
-    },
     computed: {
         currentRoute(){
             return this.$route.path
