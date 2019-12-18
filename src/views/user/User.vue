@@ -1,21 +1,29 @@
 <template>
-  <div>
+  <div class="view">
     <!-- central navigation component -->
     <Navbar />
-    <div class="container fluid">
-      <div class="row">
-        <div class="col-sm-3 pt-1 pl-4 pr-1">
+    <div class="m-2">
+      <div class="row" style="border-top: solid white 85px;">
+        <div class="col-sm-3">
           <SideNav />
         </div>
-        <div class="col-sm-9 pt-1 pl-1 pr-2">
-          <router-link />
+        <div class="col-sm-9 mv-3 landing" style="background-color: teal;">
+          <router-view></router-view>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style></style>
+<style>
+.view {
+  overflow: hidden;
+}
+.landing {
+  height: 83vh;
+  overflow-y: scroll;
+}
+</style>
 
 <script>
 import Navbar from "@/components/User/Navigation";
