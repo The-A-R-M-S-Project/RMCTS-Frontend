@@ -1,8 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Index from "../views/LandingPage.vue";
-import Login from "../views/Login.vue";
-import User from "../views/user/User.vue";
+import Index from "../views/LandingPage";
+import Login from "../views/Login";
+import Catalog from "../views/Catalog";
+
+//user
+import User from "../views/user/User";
 import UserProfile from "../views/user/profile";
 import UserActivity from "../views/user/activity";
 import UserEquipment from "../views/user/equipment";
@@ -19,6 +22,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login
+  },
+  {
+    path: "/catalog",
+    name: "catalog",
+    component: Catalog
   },
   {
     path: "/user",
