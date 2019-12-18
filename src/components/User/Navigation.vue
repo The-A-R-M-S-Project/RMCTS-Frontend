@@ -13,7 +13,7 @@
                     <router-link to="/catalog" class="nav-link" href="#">Catalog</router-link>
                 </li>
                 <li  :class="[ 'nav-item', currentRoute.includes('user') ? 'active': '']">
-                    <router-link to="/user" class="nav-link" href="#">profile</router-link>
+                    <router-link to="/user/profile" class="nav-link" href="#">profile</router-link>
                 </li>
             </ul>
         </div>
