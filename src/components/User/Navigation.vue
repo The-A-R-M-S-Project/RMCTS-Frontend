@@ -22,7 +22,7 @@
 
 <style>
 .navbar {
-  background-color: rgba(199, 255, 255, 0.7);
+  background-color: rgba(199, 255, 255);
 }
 .active {
   background-color: rgb(255, 255, 255);
