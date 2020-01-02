@@ -3,42 +3,83 @@
     <h1 class="text-center">Hi Username!</h1>
     <div class="row m-2">
       <div class="col-sm-6 equipment">
-        <p class="text-center">My equipment card</p>
+        <p class="text-center">
+          <strong>equipment</strong>
+        </p>
+        <div class="equipment-card">
+          <li class="fa fa-server icon"></li>
+        </div>
       </div>
-      <div class="col-sm-6 schedules">
-        <p class="text-center">My schedules card</p>
+      <div class="col-sm-6">
+        <p class="text-center">
+          <strong>Reservations</strong>
+        </p>
+        <div class="reservation-card">
+          <i class="fa fa-calendar icon"></i>
+        </div>
       </div>
     </div>
-    <div class="row m-2 activity">
-      <div class="col-12">
-        <p class="text-center">
-          activity table showing schedules for your equipment from other users
+    <div class="row m-2">
+      <div class="col-12 activity">
+        <p class="text-center m-2">
+          <strong
+            >activity table showing reservation for your equipment from other
+            users</strong
+          >
         </p>
+        <div class="m-4">
+          <ActivityTable />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style>
-.profile {
-  background-color: pink;
-}
-.equipment {
-  background-color: burlywood;
-  height: 30vh;
-}
-.schedules {
-  background-color: mediumslateblue;
-  height: 30vh;
-}
 .activity {
   background-color: rgb(155, 243, 243);
-  height: 60vh;
+  max-height: 70vh;
+}
+.equipment-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgb(216, 159, 85);
+  height: 30vh;
+  cursor: pointer;
+  box-shadow: 10px 10px 20px #a3a3a3;
+}
+.equipment-card:hover {
+  box-shadow: 10px 10px 20px #4d4c4c;
+}
+.reservation-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: mediumslateblue;
+  height: 30vh;
+  cursor: pointer;
+  box-shadow: 10px 10px 20px #a3a3a3;
+}
+.reservation-card:hover {
+  box-shadow: 10px 10px 20px #4d4c4c;
+}
+.icon {
+  color: white;
+  font-size: 70px;
 }
 </style>
 
 <script>
+import ActivityTable from "@/components/User/ActivityTable";
 export default {
-  name: "user-profile"
+  name: "user-profile",
+  components: {
+    ActivityTable
+  }
 };
 </script>
