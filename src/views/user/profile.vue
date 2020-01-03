@@ -1,31 +1,32 @@
 <template>
   <div class="container profile">
-    <h1 class="text-center">Hi Username!</h1>
+    <h1 class="text-center text-info">Hi Username!</h1>
     <div class="row m-2">
       <div class="col-sm-6 equipment">
         <p class="text-center">
-          <strong>equipment</strong>
+          My equipment
         </p>
-        <div class="equipment-card">
-          <li class="fa fa-server icon"></li>
-        </div>
+        <router-link to="equipment">
+          <div class="equipment-card router-link">
+            <li class="fa fa-server icon"></li>
+          </div>
+        </router-link>
       </div>
       <div class="col-sm-6">
         <p class="text-center">
-          <strong>Reservations</strong>
+          Reservations
         </p>
-        <div class="reservation-card">
-          <i class="fa fa-calendar icon"></i>
-        </div>
+        <router-link to="reservations">
+          <div class="reservation-card">
+            <i class="fa fa-calendar icon"></i>
+          </div>
+        </router-link>
       </div>
     </div>
     <div class="row m-2">
-      <div class="col-12 activity">
+      <div class="col-12 activity mt-4">
         <p class="text-center m-2">
-          <strong
-            >activity table showing reservation for your equipment from other
-            users</strong
-          >
+          activity table showing reservation for your equipment from other users
         </p>
         <div class="m-4">
           <ActivityTable />
@@ -39,6 +40,7 @@
 .activity {
   background-color: rgb(155, 243, 243);
   max-height: 70vh;
+  min-height: 40vh;
 }
 .equipment-card {
   display: flex;
@@ -71,6 +73,9 @@
 .icon {
   color: white;
   font-size: 70px;
+}
+.router-link:hover {
+  text-decoration: none;
 }
 </style>
 
