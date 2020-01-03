@@ -38,7 +38,7 @@
 
 <style>
 .activity {
-  background-color: rgb(155, 243, 243);
+  background-color: rgb(205, 216, 226);
   max-height: 70vh;
   min-height: 40vh;
 }
@@ -48,7 +48,11 @@
   align-items: center;
   margin: 10px;
   border-radius: 10px;
-  background-color: rgb(216, 159, 85);
+  background-image: linear-gradient(
+    to right,
+    rgb(248, 192, 120),
+    rgb(163, 243, 14)
+  );
   height: 30vh;
   cursor: pointer;
   box-shadow: 10px 10px 20px #a3a3a3;
@@ -62,7 +66,11 @@
   align-items: center;
   margin: 10px;
   border-radius: 10px;
-  background-color: mediumslateblue;
+  background-image: linear-gradient(
+    to right,
+    rgb(79, 50, 248),
+    rgb(195, 0, 255)
+  );
   height: 30vh;
   cursor: pointer;
   box-shadow: 10px 10px 20px #a3a3a3;
