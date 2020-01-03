@@ -3,7 +3,11 @@
     <div class="bg-light this-card" style="max-width: 60vw; height: 100%;">
       <div class="row">
         <div class="col-md-5 this-image">
-          <img :src="url" class="image-fluid p-3" style="max-width: 25vw" />
+          <img
+            :src="url"
+            class="image-fluid p-3"
+            style="max-width: 25vw; border-radius: 5px;"
+          />
         </div>
         <div class="col-md-7">
           <div class="">
@@ -21,7 +25,7 @@
         <button type="button" class="btn btn-danger m-3" style="width: 100px">
           Delete
         </button>
-        <button type="button" class="btn btn-warning m-3" style="width: 100px">
+        <button type="button" class="btn btn-primary m-3" style="width: 100px">
           Edit
         </button>
       </div>
@@ -45,7 +49,7 @@
 .buttons-area {
   display: flex;
   justify-content: center;
-  background-color: rgb(231, 231, 231);
+  background-color: rgb(205, 216, 226);
 }
 </style>
 
