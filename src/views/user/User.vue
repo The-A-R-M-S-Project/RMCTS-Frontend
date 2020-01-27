@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .view {
   overflow: hidden;
 }

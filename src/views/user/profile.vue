@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .activity {
   background-color: rgb(205, 216, 226);
   max-height: 70vh;

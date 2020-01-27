@@ -89,7 +89,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .sidenav {
   background-color: rgb(9, 162, 255);
   height: 83vh;

@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .table-hover {
   color: rgb(165, 165, 165);
 }
