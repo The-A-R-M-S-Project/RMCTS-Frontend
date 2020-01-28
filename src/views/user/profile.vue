@@ -6,7 +6,7 @@
         <p class="text-center">
           My equipment
         </p>
-        <router-link to="equipment">
+        <router-link to="equipment" class="router-link">
           <div class="equipment-card router-link">
             <li class="fa fa-server icon"></li>
           </div>
@@ -28,7 +28,7 @@
         <p class="text-center m-2">
           activity table showing reservation for your equipment from other users
         </p>
-        <div class="m-4">
+        <div class="m-4 activity-table">
           <ActivityTable />
         </div>
       </div>
@@ -84,6 +84,9 @@
 }
 .router-link:hover {
   text-decoration: none;
+}
+.activity-table {
+  overflow: scroll;
 }
 </style>
 

@@ -9,7 +9,7 @@
           style="color:rgba(9, 162, 255, 0.85);"
         >
           <div class="text">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 pt-5">
               <input
                 type="search"
                 placeholder="Type here..."
