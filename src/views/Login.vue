@@ -23,7 +23,7 @@
                 >
               </div>
             </div>
-            <router-link to="/catalog" class="login">
+            <router-link to="/user/profile" class="login">
               <button class="btn btn-primary btn-block" type="submit">
                 Log In
               </button>
