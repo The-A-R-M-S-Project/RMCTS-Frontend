@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Index from "../views/LandingPage";
 import Login from "../views/Login";
 import Catalog from "../views/Catalog";
+import Register from "../views/Registration";
 
 //user
 import User from "../views/user/User";
@@ -22,6 +23,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register
   },
   {
     path: "/catalog",

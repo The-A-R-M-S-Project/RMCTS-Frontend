@@ -17,12 +17,12 @@
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item" role="presentation">
               <a class="nav-link">
-                <router-link to="/login">Login</router-link>
+                <router-link to="login">Login</router-link>
               </a>
             </li>
             <li class="nav-item" role="presentation">
               <a class="nav-link">
-                <router-link to="#">Register</router-link>
+                <router-link to="register">Register</router-link>
               </a>
             </li>
           </ul>
