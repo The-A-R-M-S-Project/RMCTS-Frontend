@@ -25,10 +25,7 @@
   </div>
 </template>
 
-<style>
-.view {
-}
-</style>
+<style></style>
 
 <script>
 import Navbar from "@/components/User/Navigation";
