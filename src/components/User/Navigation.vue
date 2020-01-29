@@ -20,7 +20,7 @@
     </nav>
 </template>
 
-<style>
+<style scoped>
 .navbar {
   background-color: rgba(199, 255, 255);
 }
