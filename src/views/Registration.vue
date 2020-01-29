@@ -27,26 +27,12 @@
               <label for="tel">Contact</label
               ><input class="form-control item" type="tel" />
             </div>
-            <div class="row form-group">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="checkbox"
-                /><label class="form-check-label" for="checkbox">Male</label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="checkbox"
-                /><label class="form-check-label" for="checkbox">Female</label>
-              </div>
-            </div>
-
             <button class="btn btn-primary btn-block" type="submit">
               Sign Up
             </button>
+            <router-link to="login">
+              <p>Already have an account?</p>
+            </router-link>
           </form>
         </div>
       </section>

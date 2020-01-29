@@ -28,6 +28,11 @@
                 Log In
               </button>
             </router-link>
+            <div class="form-group">
+              <router-link to="register">
+                <p>Don't Have an account?</p>
+              </router-link>
+            </div>
           </form>
         </div>
       </section>
