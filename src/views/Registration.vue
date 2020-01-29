@@ -32,17 +32,15 @@
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  id="formCheck-1"
-                /><label class="form-check-label" for="formCheck-1">Male</label>
+                  id="checkbox"
+                /><label class="form-check-label" for="checkbox">Male</label>
               </div>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  id="formCheck-1"
-                /><label class="form-check-label" for="formCheck-1"
-                  >Female</label
-                >
+                  id="checkbox"
+                /><label class="form-check-label" for="checkbox">Female</label>
               </div>
             </div>
 
