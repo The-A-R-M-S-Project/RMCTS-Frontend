@@ -1,7 +1,6 @@
 <template>
   <!-- eslint-disable -->
     <nav class="navbar navbar-expand-lg nav nav-pills fixed-top">
-        <!-- <a class="navbar-brand" href="#">RMCTS</a> -->
         <button class="navbar-toggler fa fa-chevron-circle-down" style="font-size:50px; color: rgb(0, 119, 255);" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -22,12 +21,17 @@
 
 <style scoped>
 .navbar {
-  background-color: rgba(199, 255, 255);
+  background-color: rgba(2, 162, 255);
 }
 .active {
-  background-color: rgb(255, 255, 255);
-  border-bottom: solid rgb(0, 119, 255) 5px;
+  background-color: rgb(110, 167, 255);
   border-radius: 5px;
+}
+.active .nav-link {
+  color: yellow;
+}
+.nav-link {
+  color: white;
 }
 </style>
 
