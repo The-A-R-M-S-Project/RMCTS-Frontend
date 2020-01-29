@@ -6,7 +6,7 @@
 
 <style>
 #app {
-  font-family: "Comfortaa", cursive;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* #nav {
