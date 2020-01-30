@@ -92,7 +92,7 @@
 <style scoped>
 .sidenav {
   background-color: rgb(9, 162, 255);
-  height: 83vh;
+  height: 87vh;
   border-radius: 4px;
   position: relative;
   padding-top: 2px;
@@ -133,9 +133,13 @@
 .profile-image {
   height: 30vh;
   width: auto;
+  object-fit: cover;
 }
 .card-header {
   background-color: rgb(9, 162, 255);
+}
+button {
+  border-radius: 0px;
 }
 </style>
 

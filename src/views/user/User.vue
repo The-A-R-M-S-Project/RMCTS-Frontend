@@ -20,7 +20,7 @@
   overflow: hidden;
 }
 .landing {
-  height: 83vh;
+  height: 87vh;
   overflow-y: scroll;
 }
 </style>
