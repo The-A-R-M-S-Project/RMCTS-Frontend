@@ -4,6 +4,7 @@ import Index from "../views/LandingPage";
 import Login from "../views/Login";
 import Catalog from "../views/Catalog";
 import Register from "../views/Registration";
+import ItemDetails from "../views/Details";
 
 //user
 import User from "../views/user/User";
@@ -56,6 +57,11 @@ const routes = [
         component: UserEquipment
       }
     ]
+  },
+  {
+    path: "/details",
+    name: "details",
+    component: ItemDetails
   }
 ];
 

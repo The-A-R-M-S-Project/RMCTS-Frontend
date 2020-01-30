@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- new -->
     <div class="card this-card">
       <div class="this-image">
         <img
@@ -16,14 +15,17 @@
         </p>
       </div>
       <div class="card-footer buttons-area">
-        <div class="row">
-          <button
-            type="button"
-            class="btn btn-success btn-sm r m-3"
-            style="width: 165px"
-          >
-            Read More !
-          </button>
+        <div class="butn">
+          <router-link to="details">
+            <button
+              type="button"
+              id="btn-color"
+              class="btn btn-sm r m-3"
+              style="width: 165px"
+            >
+              Read More !
+            </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -42,7 +44,12 @@
 }
 .buttons-area {
   background-color: rgb(218, 218, 218);
-  align-content: left;
+}
+.butn {
+  text-align: center;
+}
+#btn-color {
+  background-color: rgba(24, 221, 24, 0.664);
 }
 </style>
 
