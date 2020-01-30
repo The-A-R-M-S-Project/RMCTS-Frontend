@@ -9,7 +9,7 @@ import ItemDetails from "../views/Details";
 //user
 import User from "../views/user/User";
 import UserProfile from "../views/user/profile";
-import UserActivity from "../views/user/activity";
+import UserBookings from "../views/user/bookings";
 import UserEquipment from "../views/user/equipment";
 
 Vue.use(VueRouter);
@@ -47,9 +47,9 @@ const routes = [
         component: UserProfile
       },
       {
-        path: "activity",
-        name: "user-activity",
-        component: UserActivity
+        path: "bookings",
+        name: "user-bookings",
+        component: UserBookings
       },
       {
         path: "equipment",

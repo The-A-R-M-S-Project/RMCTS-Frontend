@@ -56,12 +56,12 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/user/activity"
+            to="/user/bookings"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
               :class="[
-                currentRoute.includes('user/activity') ? 'button-active' : ''
+                currentRoute.includes('user/bookings') ? 'button-active' : ''
               ]"
               type="button"
             >
@@ -70,7 +70,7 @@
                   <li class="fa fa-clock-o"></li>
                 </div>
                 <div class="col-9 text-left">
-                  <span style="font-size: smaller;">Activity</span>
+                  <span style="font-size: smaller;">Bookings</span>
                 </div>
               </div>
             </button>
