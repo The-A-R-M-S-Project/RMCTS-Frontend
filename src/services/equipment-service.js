@@ -19,7 +19,7 @@ module.exports = [
   },
   {
     _id: 3,
-    title: "Computer labaratory",
+    title: "Computer Laboratory",
     location: "Makerere, CEDAT, New building",
     description:
       "equipment description Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis maxime consectetur iure cumque debitis quaerat ratione exercitationem magnam, quod, at in! Beatae ut perspiciatis ipsam distinctio voluptatibus ullam molestiae ipsa.",
