@@ -6,12 +6,13 @@
       <div class="p-4">
         <Search />
       </div>
-      <div class="container">
+      <div class=" container d-flex justify-content-center">
         <div class="row">
           <div
             v-for="equipment in equipmentList"
             :key="equipment._id"
-            class="col-md-4 p-2"
+            class="col-md-4 m-3"
+            style="max-width: 340px"
           >
             <Equipment
               :title="equipment.title"

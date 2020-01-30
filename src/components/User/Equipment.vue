@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
     <div class="bg-light this-card" style="max-width: 60vw; height: 100%;">
       <div class="row">
         <div class="col-md-5 this-image">
           <img
             :src="url"
-            class="image-fluid p-3"
-            style="max-width: 25vw; border-radius: 5px;"
+            class="image-fluid"
+            style="width: 25vw; height: 40vh; border-top-left-radius: 20px;  object-fit: cover;"
           />
         </div>
         <div class="col-md-7">
@@ -39,8 +39,8 @@
   justify-content: center;
 }
 .this-card {
-  border: solid 1px rgb(136, 136, 136);
-  border-radius: 5px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .this-image {
   display: flex;
@@ -50,6 +50,8 @@
   display: flex;
   justify-content: center;
   background-color: rgb(205, 216, 226);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 </style>
 

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="card this-card">
+    <div class="card this-card m-2">
       <div class="this-image">
         <img
           :src="url"
-          class="card-img-top image-fluid p-1"
-          style="width: 360px; height: 250px; border-radius: 5px; object-fit: cover;"
+          class="card-img-top image-fluid"
+          style="width: 340px; height: 250px; border-top-left-radius: 20px; border-top-right-radius: 20px;  object-fit: cover;"
         />
       </div>
       <div class="card-body">
@@ -34,9 +34,9 @@
 
 <style scoped>
 .this-card {
-  border: solid 2px rgb(136, 136, 136);
-  border-radius: 5px;
-  min-width: 360px;
+  border-radius: 20px;
+  min-width: 340px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .this-image {
   display: flex;
@@ -44,6 +44,8 @@
 }
 .buttons-area {
   background-color: rgb(218, 218, 218);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 .butn {
   text-align: center;
