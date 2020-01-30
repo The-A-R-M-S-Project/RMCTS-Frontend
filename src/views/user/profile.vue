@@ -50,8 +50,8 @@
   border-radius: 10px;
   background-image: linear-gradient(
     to right,
-    rgb(248, 192, 120),
-    rgb(163, 243, 14)
+    rgb(248, 188, 120),
+    rgb(255, 243, 14)
   );
   height: 30vh;
   cursor: pointer;
