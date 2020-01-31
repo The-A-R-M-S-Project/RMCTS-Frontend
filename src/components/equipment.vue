@@ -16,7 +16,7 @@
       </div>
       <div class="card-footer buttons-area">
         <div class="butn">
-          <router-link to="details">
+          <router-link :to="{ name: 'details', params: { id: _id } }">
             <button
               type="button"
               id="btn-color"
@@ -61,7 +61,8 @@ export default {
   props: {
     title: String,
     location: String,
-    url: String
+    url: String,
+    _id: Number
   }
 };
 </script>
