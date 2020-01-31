@@ -4,48 +4,66 @@
     <Navbar />
     <div style="margin-top: 13vh">
       <div class="breadcrumb">
-        <router-link class="pr-1 link" to="/catalog">catalog </router-link>/
+        <router-link class="pr-1 link" to="/catalog">catalog</router-link>/
         <router-link
           class="pl-2 pr-2 current link"
           :to="{ name: 'details', params: { id: id } }"
-        >
-          item</router-link
+          >item details</router-link
         >
       </div>
-      <div class="card">
+      <div class="card-1 pt-5">
+        <h3 class="p-2 text-center">Details</h3>
         <!-- upper -->
-        <div>
+        <div class="section">
           <div class="card">
             <div class="row no-gutters">
-              <div class="col-md-5">
-                <img src alt="Image can't be loaded" />
+              <div class="col-md-5 d-flex align-items-center">
+                <img :src="details.imageURL" alt="Image can't be loaded" />
               </div>
 
               <div class="col-md-7">
                 <div class="card-body">
-                  <h4 class="card-title">Details</h4>
-                  <h5>{{ details.title }}</h5>
-
-                  <p class="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
+                  <h4>{{ details.title }}</h4>
+                  <hr />
+                  <p class="card-text text-justify">
+                    {{ details.description }}
                   </p>
-                  <!-- <router-link class="btn btn-primary" to="">
-                  <button type="button" class=" btn-primary"></button>
-                  </router-link>-->
+                  <hr />
+                  <p class="font-weight-lighter" style="color: grey">
+                    {{ details.location }}
+                  </p>
+                  <div class="buttons">
+                    <router-link class="mr-3" to="/make-reservation/:id">
+                      <button type="button" class="btn btn-success">
+                        Make reservations
+                      </button>
+                    </router-link>
+                    <router-link to>
+                      <button type="button" class="btn btn-primary" disabled>
+                        Visit website
+                      </button>
+                    </router-link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- bottom -->
-          <div class="card">
+          <div class="card mt-3">
             <div class="card-body">
-              <h5 class="card-title">Contact Organisation/Facility</h5>
-              <p class="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-              <a href="#" class="btn btn-primary">Button</a>
+              <h5 class="card-title text-center">
+                Contact Organisation/Facility
+              </h5>
+              <p>To: owner@example.com</p>
+              <p>From: user@gmail.com</p>
+              <textarea
+                class="form-control mt-4"
+                id="exampleFormControlTextarea1"
+                rows="6"
+              ></textarea>
+              <div class="submit">
+                <router-link to="" class="btn btn-primary">Send</router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -66,8 +84,19 @@
 .link:hover {
   text-decoration: none;
 }
-.card {
+.card-1 {
   margin-top: 50px;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+img {
+  width: 30vw;
+  height: 50vh;
+  object-fit: cover;
+}
+.submit {
+  text-align: center;
+  padding: 10px;
 }
 </style>
 <script>
