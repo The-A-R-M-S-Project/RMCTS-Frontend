@@ -12,15 +12,15 @@
             <div class="col-md-7">
               <div class="card-body">
                 <h4 class="card-title">Details</h4>
-                <h5>title</h5>
+                <h5>{{ details.title }}</h5>
 
                 <p class="card-text">
                   With supporting text below as a natural lead-in to additional
                   content.
                 </p>
-                <router-link class="btn btn-primary">
+                <!-- <router-link class="btn btn-primary" to="">
                   <button type="button" class=" btn-primary"></button>
-                </router-link>
+                </router-link> -->
               </div>
             </div>
           </div>
@@ -47,8 +47,17 @@ import equipmentList from "@/services/equipment-service.js";
 export default {
   name: "details",
   data() {
-    equipmentList;
+    return {
+      id: null,
+      details: null
+    };
   },
+  created() {
+    this.id = this.$route.params.id;
+    this.details = equipmentList.filter(item => item._id === this.id)[0];
+    // console.log(this.details);
+  },
+
   props() {}
 };
 </script>

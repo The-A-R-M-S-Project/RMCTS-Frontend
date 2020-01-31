@@ -18,6 +18,7 @@
               :title="equipment.title"
               :location="equipment.location"
               :url="equipment.imageURL"
+              :_id="equipment._id"
             />
           </div>
         </div>
