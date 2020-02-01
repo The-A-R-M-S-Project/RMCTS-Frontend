@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable vue/no-v-html -->
   <div class="view">
     <!-- central navigation component -->
     <Navbar />
