@@ -118,8 +118,6 @@ export default {
     this.id = this.$route.params.id;
     this.details = equipmentList.filter(item => item._id === this.id)[0];
     // console.log(this.details);
-  },
-
-  props() {}
+  }
 };
 </script>
