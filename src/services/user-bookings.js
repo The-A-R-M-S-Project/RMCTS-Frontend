@@ -21,7 +21,7 @@ module.exports = [
     time_scheduled: "10:05 hrs",
     date_scheduled: "01/01/2020",
     duration: "1 hour",
-    equipment: ["2"]
+    equipment: [2]
   },
   {
     _id: "b2",
@@ -29,7 +29,7 @@ module.exports = [
     time_scheduled: "15:30 hrs",
     date_scheduled: "22/01/2020",
     duration: "1,5 hours",
-    equipment: ["3"]
+    equipment: [3]
   },
   {
     _id: "c1",
@@ -37,7 +37,7 @@ module.exports = [
     time_scheduled: "11.20 hrs",
     date_scheduled: "02/02/2020",
     duration: "4.5 hours",
-    equipment: ["1", "3", "5"]
+    equipment: [1, 3, 5]
   },
   {
     _id: "c3",
@@ -45,7 +45,7 @@ module.exports = [
     time_scheduled: "09:30 hrs",
     date_scheduled: "06/01/2020",
     duration: "2.5 hours",
-    equipment: ["1", "4"]
+    equipment: [1, 4]
   },
   {
     _id: "d1",
@@ -53,7 +53,7 @@ module.exports = [
     time_scheduled: "08:00 hrs",
     date_scheduled: "09/01/2020",
     duration: "3 hours",
-    equipment: ["3", "4"]
+    equipment: [3, 4]
   },
   {
     _id: "d2",
@@ -61,7 +61,7 @@ module.exports = [
     time_scheduled: "9:30 hours",
     date_scheduled: "10/01/2020",
     duration: "2 hours",
-    equipment: ["5", "2"]
+    equipment: [5, 2]
   },
   {
     _id: "d3",
@@ -69,6 +69,6 @@ module.exports = [
     time_scheduled: "14:00 hrs",
     date_scheduled: "07/01/2020",
     duration: "4 hours",
-    equipment: ["6", "1"]
+    equipment: [6, 1]
   }
 ];

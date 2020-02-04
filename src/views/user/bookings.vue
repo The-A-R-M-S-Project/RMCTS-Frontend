@@ -12,8 +12,13 @@
       ></i>
     </div>
     <div class="container" v-else>
-      <div v-for="equipment in equipmentList" :key="equipment._id">
-        <div v-for="bookings in Bookeditems" :key="bookings.equipment">
+      <div v-for="bookings in Bookeditems" :key="bookings.equipment">
+        <div
+          v-for="equipment in equipmentList.filter(item =>
+            bookings.equipment.includes(item._id)
+          )"
+          :key="equipment._id"
+        >
           <Booked
             :title="equipment.title"
             :url="equipment.imageURL"
