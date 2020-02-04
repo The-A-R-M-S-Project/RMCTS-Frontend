@@ -11,7 +11,19 @@
         style="font-size: 25vw;"
       ></i>
     </div>
-    <div v-else></div>
+    <div class="container" v-else>
+      <div v-for="equipment in equipmentList" :key="equipment._id">
+        <div v-for="bookings in Bookeditems" :key="bookings.equipment">
+          <Booked
+            :title="equipment.title"
+            :url="equipment.imageURL"
+            :duration="bookings.duration"
+            :dateScheduled="bookings.date_scheduled"
+            :timeScheduled="bookings.time_scheduled"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,12 +44,20 @@
 </style>
 
 <script>
+import Booked from "@/components/User/booked";
+import Bookeditems from "@/services/user-bookings.js";
+import equipmentList from "@/services/equipment-service.js";
 export default {
   name: "user-activity",
   data() {
     return {
-      Activity: []
+      Activity: [1],
+      Bookeditems,
+      equipmentList
     };
+  },
+  components: {
+    Booked
   }
 };
 </script>
