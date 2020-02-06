@@ -44,9 +44,11 @@
                     organisation.
                   </p>
                 </div>
-                <button class="btn btn-outline-primary btn-lg" type="button">
-                  Register Now
-                </button>
+                <router-link to="register">
+                  <button class="btn btn-outline-primary btn-lg" type="button">
+                    Register Now
+                  </button>
+                </router-link>
               </div>
             </div>
           </div>
