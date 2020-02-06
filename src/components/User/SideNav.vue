@@ -91,7 +91,7 @@
 
 <style scoped>
 .sidenav {
-  background-color: rgb(9, 162, 255);
+  background-color: rgb(9, 128, 255);
   height: 87vh;
   border-radius: 4px;
   position: relative;
@@ -114,7 +114,7 @@
   text-decoration: none;
 }
 .card {
-  background-color: rgb(9, 162, 255);
+  background-color: rgb(9, 128, 255);
   max-height: 40vh;
   width: auto;
 }
@@ -136,7 +136,7 @@
   object-fit: cover;
 }
 .card-header {
-  background-color: rgb(9, 162, 255);
+  background-color: rgb(9, 160, 255);
 }
 button {
   border-radius: 0px;

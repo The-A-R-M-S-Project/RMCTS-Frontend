@@ -21,7 +21,7 @@
 
 <style scoped>
 .navbar {
-  background-color: rgba(2, 162, 255);
+  background-color: rgba(9, 128, 255);
 }
 .active {
   background-color: rgb(110, 167, 255);
