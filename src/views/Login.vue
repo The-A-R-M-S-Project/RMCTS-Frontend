@@ -1,10 +1,10 @@
 <template>
   <div>
-    <main class="page login-page">
-      <section class="clean-block clean-form dark">
+    <main class="login-page">
+      <section class="clean-form dark">
         <div class="container">
           <div class="block-heading">
-            <h1 class="text-info">Log In</h1>
+            <h1 class="text-info text-center">Log In</h1>
           </div>
           <form>
             <div class="form-group">
@@ -24,11 +24,15 @@
               </div>
             </div>
             <router-link to="/user/profile" class="login">
-              <button class="btn btn-primary btn-block" type="submit">
+              <button
+                class="btn btn-primary btn-block"
+                type="submit"
+                data-dismiss="modal"
+              >
                 Log In
               </button>
             </router-link>
-            <div class="form-group">
+            <div class="form-group" data-dismiss="modal">
               <router-link to="register">
                 <p>Don't Have an account?</p>
               </router-link>
