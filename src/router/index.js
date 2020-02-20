@@ -5,6 +5,7 @@ import Login from "../views/Login";
 import Catalog from "../views/Catalog";
 import Register from "../views/Registration";
 import ItemDetails from "../views/Details";
+import Reservation from "../views/user/reserve";
 
 //user
 import User from "../views/user/User";
@@ -62,6 +63,11 @@ const routes = [
     path: "/details/:id",
     name: "details",
     component: ItemDetails
+  },
+  {
+    path: "/make-reservation",
+    name: "reservation",
+    component: Reservation
   }
 ];
 
