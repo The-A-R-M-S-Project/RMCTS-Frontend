@@ -1,12 +1,12 @@
 <template>
   <div>
     <main class="page registration-page">
-      <section class="clean-block clean-form dark">
+      <section class="clean-block clean-form dark overlay1">
         <div class="container">
-          <div class="block-heading">
-            <h2 class="text-info">Registration</h2>
-          </div>
           <form>
+            <div class="text-center">
+              <h2 class="text-info">Registration</h2>
+            </div>
             <div class="form-group">
               <label for="name">Name</label
               ><input class="form-control item" type="text" id="name" />
@@ -17,7 +17,11 @@
             </div>
             <div class="form-group">
               <label for="password"> Confirm Password</label
-              ><input class="form-control item" type="password" id="password" />
+              ><input
+                class="form-control item"
+                type="password"
+                id="password1"
+              />
             </div>
             <div class="form-group">
               <label for="email">Email</label
@@ -26,6 +30,40 @@
             <div class="form-group">
               <label for="tel">Contact</label
               ><input class="form-control item" type="tel" />
+            </div>
+            <div class="form-group">
+              <label for="userRegisterOption">Registering As:</label>
+              <select
+                class="form-control"
+                id="userRegisterOption"
+                v-model="selected"
+              >
+                <option>Organisation/Company</option>
+                <option>Student</option>
+                <option>Lecturer</option>
+              </select>
+            </div>
+            <div v-if="selected == 'Organisation/Company'">
+              <div class="form-group">
+                <label for="address">Address</label
+                ><input class="form-control item" type="address" />
+              </div>
+              <div class="form-group">
+                <label for="address">Website</label
+                ><input class="form-control item" type="website" />
+              </div>
+            </div>
+            <div v-if="selected == 'Student'">
+              <div class="form-group">
+                <label for="name">University/Institute</label
+                ><input class="form-control item" type="text" />
+              </div>
+            </div>
+            <div v-if="selected == 'Lecturer'">
+              <div class="form-group">
+                <label for="name">University/Institute</label
+                ><input class="form-control item" type="text" />
+              </div>
             </div>
             <button class="btn btn-primary btn-block" type="submit">
               Sign Up
@@ -40,4 +78,20 @@
   </div>
 </template>
 
-<style></style>
+<style>
+.overlay1 {
+  background-image: url("~@/assets/img/tech/image8.jpg");
+}
+</style>
+
+<script>
+export default {
+  name: "Register",
+  data() {
+    return {
+      selected: ""
+    };
+  },
+  methods: {}
+};
+</script>
