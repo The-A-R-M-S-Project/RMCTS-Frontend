@@ -65,10 +65,12 @@
                 ><input class="form-control item" type="text" />
               </div>
             </div>
-            <button class="btn btn-primary btn-block" type="submit">
-              Sign Up
-            </button>
-            <router-link to="login">
+            <router-link to="/user/profile">
+              <button class="btn btn-primary btn-block" type="submit">
+                Sign Up
+              </button>
+            </router-link>
+            <router-link to="/">
               <p>Already have an account?</p>
             </router-link>
           </form>
