@@ -31,7 +31,7 @@
               <label for="tel">Contact</label
               ><input class="form-control item" type="tel" />
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="userRegisterOption">Registering As:</label>
               <select
                 class="form-control"
@@ -42,8 +42,8 @@
                 <option>Student</option>
                 <option>Lecturer</option>
               </select>
-            </div>
-            <div v-if="selected == 'Organisation/Company'">
+            </div> -->
+            <!-- <div v-if="selected == 'Organisation/Company'">
               <div class="form-group">
                 <label for="address">Address</label
                 ><input class="form-control item" type="address" />
@@ -64,7 +64,7 @@
                 <label for="name">University/Institute</label
                 ><input class="form-control item" type="text" />
               </div>
-            </div>
+            </div> -->
             <router-link to="/user/profile">
               <button class="btn btn-primary btn-block" type="submit">
                 Sign Up
