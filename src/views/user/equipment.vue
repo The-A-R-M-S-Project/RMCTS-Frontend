@@ -11,7 +11,7 @@
           role="tab"
           aria-controls="nav-home"
           aria-selected="true"
-          ><li class="fa fa-list p-2"></li>
+          ><li class="fa fa-list pt-2 pb-2"></li>
           All Equipment</a
         >
         <a
@@ -22,7 +22,7 @@
           role="tab"
           aria-controls="nav-profile"
           aria-selected="false"
-          ><li class="fa fa-plus p-2"></li>
+          ><li class="fa fa-plus pt-2 pb-2"></li>
           Add equipment</a
         >
       </div>
@@ -76,7 +76,7 @@ a:hover{
 }
 .content-area {
   min-height: 63vh;
-  margin: 10px;
+  margin-top: 10px;
 }
 .active {
   border-bottom: 0px;
