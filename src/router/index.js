@@ -3,11 +3,14 @@ import VueRouter from "vue-router";
 import Index from "../views/LandingPage";
 import Login from "../views/Login";
 import Catalog from "../views/Catalog";
+import Register from "../views/Registration";
+import ItemDetails from "../views/Details";
+import Reservation from "../views/user/reserve";
 
 //user
 import User from "../views/user/User";
 import UserProfile from "../views/user/profile";
-import UserActivity from "../views/user/activity";
+import UserBookings from "../views/user/bookings";
 import UserEquipment from "../views/user/equipment";
 
 Vue.use(VueRouter);
@@ -22,6 +25,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register
   },
   {
     path: "/catalog",
@@ -40,9 +48,9 @@ const routes = [
         component: UserProfile
       },
       {
-        path: "activity",
-        name: "user-activity",
-        component: UserActivity
+        path: "bookings",
+        name: "user-bookings",
+        component: UserBookings
       },
       {
         path: "equipment",
@@ -50,10 +58,21 @@ const routes = [
         component: UserEquipment
       }
     ]
+  },
+  {
+    path: "/details/:id",
+    name: "details",
+    component: ItemDetails
+  },
+  {
+    path: "/make-reservation",
+    name: "reservation",
+    component: Reservation
   }
 ];
 
 const router = new VueRouter({
+  mode: "history",
   routes
 });
 

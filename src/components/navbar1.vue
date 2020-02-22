@@ -15,24 +15,65 @@
         </button>
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link">
-                <router-link to="/login">Login</router-link>
+            <li
+              class="nav-item na-col"
+              role="presentation"
+              data-toggle="modal"
+              data-target="#loginModal"
+            >
+              <a class="nav-link na-col">
+                Login
               </a>
             </li>
             <li class="nav-item" role="presentation">
               <a class="nav-link">
-                <router-link to="#">Register</router-link>
+                <router-link to="register">Register</router-link>
               </a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <!-- modal -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <Login />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import Login from "@/views/Login";
 export default {
-  name: "navbar1"
+  name: "navbar1",
+  components: {
+    Login
+  }
 };
 </script>
+<style scoped>
+.na-col {
+  color: rgb(9, 128, 255);
+}
+</style>

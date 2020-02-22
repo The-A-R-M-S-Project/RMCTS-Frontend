@@ -7,7 +7,7 @@
         <div class="col-sm-3">
           <SideNav />
         </div>
-        <div class="col-sm-9 mv-3 landing" style="background-color: teal;">
+        <div class="col-sm-9 mv-3 landing">
           <router-view></router-view>
         </div>
       </div>
@@ -15,12 +15,12 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .view {
   overflow: hidden;
 }
 .landing {
-  height: 83vh;
+  height: 87vh;
   overflow-y: scroll;
 }
 </style>

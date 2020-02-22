@@ -1,0 +1,68 @@
+<template>
+  <div class="container mt-5">
+    <div class="bg-light this-card" style="max-width: 60vw; height: 100%;">
+      <div class="row">
+        <div class="col-md-5 this-image">
+          <img
+            :src="url"
+            class="image-fluid"
+            style="width: 25vw; height: 40vh; border-top-left-radius: 20px;  object-fit: cover;"
+          />
+        </div>
+        <div class="col-md-7">
+          <div class="">
+            <h5 class="card-title">{{ title }}</h5>
+            <p class="text-justify pr-3">
+              {{ description }}
+            </p>
+            <p class="">
+              <small class="text-muted">{{ location }}</small>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="buttons-area">
+        <button type="button" class="btn btn-danger m-3" style="width: 100px">
+          Delete
+        </button>
+        <button type="button" class="btn btn-primary m-3" style="width: 100px">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+}
+.this-card {
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.this-image {
+  display: flex;
+  align-content: center;
+}
+.buttons-area {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(205, 216, 226);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+</style>
+
+<script>
+export default {
+  name: "all-equipment",
+  props: {
+    title: String,
+    description: String,
+    location: String,
+    url: String
+  }
+};
+</script>
