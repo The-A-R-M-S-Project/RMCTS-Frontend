@@ -37,17 +37,49 @@
                     {{ details.location }}
                   </p>
                   <div class="buttons">
-                    <router-link class="m-3" to="/make-reservation">
-                      <button type="button" class="btn btn-success">
+                    <div class="m-3">
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        data-toggle="modal"
+                        data-target="#addEventsModal"
+                      >
                         Make reservations
                       </button>
-                    </router-link>
+                    </div>
                     <router-link class="m-3" to="">
                       <button type="button" class="btn btn-primary" disabled>
                         Visit website
                       </button>
                     </router-link>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- modal -->
+          <div
+            class="modal fade"
+            id="addEventsModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <addEventsModal />
                 </div>
               </div>
             </div>
@@ -110,11 +142,13 @@ img {
 /* eslint-disable */
 import equipmentList from "@/services/equipment-service.js";
 import Navbar from "@/components/User/Navigation";
+import addEventsModal from "@/components/User/addEventModal";
 
 export default {
   name: "item-details",
   components: {
-    Navbar
+    Navbar,
+    addEventsModal
   },
   data() {
     return {
@@ -123,12 +157,12 @@ export default {
     };
   },
   created() {
-    this.initializeView()
+    this.initializeView();
     //eslint-disable-next-line
     console.log(this.details);
   },
   methods: {
-    initializeView(){
+    initializeView() {
       this._id = this.$route.params.id;
       this.details = equipmentList.filter(item => item._id === this._id)[0];
     }
