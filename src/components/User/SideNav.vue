@@ -78,14 +78,13 @@
         </ul>
       </div>
     </nav>
-    <router-link class="logout-button" to="/">
-      <button
-        class="btn btn-secondary btn-lg btn-block button ph-2"
-        type="button"
-      >
-        <span style="font-size: smaller;">logout</span>
-      </button>
-    </router-link>
+    <button
+      class="btn btn-secondary btn-lg btn-block button ph-2 logout-button"
+      type="submit"
+      @click="logOut"
+    >
+      <span style="font-size: smaller;">logout</span>
+    </button>
   </div>
 </template>
 
@@ -108,10 +107,6 @@
 .logout-button {
   color: white;
   font-size: 20pt;
-}
-.logout-button:hover {
-  color: white;
-  text-decoration: none;
 }
 .card {
   background-color: rgb(9, 128, 255);
@@ -144,11 +139,30 @@ button {
 </style>
 
 <script>
+/* eslint-disable */
 export default {
   name: "SideNav",
   computed: {
     currentRoute() {
       return this.$route.path;
+    }
+  },
+  methods: {
+    logOut() {
+      if (localStorage.getItem("jwt") != null) {
+        console.log(localStorage.getItem("jwt"));
+        this.$http
+          .post(`http://localhost:3000/admins/me/logout`)
+          .then(res => {
+            console.log(res);
+            console.log("logged out");
+            localStorage.removeItem("jwt");
+            this.$router.push({ name: "index" });
+          })
+          .catch(err => {
+            console.log(err.response.data.message);
+          });
+      }
     }
   }
 };

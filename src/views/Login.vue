@@ -88,8 +88,9 @@ export default {
             if (localStorage.getItem("jwt") != null) {
               this.$emit("loggedIn");
               console.log("LoggedIn");
-            } else {
               this.$router.push({ name: "user-profile"});
+            } else {
+              this.$router.push({ name: "index"});
             }
           })
           .catch(err => {
