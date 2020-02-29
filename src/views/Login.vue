@@ -9,11 +9,21 @@
           <form>
             <div class="form-group">
               <label for="email">Email</label>
-              <input class="form-control item" type="email" id="email" />
+              <input
+                class="form-control item"
+                type="email"
+                v-model="email"
+                id="email"
+              />
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input class="form-control" type="password" id="password" />
+              <input
+                class="form-control"
+                type="password"
+                v-model="password"
+                id="password"
+              />
             </div>
             <div class="form-group">
               <div class="form-check">
@@ -23,15 +33,14 @@
                 >
               </div>
             </div>
-            <router-link to="/user/profile" class="login">
-              <button
-                class="btn btn-primary btn-block"
-                type="submit"
-                data-dismiss="modal"
-              >
-                Log In
-              </button>
-            </router-link>
+            <button
+              class="btn btn-primary btn-block login"
+              type="submit"
+              data-dismiss="modal"
+              @click="handleSubmit"
+            >
+              Log In
+            </button>
             <div class="form-group" data-dismiss="modal">
               <router-link to="register">
                 <p>Don't Have an account?</p>
@@ -51,7 +60,46 @@
 </style>
 
 <script>
+/* eslint-disable */
+import axios from "axios";
 export default {
-  name: "login"
+  name: "login",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      if (this.password.length > 6) {
+        this.$http
+          .post("http://localhost:3000/admins/login", {
+            email: this.email,
+            password: this.password
+          })
+          .then(res => {
+            console.log(res)
+            localStorage.setItem(
+              "jwt",
+              res.data.token
+            );
+            if (localStorage.getItem("jwt") != null) {
+              this.$emit("loggedIn");
+              console.log("LoggedIn");
+            } else {
+              this.$router.push({ name: "user-profile"});
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert("login failed");
+          });
+      } else {
+        alert("check your login credentials and try again");
+      }
+    }
+  }
 };
 </script>
