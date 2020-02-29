@@ -6,7 +6,11 @@ import store from "./store";
 import axios from "axios";
 
 Vue.prototype.$http = axios;
-
+axios.interceptors.request.use(config => {
+  const token = localStorage.getItem("jwt");
+  config.headers.Authorization = token;
+  return config;
+});
 Vue.config.productionTip = false;
 
 new Vue({
