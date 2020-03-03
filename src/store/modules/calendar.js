@@ -2,11 +2,11 @@ import axios from "axios";
 import events from "../../services/reservations";
 
 const state = {
-  events
+  Events: events
 };
 
 const getters = {
-  allEvents: state => state.events
+  allEvents: state => state.Events
 };
 
 const actions = {
