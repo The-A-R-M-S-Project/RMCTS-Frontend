@@ -9,7 +9,17 @@
           <form>
             <div class="form-group">
               <label for="email">Email</label>
-              <input class="form-control item" type="email" id="email" />
+              <input
+                v-validate="'required|email'"
+                :class="{ input: true, 'is-danger': errors.has('email') }"
+                name="email"
+                class="form-control item"
+                type="email"
+                id="email"
+              />
+              <span v-show="errors.has('email')" class="help is-danger">{{
+                errors.first("email")
+              }}</span>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -52,6 +62,8 @@
 
 <script>
 export default {
-  name: "login"
+  name: "login",
+  data: () => ({}),
+  methods: {}
 };
 </script>
