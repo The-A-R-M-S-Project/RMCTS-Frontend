@@ -7,6 +7,7 @@ import Catalog from "../views/Catalog";
 import Register from "../views/Registration";
 import ItemDetails from "../views/Details";
 import Reservation from "../views/user/reserve";
+import SignedUp from "../views/SignedUp"
 
 //user
 import User from "../views/user/User";
@@ -47,6 +48,14 @@ const routes = [
     component: Catalog,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: "/signed-up",
+    name: "signed-up",
+    component: SignedUp,
+    meta: {
+      guest: true
     }
   },
   {
