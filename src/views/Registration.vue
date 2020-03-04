@@ -9,11 +9,21 @@
             </div>
             <div class="form-group">
               <label for="name">Name</label
-              ><input class="form-control item" type="text" id="name" />
+              ><input
+                class="form-control item"
+                v-model="user.name"
+                type="text"
+                id="name"
+              />
             </div>
             <div class="form-group">
               <label for="password">Password</label
-              ><input class="form-control item" type="password" id="password" />
+              ><input
+                class="form-control item"
+                v-model="user.password"
+                type="password"
+                id="password"
+              />
             </div>
             <div class="form-group">
               <label for="password"> Confirm Password</label
@@ -21,22 +31,32 @@
                 class="form-control item"
                 type="password"
                 id="password1"
+                v-model="user.password"
               />
             </div>
             <div class="form-group">
               <label for="email">Email</label
-              ><input class="form-control item" type="email" id="email" />
+              ><input
+                class="form-control item"
+                type="email"
+                id="email"
+                v-model="user.email"
+              />
             </div>
             <div class="form-group">
               <label for="tel">Contact</label
-              ><input class="form-control item" type="tel" />
+              ><input
+                class="form-control item"
+                type="tel"
+                v-model="user.contact"
+              />
             </div>
             <!-- <div class="form-group">
               <label for="userRegisterOption">Registering As:</label>
               <select
                 class="form-control"
                 id="userRegisterOption"
-                v-model="selected"
+                v-model="user.selected"
               >
                 <option>Organisation/Company</option>
                 <option>Student</option>
@@ -66,11 +86,15 @@
               </div>
             </div> -->
             <router-link to="/user/profile">
-              <button class="btn btn-primary btn-block" type="submit">
+              <button
+                class="btn btn-primary btn-block"
+                type="submit"
+                @click="onSubmit"
+              >
                 Sign Up
               </button>
             </router-link>
-            <router-link to="/">
+            <router-link to="/login">
               <p>Already have an account?</p>
             </router-link>
           </form>
@@ -87,13 +111,29 @@
 </style>
 
 <script>
+/* eslint-disable */
+import { mapActions } from 'vuex'
 export default {
   name: "Register",
   data() {
     return {
-      selected: ""
+      selected: "",
+      user: {
+        name: "",
+        email: "",
+        password: "",
+        contact: ""
+      }
     };
   },
-  methods: {}
+  methods: {
+    ...mapActions(['signup']),
+    onSubmit(e){
+      e.preventDefault()
+      this.signup(this.user).then(
+        this.$router.push({name: 'signed-up'})
+      )
+    }
+  }
 };
 </script>

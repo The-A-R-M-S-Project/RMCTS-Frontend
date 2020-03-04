@@ -7,7 +7,8 @@ const state = {
   user: {
     name: "Username",
     email: "user@example.com"
-  }
+  },
+  signupStatus: ""
 };
 
 const mutations = {
@@ -18,7 +19,8 @@ const mutations = {
     state.token = token;
   },
   auth_error: state => (state.status = "error"),
-  rm_token: state => (state.token = "")
+  rm_token: state => (state.token = ""),
+  signup_success: state => state.signup = "success"
 };
 
 const actions = {
@@ -35,7 +37,6 @@ const actions = {
     }
   },
   logout: function({ commit }) {
-   
     if (localStorage.getItem("jwt") != null) {
       console.log(localStorage.getItem("jwt"));
       axios
@@ -45,12 +46,31 @@ const actions = {
           console.log("logged out");
           localStorage.removeItem("jwt");
           // this.$router.push({ name: "index" });
-          commit("rm_token")
+          commit("rm_token");
         })
         .catch(err => {
           console.log(err.response.data.message);
         });
     }
+  },
+  signup: async function({ commit }, user) {
+    // e.preventDefault();
+    try {
+      let res = await axios.post("http://localhost:3000/admins", user);
+      console.log(res);
+      commit('signup_success')
+    } catch (err) {
+      console.log(err);
+      alert(err);
+    }
+
+    // .then(res => {
+    //   console.log(res);
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    //   alert(err);
+    // });
   }
 };
 
