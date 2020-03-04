@@ -9,11 +9,34 @@
           <form>
             <div class="form-group">
               <label for="email">Email</label>
-              <input class="form-control item" type="email" id="email" />
+              <input
+                v-validate="'required|email'"
+                v-model="email"
+                :class="{ input: true, 'is-danger': errors.has('email') }"
+                name="email"
+                class="form-control item"
+                type="email"
+                id="email"
+              />
+              <span v-show="errors.has('email')" class="help is-danger">{{
+                errors.first("email")
+              }}</span>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input class="form-control" type="password" id="password" />
+              <input
+                class="form-control item"
+                v-model="password"
+                v-validate="'required|max:25|min:8'"
+                name="password"
+                :class="{ 'is-danger': errors.has('password') }"
+                type="password"
+                ref="password"
+                id="password"
+              />
+              <span v-show="errors.has('password')" class="help is-danger">{{
+                errors.first("password")
+              }}</span>
             </div>
             <div class="form-group">
               <div class="form-check">
@@ -23,15 +46,16 @@
                 >
               </div>
             </div>
-            <router-link to="/user/profile" class="login">
+            <div class="login">
               <button
                 class="btn btn-primary btn-block"
+                @click.prevent="validateBeforeLogin"
                 type="submit"
                 data-dismiss="modal"
               >
                 Log In
               </button>
-            </router-link>
+            </div>
             <div class="form-group" data-dismiss="modal">
               <router-link to="register">
                 <p>Don't Have an account?</p>
@@ -52,6 +76,22 @@
 
 <script>
 export default {
-  name: "login"
+  name: "login",
+  data: () => ({
+    email: "",
+    password: ""
+  }),
+  methods: {
+    validateBeforeLogin() {
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          // es-lint-disable-next-line
+          this.$router.push("/user/profile");
+          return;
+        }
+        alert("Fill in all necessary fields!");
+      });
+    }
+  }
 };
 </script>
