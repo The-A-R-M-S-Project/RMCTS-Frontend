@@ -27,7 +27,7 @@
               <label for="password">Password</label
               ><input
                 class="form-control item"
-                v-validate="required"
+                v-validate="'required|max:25|min:8|upCase|number'"
                 name="password"
                 :class="{ 'is-danger': errors.has('password') }"
                 ref="password"
@@ -175,9 +175,19 @@ export default {
           return;
         }
 
-        alert("Correct the errors!");
+        alert("Fill in all necessary fields!");
       });
     }
+  },
+  created() {
+    this.$validator.extend("upCase", {
+      getMessage: () => "Must have atleast one uppercase character",
+      validate: value => value.match(/[A-Z]/g) !== null
+    });
+    this.$validator.extend("number", {
+      getMessage: () => "Must have atleast one number",
+      validate: value => value.match(/[0-9]/g) !== null
+    });
   }
 };
 </script>
