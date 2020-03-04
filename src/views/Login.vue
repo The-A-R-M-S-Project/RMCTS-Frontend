@@ -62,6 +62,8 @@
 <script>
 /* eslint-disable */
 import axios from "axios";
+import { mapActions } from "vuex";
+
 export default {
   name: "login",
   data() {
@@ -71,34 +73,23 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["login"]),
     handleSubmit(e) {
       e.preventDefault();
+      console.log("here");
       if (this.password.length > 6) {
-        this.$http
-          .post("http://localhost:3000/admins/login", {
-            email: this.email,
-            password: this.password
-          })
-          .then(res => {
-            console.log(res)
-            localStorage.setItem(
-              "jwt",
-              res.data.token
-            );
-            if (localStorage.getItem("jwt") != null) {
-              this.$emit("loggedIn");
-              console.log("LoggedIn");
-              this.$router.push({ name: "user-profile"});
-            } else {
-              this.$router.push({ name: "index"});
-            }
-          })
-          .catch(err => {
-            console.error(err);
-            alert("login failed");
-          });
+        this.login({ email: this.email, password: this.password }).then(() => {
+          if (localStorage.getItem("jwt") != null) {
+            this.$emit("loggedIn");
+            console.log("LoggedIn");
+            this.$router.push({ name: "user-profile" });
+          } else {
+            this.$router.push({ name: "index" });
+          }
+        });
       } else {
         alert("check your login credentials and try again");
+        console.log("done");
       }
     }
   }
