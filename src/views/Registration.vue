@@ -13,7 +13,7 @@
                 class="form-control item"
                 name="name"
                 v-model="name"
-                v-validate="'required|alpha'"
+                v-validate="'required|alpha_spaces'"
                 :class="{ input: true, 'is-danger': errors.has('name') }"
                 type="text"
                 id="name"
@@ -131,15 +131,13 @@
                 ><input class="form-control item" type="text" />
               </div>
             </div>
-            <router-link to="/user/profile">
-              <button
-                class="btn btn-primary btn-block"
-                @click.prevent="validateBeforeSubmit"
-                type="submit"
-              >
-                Sign Up
-              </button>
-            </router-link>
+            <button
+              class="btn btn-primary btn-block"
+              @click.prevent="validateBeforeSubmit"
+              type="submit"
+            >
+              Sign Up
+            </button>
             <router-link to="/">
               <p>Already have an account?</p>
             </router-link>
@@ -173,7 +171,7 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           // eslint-disable-next-line
-          alert("You've been registered !");
+          this.$router.push("/user/profile");
           return;
         }
 
