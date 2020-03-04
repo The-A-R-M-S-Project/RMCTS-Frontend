@@ -9,9 +9,15 @@
             right: 'prev today next'
           }"
           :plugins="calendarPlugins"
-          :events="reservations"
+          :events="EVENTS"
           :selectable="true"
+          :editable="true"
+          @select="handleDateClick"
+          @eventClick="handleClick"
+          @eventResize="handleResize"
+          @eventDrop="cancelEvent"
         />
+        <modals-container />
       </div>
     </div>
   </div>
@@ -29,7 +35,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import reservations from "@/services/reservations.js";
+import EventModal from "./eventModal";
 
 // State Management
 import { mapGetters } from "vuex";
@@ -46,19 +52,32 @@ export default {
         timeGridPlugin,
         interactionPlugin,
         listPlugin
-      ],
-      reservations
+      ]
     };
   },
   methods: {
+    handleResize(drag) {
+      this.$store.commit("UpdateEvents", drag.event);
+    },
+    cancelEvent() {},
     handleDateClick(tap) {
-      alert(tap.date);
+      this.$store.commit("SetEvents", {
+        id: new Date().getTime(),
+        title: "trial",
+        start: tap.start,
+        end: tap.end,
+        allDay: tap.allDay
+      });
+    },
+    handleClick(clck) {
+      this.$modal.show(EventModal, {
+        text: "From the component",
+        event: clck.event
+      });
     }
-    // ...mapActions([fetchEvents])
   },
-  computed: mapGetters(["allEvents"]),
-  created() {
-    this.fetchEvents();
+  computed: {
+    ...mapGetters(["EVENTS"])
   }
 };
 </script>
