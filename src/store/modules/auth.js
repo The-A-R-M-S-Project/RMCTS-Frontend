@@ -14,7 +14,8 @@ const mutations = {
     state.user = data;
     state.token = token;
   },
-  auth_error: state => (state.status = "error")
+  auth_error: state => (state.status = "error"),
+  rm_token: state => (state.token = "")
 };
 
 const actions = {
@@ -28,6 +29,24 @@ const actions = {
     } catch (err) {
       console.error(err);
       alert("login failed");
+    }
+  },
+  logout: function({ commit }) {
+   
+    if (localStorage.getItem("jwt") != null) {
+      console.log(localStorage.getItem("jwt"));
+      axios
+        .post(`http://localhost:3000/admins/me/logout`)
+        .then(res => {
+          console.log(res);
+          console.log("logged out");
+          localStorage.removeItem("jwt");
+          // this.$router.push({ name: "index" });
+          commit("rm_token")
+        })
+        .catch(err => {
+          console.log(err.response.data.message);
+        });
     }
   }
 };
