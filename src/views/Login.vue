@@ -1,12 +1,13 @@
 <template>
   <div>
-    <main class="login-page">
-      <section class="clean-form dark">
+    <main class="login-page page registration-page">
+      <section class="clean-block clean-form dark overlay1">
         <div class="container">
-          <div class="block-heading">
-            <h1 class="text-info text-center">Log In</h1>
-          </div>
+          <div class="block-heading"></div>
           <form>
+            <div class="text-center">
+              <h2 class="text-info">Login In</h2>
+            </div>
             <div class="form-group">
               <label for="email">Email</label>
               <input
@@ -81,15 +82,11 @@ export default {
         this.login({ email: this.email, password: this.password }).then(() => {
           if (localStorage.getItem("jwt") != null) {
             this.$emit("loggedIn");
-            console.log("LoggedIn");
             this.$router.push({ name: "user-profile" });
-          } else {
-            this.$router.push({ name: "index" });
           }
         });
       } else {
         alert("check your login credentials and try again");
-        console.log("done");
       }
     }
   }
