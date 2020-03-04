@@ -11,8 +11,8 @@
               style="border-radius: 100px;"
               height=""
             />
-            <h5 class="p-0">username</h5>
-            <p class="p-1">user@gmail.com</p>
+            <h5 class="p-0">{{ user.name }}</h5>
+            <p class="p-1">{{ user.email }}</p>
           </li>
           <router-link
             class="sidenav-button list-group-item"
@@ -140,19 +140,28 @@ button {
 
 <script>
 /* eslint-disable */
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: "SideNav",
+  data(){
+    return {
+    }
+  },
   computed: {
     currentRoute() {
       return this.$route.path;
-    }
+    },
+    ...mapGetters(['user'])
   },
   methods: {
     ...mapActions(['logout']),
     handleLogout(){
       this.logout().then(() =>  this.$router.push({ name: "index" })).catch((err)=> console.log(err))
     }
-  }
+  },
+  // created(){
+  //   this.email = this.user.email;
+  //   this.name = this.user.name;
+  // }
 };
 </script>

@@ -4,7 +4,10 @@ import axios from "axios";
 const state = {
   status: "",
   token: localStorage.getItem("jwt") || "",
-  user: {}
+  user: {
+    name: "Username",
+    email: "user@example.com"
+  }
 };
 
 const mutations = {
