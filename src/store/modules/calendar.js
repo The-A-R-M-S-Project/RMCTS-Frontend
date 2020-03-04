@@ -1,4 +1,3 @@
-import axios from "axios";
 import events from "../../services/reservations";
 
 const state = {
@@ -6,20 +5,21 @@ const state = {
 };
 
 const getters = {
-  allEvents: state => state.Events
-};
-
-const actions = {
-  async fetchEvents({ commit }) {
-    const response = await axios.get(events);
-
-    commit("setEvents", response.data);
-  }
+  EVENTS: state => state.Events
 };
 
 const mutations = {
-  setEvents: (state, reservations) => (state.events = reservations)
+  SetEvents: (state, reservations) => state.Events.push(reservations),
+  UpdateEvents: (state, { id, title, start, end }) => {
+    let index = state.Events.findIndex(evnt => evnt.id == id);
+
+    state.Events[index].title = title;
+    state.Events[index].start = start;
+    state.Events[index].end = end;
+  }
 };
+
+const actions = {};
 
 export default {
   state,
