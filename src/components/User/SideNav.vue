@@ -11,8 +11,8 @@
               style="border-radius: 100px;"
               height=""
             />
-            <h5 class="p-0">username</h5>
-            <p class="p-1">user@gmail.com</p>
+            <h5 class="p-0">{{ user.name }}</h5>
+            <p class="p-1">{{ user.email }}</p>
           </li>
           <router-link
             class="sidenav-button list-group-item"
@@ -78,14 +78,13 @@
         </ul>
       </div>
     </nav>
-    <router-link class="logout-button" to="/">
-      <button
-        class="btn btn-secondary btn-lg btn-block button ph-2"
-        type="button"
-      >
-        <span style="font-size: smaller;">logout</span>
-      </button>
-    </router-link>
+    <button
+      class="btn btn-secondary btn-lg btn-block button ph-2 logout-button"
+      type="submit"
+      @click="handleLogout"
+    >
+      <span style="font-size: smaller;">logout</span>
+    </button>
   </div>
 </template>
 
@@ -108,10 +107,6 @@
 .logout-button {
   color: white;
   font-size: 20pt;
-}
-.logout-button:hover {
-  color: white;
-  text-decoration: none;
 }
 .card {
   background-color: rgb(9, 128, 255);
@@ -144,12 +139,29 @@ button {
 </style>
 
 <script>
+/* eslint-disable */
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: "SideNav",
+  data(){
+    return {
+    }
+  },
   computed: {
     currentRoute() {
       return this.$route.path;
+    },
+    ...mapGetters(['user'])
+  },
+  methods: {
+    ...mapActions(['logout']),
+    handleLogout(){
+      this.logout().then(() =>  this.$router.push({ name: "index" })).catch((err)=> console.log(err))
     }
-  }
+  },
+  // created(){
+  //   this.email = this.user.email;
+  //   this.name = this.user.name;
+  // }
 };
 </script>

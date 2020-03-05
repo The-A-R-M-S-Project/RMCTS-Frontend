@@ -1,6 +1,6 @@
 <template>
   <div class="container profile">
-    <h1 class="text-center text-info">Hi Username!</h1>
+    <h1 class="text-center text-info">Hi {{ user.name }}</h1>
     <div class="row m-2">
       <div class="col-sm-6 equipment">
         <p class="text-center">
@@ -92,10 +92,14 @@
 
 <script>
 import ActivityTable from "@/components/User/ActivityTable";
+import { mapGetters } from "vuex";
 export default {
   name: "user-profile",
   components: {
     ActivityTable
+  },
+  computed: {
+    ...mapGetters(["user"])
   }
 };
 </script>

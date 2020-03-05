@@ -1,12 +1,13 @@
 <template>
   <div>
-    <main class="login-page">
-      <section class="clean-form dark">
+    <main class="login-page page registration-page">
+      <section class="clean-block clean-form dark overlay1">
         <div class="container">
-          <div class="block-heading">
-            <h1 class="text-info text-center">Log In</h1>
-          </div>
+          <div class="block-heading"></div>
           <form>
+            <div class="text-center">
+              <h2 class="text-info">Login In</h2>
+            </div>
             <div class="form-group">
               <label for="email">Email</label>
               <input
@@ -48,7 +49,7 @@
             </div>
             <div class="login">
               <button
-                class="btn btn-primary btn-block"
+                class="btn btn-primary btn-block login"
                 @click.prevent="validateBeforeLogin"
                 type="submit"
                 data-dismiss="modal"
@@ -75,12 +76,33 @@
 </style>
 
 <script>
+/* eslint-disable */
+import axios from "axios";
+import { mapActions } from "vuex";
+
 export default {
   name: "login",
-  data: () => ({
-    email: "",
-    password: ""
-  }),
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    ...mapActions(["login"]),
+    handleSubmit(e) {
+      e.preventDefault();
+      console.log("here");
+      if (this.password.length > 6) {
+        this.login({ email: this.email, password: this.password }).then(() => {
+          if (localStorage.getItem("jwt") != null) {
+            this.$emit("loggedIn");
+            this.$router.push({ name: "user-profile" });
+          }
+        });
+      } else {
+        alert("check your login credentials and try again");
+      }
   methods: {
     validateBeforeLogin() {
       this.$validator.validateAll().then(result => {

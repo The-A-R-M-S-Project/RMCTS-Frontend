@@ -11,8 +11,8 @@
               <label for="name">Name</label
               ><input
                 class="form-control item"
+                v-model="user.name"
                 name="name"
-                v-model="name"
                 v-validate="'required|alpha_spaces'"
                 :class="{ input: true, 'is-danger': errors.has('name') }"
                 type="text"
@@ -27,6 +27,7 @@
               <label for="password">Password</label
               ><input
                 class="form-control item"
+                v-model="user.password"
                 v-validate="'required|max:25|min:8|upCase|number'"
                 name="password"
                 :class="{ 'is-danger': errors.has('password') }"
@@ -44,6 +45,7 @@
                 class="form-control item"
                 type="password"
                 id="password1"
+                v-model="user.password"
                 v-validate="'required|confirmed:password'"
                 name="password_confirmation"
                 :class="{ 'is-danger': errors.has('password_confirmation') }"
@@ -58,10 +60,10 @@
             <div class="form-group">
               <label for="email">Email</label
               ><input
+                v-model="user.email"
                 v-validate="'required|email'"
                 class="form-control item"
                 name="email"
-                v-model="email"
                 :class="{ input: true, 'is-danger': errors.has('email') }"
                 type="email"
                 id="email"
@@ -76,8 +78,8 @@
               <label for="tel">Contact</label
               ><input
                 class="form-control item"
+                v-model="user.contact"
                 name="contact"
-                v-model="contact"
                 v-validate="'required|numeric'"
                 :class="{ input: true, 'is-danger': errors.has('contact') }"
                 type="text"
@@ -87,19 +89,19 @@
                 errors.first("contact")
               }}</span>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="userRegisterOption">Registering As:</label>
               <select
                 class="form-control"
                 id="userRegisterOption"
-                v-model="selected"
+                v-model="user.selected"
               >
                 <option>Organisation/Company</option>
                 <option>Student</option>
                 <option>Lecturer</option>
               </select>
-            </div>
-            <div v-if="selected == 'Organisation/Company'">
+            </div> -->
+            <!-- <div v-if="selected == 'Organisation/Company'">
               <div class="form-group">
                 <label for="address">Address</label
                 ><input class="form-control item" type="address" />
@@ -130,7 +132,7 @@
                 <label for="name">University/Institute</label
                 ><input class="form-control item" type="text" />
               </div>
-            </div>
+            </div> -->
             <button
               class="btn btn-primary btn-block"
               @click.prevent="validateBeforeSubmit"
@@ -138,7 +140,7 @@
             >
               Sign Up
             </button>
-            <router-link to="/">
+            <router-link to="/login">
               <p>Already have an account?</p>
             </router-link>
           </form>
@@ -155,18 +157,30 @@
 </style>
 
 <script>
+/* eslint-disable */
+import { mapActions } from 'vuex'
 export default {
   name: "Register",
-  data: () => ({
-    selected: "",
-    name: "",
-    password: "",
-    confirmPassword: "",
-    email: "",
-    contact: "",
-    address: ""
-  }),
+  data() {
+    return {
+      selected: "",
+      user: {
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        contact: ""
+      }
+    };
+  },
   methods: {
+    ...mapActions(['signup']),
+    onSubmit(e){
+      e.preventDefault()
+      this.signup(this.user).then(
+        this.$router.push({name: 'signed-up'})
+      )
+    },
     validateBeforeSubmit() {
       this.$validator.validateAll().then(result => {
         if (result) {

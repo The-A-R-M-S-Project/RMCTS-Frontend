@@ -7,8 +7,8 @@
       <div class="p-4">
         <Search />
       </div>
-      <div class=" container d-flex justify-content-center">
-        <div class="row">
+      <div class="">
+        <div class="row d-flex justify-content-center">
           <div
             v-for="equipment in equipmentList"
             :key="equipment._id"

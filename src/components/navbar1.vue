@@ -15,14 +15,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="nav navbar-nav ml-auto">
-            <li
-              class="nav-item na-col"
-              role="presentation"
-              data-toggle="modal"
-              data-target="#loginModal"
-            >
-              <a class="nav-link na-col">
-                Login
+            <li class="nav-item" role="presentation">
+              <a class="nav-link">
+                <router-link to="login">
+                  Login
+                </router-link>
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -35,7 +32,7 @@
       </div>
     </nav>
     <!-- modal -->
-    <div
+    <!-- <div
       class="modal fade"
       id="loginModal"
       tabindex="-1"
@@ -60,15 +57,15 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
-import Login from "@/views/Login";
+// import Login from "@/views/Login";
 export default {
   name: "navbar1",
   components: {
-    Login
+    // Login
   }
 };
 </script>

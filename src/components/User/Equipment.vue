@@ -1,12 +1,12 @@
 <template>
-  <div class="container mt-5">
-    <div class="bg-light this-card" style="max-width: 60vw; height: 100%;">
+  <div class="containr mt-5">
+    <div class="bg-light this-card" style="max-width: 900px; height: 100%;">
       <div class="row">
         <div class="col-md-5 this-image">
           <img
             :src="url"
             class="image-fluid"
-            style="width: 25vw; height: 40vh; border-top-left-radius: 20px;  object-fit: cover;"
+            style="width: 100%; height: 40vh; border-top-left-radius: 20px;  object-fit: cover;"
           />
         </div>
         <div class="col-md-7">
@@ -34,7 +34,7 @@
 </template>
 
 <style scoped>
-.container {
+.containr {
   display: flex;
   justify-content: center;
 }
