@@ -6,7 +6,7 @@
           <div class="block-heading"></div>
           <form>
             <div class="text-center">
-              <h2 class="text-info">Login In</h2>
+              <h2 class="text-info">Log In</h2>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
@@ -103,12 +103,12 @@ export default {
       } else {
         alert("check your login credentials and try again");
       }
-  methods: {
-    validateBeforeLogin() {
+    },
+    validateBeforeLogin(e) {
       this.$validator.validateAll().then(result => {
         if (result) {
           // es-lint-disable-next-line
-          this.$router.push("/user/profile");
+          this.handleSubmit(e)
           return;
         }
         alert("Fill in all necessary fields!");

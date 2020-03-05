@@ -45,7 +45,7 @@
                 class="form-control item"
                 type="password"
                 id="password1"
-                v-model="user.password"
+                v-model="user.confirmPassword"
                 v-validate="'required|confirmed:password'"
                 name="password_confirmation"
                 :class="{ 'is-danger': errors.has('password_confirmation') }"
@@ -181,11 +181,11 @@ export default {
         this.$router.push({name: 'signed-up'})
       )
     },
-    validateBeforeSubmit() {
+    validateBeforeSubmit(e) {
       this.$validator.validateAll().then(result => {
         if (result) {
           // eslint-disable-next-line
-          this.$router.push("/user/profile");
+          this.onSubmit(e)
           return;
         }
 
