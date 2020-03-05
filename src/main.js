@@ -4,6 +4,7 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import axios from "axios";
+import VeeValidate from "vee-validate";
 
 Vue.prototype.$http = axios;
 axios.interceptors.request.use(config => {
@@ -12,6 +13,7 @@ axios.interceptors.request.use(config => {
   return config;
 });
 Vue.config.productionTip = false;
+Vue.use(VeeValidate);
 
 new Vue({
   router,

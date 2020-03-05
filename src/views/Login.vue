@@ -11,20 +11,33 @@
             <div class="form-group">
               <label for="email">Email</label>
               <input
+                v-validate="'required|email'"
+                v-model="email"
+                :class="{ input: true, 'is-danger': errors.has('email') }"
+                name="email"
                 class="form-control item"
                 type="email"
-                v-model="email"
                 id="email"
               />
+              <span v-show="errors.has('email')" class="help is-danger">{{
+                errors.first("email")
+              }}</span>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
               <input
-                class="form-control"
-                type="password"
+                class="form-control item"
                 v-model="password"
+                v-validate="'required|max:25|min:8'"
+                name="password"
+                :class="{ 'is-danger': errors.has('password') }"
+                type="password"
+                ref="password"
                 id="password"
               />
+              <span v-show="errors.has('password')" class="help is-danger">{{
+                errors.first("password")
+              }}</span>
             </div>
             <div class="form-group">
               <div class="form-check">
@@ -34,14 +47,16 @@
                 >
               </div>
             </div>
-            <button
-              class="btn btn-primary btn-block login"
-              type="submit"
-              data-dismiss="modal"
-              @click="handleSubmit"
-            >
-              Log In
-            </button>
+            <div class="login">
+              <button
+                class="btn btn-primary btn-block login"
+                @click.prevent="validateBeforeLogin"
+                type="submit"
+                data-dismiss="modal"
+              >
+                Log In
+              </button>
+            </div>
             <div class="form-group" data-dismiss="modal">
               <router-link to="register">
                 <p>Don't Have an account?</p>
@@ -88,6 +103,16 @@ export default {
       } else {
         alert("check your login credentials and try again");
       }
+  methods: {
+    validateBeforeLogin() {
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          // es-lint-disable-next-line
+          this.$router.push("/user/profile");
+          return;
+        }
+        alert("Fill in all necessary fields!");
+      });
     }
   }
 };
