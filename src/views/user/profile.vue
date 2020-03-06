@@ -91,15 +91,25 @@
 </style>
 
 <script>
+/* eslint-disable */
 import ActivityTable from "@/components/User/ActivityTable";
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 export default {
   name: "user-profile",
   components: {
     ActivityTable
   },
-  computed: {
-    ...mapGetters(["user"])
+  data(){
+    return {
+      user: {}
+    }
+  },
+  // computed: {
+  //   ...mapGetters(["user"])
+  // }
+  created(){
+      this.user = JSON.parse(localStorage.getItem("user"));
+      console.log(this.user)
   }
 };
 </script>

@@ -140,18 +140,18 @@ button {
 
 <script>
 /* eslint-disable */
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   name: "SideNav",
   data(){
     return {
+      user: {}
     }
   },
   computed: {
     currentRoute() {
       return this.$route.path;
     },
-    ...mapGetters(['user'])
   },
   methods: {
     ...mapActions(['logout']),
@@ -159,9 +159,8 @@ export default {
       this.logout().then(() =>  this.$router.push({ name: "index" })).catch((err)=> console.log(err))
     }
   },
-  // created(){
-  //   this.email = this.user.email;
-  //   this.name = this.user.name;
-  // }
+  created(){
+    this.user = JSON.parse(localStorage.getItem("user"))
+  }
 };
 </script>
