@@ -19,25 +19,31 @@
                 type="email"
                 id="email"
               />
-              <span v-show="errors.has('email')" class="help is-danger">{{
-                errors.first("email")
-              }}</span>
+              <span
+                v-show="errors.has('email')"
+                class="help is-danger"
+                id="msg"
+                >{{ errors.first("email") }}</span
+              >
             </div>
             <div class="form-group">
               <label for="password">Password</label>
               <input
                 class="form-control item"
                 v-model="password"
-                v-validate="'required|max:25|min:8'"
+                v-validate="'required|max:20|min:8'"
                 name="password"
                 :class="{ 'is-danger': errors.has('password') }"
                 type="password"
                 ref="password"
                 id="password"
               />
-              <span v-show="errors.has('password')" class="help is-danger">{{
-                errors.first("password")
-              }}</span>
+              <span
+                v-show="errors.has('password')"
+                class="help is-danger"
+                id="msg"
+                >{{ errors.first("password") }}</span
+              >
             </div>
             <div class="form-group">
               <div class="form-check">
@@ -72,6 +78,10 @@
 <style scoped>
 .login:hover {
   text-decoration: none;
+}
+#msg {
+  color: red;
+  font-size: 14px;
 }
 </style>
 
@@ -108,7 +118,7 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           // es-lint-disable-next-line
-          this.handleSubmit(e)
+          this.handleSubmit(e);
           return;
         }
         alert("Fill in all necessary fields!");
