@@ -166,9 +166,9 @@ export default {
       selected: "",
       user: {
         name: "",
-        email: "",
         password: "",
         confirmPassword: "",
+        email: "",
         contact: ""
       }
     };

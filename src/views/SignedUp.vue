@@ -4,7 +4,7 @@
     style=" display: table-cell; vertical-align: middle; height: 100vh; width: 100vw"
   >
     <h1>You've been signed up successfully</h1>
-    <p>click here to login <router-link to="/login">login</router-link></p>
+    <p>click here to <router-link to="/login">login</router-link></p>
   </div>
 </template>
 
@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: "signed up"
+  name: "signedUp"
 };
 </script>
