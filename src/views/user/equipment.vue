@@ -45,6 +45,7 @@
               :location="equipment.location"
               :url="equipment.imageURL"
               :description="equipment.description"
+              :_id="equipment._id"
             />
           </div>
         </div>
