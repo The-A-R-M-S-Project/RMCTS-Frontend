@@ -25,9 +25,49 @@
         <button type="button" class="btn btn-danger m-3" style="width: 100px">
           Delete
         </button>
-        <button type="button" class="btn btn-primary m-3" style="width: 100px">
+        <button
+          type="button"
+          class="btn btn-primary m-3"
+          style="width: 100px"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
+        >
           Edit
         </button>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Edit Item</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <EditEquipment
+              :title="title"
+              :description="description"
+              :location="location"
+              :imageURL="url"
+              :_id="_id"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -60,8 +100,13 @@
 </style>
 
 <script>
+import EditEquipment from "@/components/User/EditEquipment";
+
 export default {
   name: "all-equipment",
+  components: {
+    EditEquipment
+  },
   props: {
     title: String,
     description: String,
