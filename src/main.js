@@ -13,7 +13,14 @@ axios.interceptors.request.use(config => {
   return config;
 });
 Vue.config.productionTip = false;
-Vue.use(VeeValidate);
+Vue.use(VeeValidate, {
+  classes: true,
+  validity: true,
+  classNames: {
+    valid: "is-valid",
+    invalid: "is-invalid"
+  }
+});
 
 new Vue({
   router,

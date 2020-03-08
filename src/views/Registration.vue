@@ -13,15 +13,17 @@
                 class="form-control item"
                 v-model="user.name"
                 name="name"
-                v-validate="'required|alpha_spaces'"
+                v-validate="'required|alpha_spaces|max:25'"
                 :class="{ input: true, 'is-danger': errors.has('name') }"
                 type="text"
                 id="name"
               />
-              <i v-show="errors.has('name')" class="fa fa-warning"></i>
-              <span v-show="errors.has('name')" class="help is-danger">{{
-                errors.first("name")
-              }}</span>
+              <span
+                v-show="errors.has('name')"
+                class="help is-danger"
+                id="msg"
+                >{{ errors.first("name") }}</span
+              >
             </div>
             <div class="form-group">
               <label for="password">Password</label
@@ -35,9 +37,17 @@
                 type="password"
                 id="password"
               />
-              <span v-show="errors.has('password')" class="help is-danger">{{
-                errors.first("password")
-              }}</span>
+              <i
+                v-show="errors.has('email')"
+                class="fa fa-warning"
+                id="msg"
+              ></i>
+              <span
+                v-show="errors.has('password')"
+                class="help is-danger"
+                id="msg"
+                >{{ errors.first("password") }}</span
+              >
             </div>
             <div class="form-group">
               <label for="password"> Confirm Password</label
@@ -51,9 +61,15 @@
                 :class="{ 'is-danger': errors.has('password_confirmation') }"
                 data-vv-as="password"
               />
+              <i
+                v-show="errors.has('email')"
+                class="fa fa-warning"
+                id="msg"
+              ></i>
               <span
                 v-show="errors.has('password_confirmation')"
                 class="help is-danger"
+                id="msg"
                 >{{ errors.first("password_confirmation") }}</span
               >
             </div>
@@ -69,10 +85,17 @@
                 id="email"
                 data-vv-as="email"
               />
-              <i v-show="errors.has('email')" class="fa fa-warning"></i>
-              <span v-show="errors.has('email')" class="help is-danger">{{
-                errors.first("email")
-              }}</span>
+              <i
+                v-show="errors.has('email')"
+                class="fa fa-warning"
+                id="msg"
+              ></i>
+              <span
+                v-show="errors.has('email')"
+                class="help is-danger"
+                id="msg"
+                >{{ errors.first("email") }}</span
+              >
             </div>
             <div class="form-group">
               <label for="tel">Contact</label
@@ -84,10 +107,17 @@
                 :class="{ input: true, 'is-danger': errors.has('contact') }"
                 type="text"
               />
-              <i v-show="errors.has('contact')" class="fa fa-warning"></i>
-              <span v-show="errors.has('contact')" class="help is-danger">{{
-                errors.first("contact")
-              }}</span>
+              <i
+                v-show="errors.has('contact')"
+                class="fa fa-warning"
+                id="msg"
+              ></i>
+              <span
+                v-show="errors.has('contact')"
+                class="help is-danger"
+                id="msg"
+                >{{ errors.first("contact") }}</span
+              >
             </div>
             <!-- <div class="form-group">
               <label for="userRegisterOption">Registering As:</label>
@@ -154,11 +184,15 @@
 .overlay1 {
   background-image: url("~@/assets/img/tech/image8.jpg");
 }
+#msg {
+  color: red;
+  font-size: 14px;
+}
 </style>
 
 <script>
 /* eslint-disable */
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 export default {
   name: "Register",
   data() {
@@ -174,18 +208,16 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['signup']),
-    onSubmit(e){
-      e.preventDefault()
-      this.signup(this.user).then(
-        this.$router.push({name: 'signed-up'})
-      )
+    ...mapActions(["signup"]),
+    onSubmit(e) {
+      e.preventDefault();
+      this.signup(this.user).then(this.$router.push({ name: "signed-up" }));
     },
     validateBeforeSubmit(e) {
       this.$validator.validateAll().then(result => {
         if (result) {
           // eslint-disable-next-line
-          this.onSubmit(e)
+          this.onSubmit(e);
           return;
         }
 
