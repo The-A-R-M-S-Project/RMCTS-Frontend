@@ -2,14 +2,14 @@
   <div class="containr mt-5">
     <div class="bg-light this-card" style="max-width: 95%; height: 100%;">
       <div class="row">
-        <div class="col-md-5 this-image">
+        <div class="col-5 this-image">
           <img
             :src="url"
             class="image-fluid"
             style="width: 100%; height: 40vh; border-top-left-radius: 20px;  object-fit: cover;"
           />
         </div>
-        <div class="col-md-7">
+        <div class="col-7">
           <div class="">
             <h5 class="card-title">{{ title }}</h5>
             <p class="text-justify pr-3 mytext">
@@ -66,7 +66,8 @@ export default {
     title: String,
     description: String,
     location: String,
-    url: String
+    url: String,
+    _id: String
   }
 };
 </script>
