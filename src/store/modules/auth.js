@@ -8,7 +8,7 @@ const state = {
 const mutations = {
   auth_request: state => (state.status = "loading"),
   auth_success: (state) => {
-    state.staus = "success";
+    state.status = "success";
   },
   auth_error: state => (state.status = "error"),
   signup_success: state => (state.signup = "success")
