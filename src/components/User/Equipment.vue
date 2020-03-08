@@ -1,6 +1,6 @@
 <template>
   <div class="containr mt-5">
-    <div class="bg-light this-card" style="max-width: 900px; height: 100%;">
+    <div class="bg-light this-card" style="max-width: 95%; height: 100%;">
       <div class="row">
         <div class="col-md-5 this-image">
           <img
@@ -12,7 +12,7 @@
         <div class="col-md-7">
           <div class="">
             <h5 class="card-title">{{ title }}</h5>
-            <p class="text-justify pr-3">
+            <p class="text-justify pr-3 mytext">
               {{ description }}
             </p>
             <p class="">
@@ -52,6 +52,10 @@
   background-color: rgb(205, 216, 226);
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
+}
+.mytext {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 </style>
 
