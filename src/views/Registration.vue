@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="auth-form">
     <main class="page registration-page">
       <section class="clean-block clean-form dark overlay1">
         <div class="container">
@@ -183,6 +183,7 @@
 <style>
 .overlay1 {
   background-image: url("~@/assets/img/tech/image8.jpg");
+  height: 100vh;
 }
 #msg {
   color: red;
