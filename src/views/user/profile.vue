@@ -1,8 +1,8 @@
 <template>
   <div class="container profile">
     <h1 class="text-center text-info">Hi {{ user.name }}</h1>
-    <div class="row m-2">
-      <div class="col-sm-6 equipment">
+    <div class="row p-2">
+      <div class="col-6 equipment">
         <p class="text-center">
           My equipment
         </p>
@@ -12,7 +12,7 @@
           </div>
         </router-link>
       </div>
-      <div class="col-sm-6">
+      <div class="col-6">
         <p class="text-center">
           Reservations
         </p>
@@ -23,7 +23,7 @@
         </router-link>
       </div>
     </div>
-    <div class="row m-2">
+    <div class="row p-2">
       <div class="col-12 activity mt-4">
         <p class="text-center m-2">
           activity table showing reservation for your equipment from other users

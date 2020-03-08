@@ -1,13 +1,13 @@
 <template>
   <div class="view">
     <!-- central navigation component -->
-    <Navbar />
-    <div class="m-2">
-      <div class="row" style="border-top: solid white 85px;">
-        <div class="col-sm-3">
+    <!-- <Navbar /> -->
+    <div style="min-width: 1000px;">
+      <div class="row">
+        <div class="col-3">
           <SideNav />
         </div>
-        <div class="col-sm-9 mv-3 landing">
+        <div class="col-9 landing pt-3">
           <router-view></router-view>
         </div>
       </div>
@@ -17,21 +17,22 @@
 
 <style scoped>
 .view {
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 .landing {
-  height: 87vh;
+  height: 100vh;
   overflow-y: scroll;
 }
 </style>
 
 <script>
-import Navbar from "@/components/User/Navigation";
+// import Navbar from "@/components/User/Navigation";
 import SideNav from "@/components/User/SideNav";
 export default {
   name: "user",
   components: {
-    Navbar,
+    // Navbar,
     SideNav
   }
 };
