@@ -1,7 +1,12 @@
 <template>
   <div class="input-search">
     <i class="fa fa-search"></i>
-    <input class="input" placeholder="type to search" type="search" />
+    <input
+      class="input"
+      placeholder="type to search"
+      type="search"
+      v-model="search"
+    />
   </div>
 </template>
 
@@ -38,7 +43,13 @@
 </style>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "search"
+  name: "search",
+  computed: {
+    ...mapGetters([])
+    // searchBy:
+  }
 };
 </script>
