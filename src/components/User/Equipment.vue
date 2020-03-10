@@ -22,7 +22,12 @@
         </div>
       </div>
       <div class="buttons-area">
-        <button type="button" class="btn btn-danger m-3" style="width: 100px">
+        <button
+          type="button"
+          class="btn btn-danger m-3"
+          style="width: 100px"
+          @click="deleteEquipment(_id)"
+        >
           Delete
         </button>
         <button
@@ -101,6 +106,7 @@
 
 <script>
 import EditEquipment from "@/components/User/EditEquipment";
+import { mapActions } from "vuex";
 
 export default {
   name: "all-equipment",
@@ -113,6 +119,9 @@ export default {
     location: String,
     url: String,
     _id: String
+  },
+  methods: {
+    ...mapActions(["deleteEquipment"])
   }
 };
 </script>

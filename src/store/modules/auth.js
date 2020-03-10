@@ -18,7 +18,7 @@ const actions = {
   login: async function({ commit }, data) {
     try {
       commit("auth_request");
-      let res = await axios.post("http://localhost:3000/admins/login", data);
+      let res = await axios.post("https://rmcts-api.herokuapp.com/admins/login", data);
       localStorage.setItem("jwt", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.admin));
       commit("auth_success", res.data.admin, res.data.token);
@@ -29,7 +29,7 @@ const actions = {
   logout: function({ commit }) {
     if (localStorage.getItem("jwt") != null) {
       axios
-        .post(`http://localhost:3000/admins/me/logout`)
+        .post(`https://rmcts-api.herokuapp.com/admins/me/logout`)
         .then(res => {
           localStorage.removeItem("jwt");
           localStorage.removeItem("user");
@@ -41,7 +41,7 @@ const actions = {
   },
   signup: async function({ commit }, user) {
     try {
-      let res = await axios.post("http://localhost:3000/admins", user);
+      let res = await axios.post("https://rmcts-api.herokuapp.com/admins", user);
       console.log(res);
       commit("signup_success");
     } catch (err) {
