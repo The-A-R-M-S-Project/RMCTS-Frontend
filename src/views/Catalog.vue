@@ -35,6 +35,7 @@ import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/Search";
 import Equipment from "@/components/equipment";
 import equipmentList from "@/services/equipment-service.js";
+import { mapGetters } from "vuex";
 
 export default {
   name: "catalog",
@@ -47,6 +48,9 @@ export default {
     return {
       equipmentList
     };
+  },
+  computed: {
+    ...mapGetters([Equipment])
   }
 };
 </script>

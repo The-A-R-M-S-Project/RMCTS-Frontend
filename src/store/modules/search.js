@@ -13,6 +13,8 @@ const actions = {
   getAllEquipment: async ({ commit }) => {
     try {
       let equipment = await axios.get("http://localhost:3000/equipment");
+      // eslint-disable-next-line
+      console.log(equipment.data);
       commit("Equipment", equipment.data);
     } catch (error) {
       // eslint-disable-next-line
