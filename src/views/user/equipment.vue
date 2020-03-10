@@ -37,7 +37,7 @@
         <div class="content-area">
           <div
             class="m-2"
-            v-for="equipment in userEquipment"
+            v-for="equipment in myEquipment"
             :key="equipment._id"
           >
             <Equipment
@@ -45,6 +45,7 @@
               :location="equipment.location"
               :url="equipment.imageURL"
               :description="equipment.description"
+              :_id="equipment._id"
             />
           </div>
         </div>
@@ -84,9 +85,11 @@ a:hover{
 </style>
 
 <script>
+/* eslint-disable */
 import Equipment from "@/components/User/Equipment.vue";
 import AddEquipment from "@/components/User/AddEquipment.vue";
-import userEquipment from "@/services/user-equipment-service.js";
+// import userEquipment from "@/services/user-equipment-service.js";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "user-equipment",
@@ -96,8 +99,17 @@ export default {
   },
   data() {
     return {
-      userEquipment
+      // myEquipment
     };
+  },
+  computed: {
+    ...mapGetters(["myEquipment"])
+  },
+  methods: {
+    ...mapActions(["getEquipment"])
+  },
+  created(){
+    this.getEquipment()
   }
 };
 </script>

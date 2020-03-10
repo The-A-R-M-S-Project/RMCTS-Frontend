@@ -2,12 +2,6 @@
   <div class="containr">
     <div class="bg-light" style="width: 100%; height: 100%;">
       <div class="row" style="background-color:  rgb(205, 216, 226)">
-        <!-- <div class="col-2">
-          <p class="mt-4">Title :</p>
-          <p class="mt-4 mb-1">location :</p>
-          <p class="mt-4">Image URL :</p>
-          <p class="mt-5">Description :</p>
-        </div> -->
         <div class="col text-center">
           <form action="" style="">
             <input
@@ -39,9 +33,10 @@
               type="submit"
               class="btn btn-primary mb-2 mt-3"
               style="width: 100px;"
+              data-dismiss="modal"
               @click="handleSubmit"
             >
-              add
+              update
             </button>
             <div class="loading"></div>
           </form>
@@ -100,25 +95,26 @@ export default {
   data() {
     return {
       item: {
-        title: "",
-        location: "",
-        imageURL: "",
-        description: ""
+        title: this.title,
+        location: this.location,
+        imageURL: this.imageURL,
+        description: this.description,
+        _id: this._id
       }
     };
   },
+  props: {
+    title: String,
+    description: String,
+    location: String,
+    imageURL: String,
+    _id: String
+  },
   methods: {
-    ...mapActions(["addEquipment"]),
+    ...mapActions(["updateEquipment"]),
     handleSubmit(e) {
       e.preventDefault();
-      this.addEquipment(this.item).then(
-        (this.item = {
-          title: "",
-          location: "",
-          imageURL: "",
-          description: ""
-        })
-      );
+      this.updateEquipment(this.item);
     }
   }
 };

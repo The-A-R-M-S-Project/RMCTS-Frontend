@@ -1,14 +1,14 @@
 <template>
   <div class="sidenav">
     <nav class="sidebar-nav fixed">
-      <div>
+      <div class="pt-3">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center card-header">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNIvsoEpZeocbdx9ocsYo9DO1zG4OfEf093dUn78Us553niinuw&s"
               class="card-img-top img-fluid profile-image"
               alt="profile picture"
-              style="border-radius: 100px;"
+              style="border-radius: 300px;"
               height=""
             />
             <h5 class="p-0">{{ user.name }}</h5>
@@ -29,6 +29,22 @@
                 </div>
                 <div class="col-9 text-left">
                   <span style="font-size: smaller;">Profile</span>
+                </div>
+              </div>
+            </button>
+          </router-link>
+          <router-link class="sidenav-button list-group-item" to="/catalog">
+            <button
+              class="btn btn-primary btn-lg btn-block ph-2"
+              :class="[currentRoute.includes('catalog') ? 'button-active' : '']"
+              type="button"
+            >
+              <div class="row">
+                <div class="col-3">
+                  <li class="fa fa-database"></li>
+                </div>
+                <div class="col-9 text-left">
+                  <span style="font-size: smaller;">Catalog</span>
                 </div>
               </div>
             </button>
@@ -91,10 +107,9 @@
 <style scoped>
 .sidenav {
   background-color: rgb(9, 128, 255);
-  height: 87vh;
+  height: 100vh;
   border-radius: 4px;
   position: relative;
-  padding-top: 2px;
 }
 .button {
   position: absolute;
