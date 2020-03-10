@@ -8,26 +8,26 @@
               type="text"
               class="form-control mt-3"
               placeholder="title"
-              v-model="title"
+              v-model="item.title"
             />
             <input
               type="text"
               class="form-control mt-3"
               placeholder="location, e.g (kampala, Makerere University, CEDAT, old builiding, room 143)"
-              v-model="location"
+              v-model="item.location"
             />
             <input
               type="text"
               class="form-control mt-3"
               placeholder="Image URL"
-              v-model="imageURL"
+              v-model="item.imageURL"
             />
             <textarea
               class="form-control mt-4"
               id="exampleFormControlTextarea1"
               rows="6"
               placeholder="Description"
-              v-model="description"
+              v-model="item.description"
             ></textarea>
             <button
               type="submit"
@@ -88,18 +88,19 @@ form {
 </style>
 
 <script>
-// import { mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "add-equipment",
   data() {
     return {
-      //   item: {
-      //     title: "",
-      //     location: "",
-      //     imageURL: "",
-      //     description: ""
-      //   }
+      item: {
+        title: this.title,
+        location: this.location,
+        imageURL: this.imageURL,
+        description: this.description,
+        _id: this._id
+      }
     };
   },
   props: {
@@ -110,18 +111,11 @@ export default {
     _id: String
   },
   methods: {
-    // ...mapActions(["addEquipment"]),
-    // handleSubmit(e) {
-    //   e.preventDefault();
-    //   this.addEquipment(this.item).then(
-    //     (this.item = {
-    //       title: "",
-    //       location: "",
-    //       imageURL: "",
-    //       description: ""
-    //     })
-    //   );
-    // }
+    ...mapActions(["updateEquipment"]),
+    handleSubmit(e) {
+      e.preventDefault();
+      this.updateEquipment(this.item);
+    }
   }
 };
 </script>
