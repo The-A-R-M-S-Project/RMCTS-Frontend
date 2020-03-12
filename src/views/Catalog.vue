@@ -10,7 +10,7 @@
       <div class="">
         <div class="row d-flex justify-content-center">
           <div
-            v-for="equipment in equipmentList"
+            v-for="equipment in allEquipment"
             :key="equipment._id"
             class="col-md-4 m-3"
             style="max-width: 340px"
@@ -34,8 +34,7 @@
 import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/Search";
 import Equipment from "@/components/equipment";
-import equipmentList from "@/services/equipment-service.js";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "catalog",
@@ -44,13 +43,12 @@ export default {
     Search,
     Equipment
   },
-  data() {
-    return {
-      equipmentList
-    };
+  methods: {
+    ...mapActions(["catalogedEquipment"])
   },
-  computed: {
-    ...mapGetters([Equipment])
+  computed: mapGetters(["allEquipment"]),
+  created() {
+    this.catalogedEquipment;
   }
 };
 </script>
