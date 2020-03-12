@@ -1,7 +1,8 @@
 import axios from "axios";
+import equipmentList from "@/services/equipment-service.js";
 
 const state = {
-  equipment: []
+  equipment: equipmentList
 };
 
 const getters = {
@@ -9,15 +10,19 @@ const getters = {
 };
 
 const mutations = {
-  Equipment: (state, equipment) => (state.equipment = equipment)
+  setEquipment: (state, equipment) => (state.equipment = equipment)
 };
 const actions = {
   catalogedEquipment: async ({ commit }) => {
     try {
-      let equipment = await axios.get("URL");
+      let response = await axios
+        .get
+        // equipmentList
+        // "@/services/equipment-service.js"
+        ();
       // eslint-disable-next-line
-      console.log(equipment.data);
-      commit("Equipment", equipment.data);
+      console.log(response.data);
+      commit("setEquipment", response.data);
     } catch (error) {
       // eslint-disable-next-line
       console.log(error);
