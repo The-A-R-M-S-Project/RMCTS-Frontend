@@ -22,6 +22,7 @@
 }
 .landing {
   height: 100vh;
+  min-height: 600px;
   overflow-y: scroll;
 }
 </style>

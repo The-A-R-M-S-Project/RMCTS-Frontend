@@ -1,5 +1,5 @@
 <template>
-  <div class="container profile">
+  <div class="profile ml-5 mr-5">
     <h1 class="text-center text-info">Hi {{ user.name }}</h1>
     <div class="row p-2">
       <div class="col-6 equipment">
