@@ -108,6 +108,7 @@
 .sidenav {
   background-color: rgb(9, 128, 255);
   height: 100vh;
+  min-height: 600px;
   border-radius: 4px;
   position: relative;
 }
