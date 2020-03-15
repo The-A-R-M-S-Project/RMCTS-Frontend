@@ -2,7 +2,7 @@ import axios from "axios";
 import equipmentList from "@/services/equipment-service.js";
 
 const state = {
-  equipment: equipmentList
+  equipment: []
 };
 
 const getters = {
@@ -15,17 +15,21 @@ const mutations = {
 const actions = {
   catalogedEquipment: async ({ commit }) => {
     try {
-      let response = await axios
-        .get
-        // equipmentList
-        // "@/services/equipment-service.js"
-        ();
-      // eslint-disable-next-line
-      console.log(response.data);
+      let response = await axios.get(equipmentList);
       commit("setEquipment", response.data);
     } catch (error) {
       // eslint-disable-next-line
       console.log(error);
+    }
+  },
+  updateCatalog: ({ commit }, query) => {
+    if (query.length != 0) {
+      const results = state.filter(equip => {
+        equip.title == query;
+      });
+      commit("setEquipment", results);
+    } else {
+      this.catalogedEquipment;
     }
   }
 };

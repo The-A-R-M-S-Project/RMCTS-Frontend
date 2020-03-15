@@ -44,11 +44,12 @@ export default {
     Equipment
   },
   methods: {
-    ...mapActions(["catalogedEquipment"])
+    ...mapActions(["catalogedEquipment", "updateCatalog"])
   },
-  computed: mapGetters(["allEquipment"]),
+  computed: mapGetters(["allEquipment", "searchWord"]),
   created() {
     this.catalogedEquipment;
+    this.updateCatalog;
   }
 };
 </script>

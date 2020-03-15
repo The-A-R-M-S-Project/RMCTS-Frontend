@@ -1,32 +1,23 @@
-import axios from "axios";
-
 const state = {
-  Search: "",
-  Equipment: []
+  Search: ""
 };
 
 const mutations = {
-  Equipment: (state, equipment) => (state.Equipment = equipment)
+  SearchTerm: (state, searchWrd) => (state.Search = searchWrd)
 };
 
 const actions = {
-  getAllEquipment: async ({ commit }) => {
-    try {
-      let equipment = await axios.get("http://localhost:3000/equipment");
-      // eslint-disable-next-line
-      console.log(equipment.data);
-      commit("Equipment", equipment.data);
-    } catch (error) {
-      // eslint-disable-next-line
-      console.log(error);
-    }
+  searchTerm: ({ commit }, search) => {
+    commit("SearchTerm", search);
+    // eslint-disable-next-line
+    console.log(search);
   }
 };
 
 const getters = {
-  allTitles: state => state.Equipment.titles,
-  allDescriptions: state => state.Equipment.descriptions,
-  allLocations: state => state.Equipment.location
+  searchWord: state => {
+    state.Search;
+  }
 };
 
 export default {
