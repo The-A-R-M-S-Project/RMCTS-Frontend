@@ -3,6 +3,7 @@
     <i class="fa fa-search"></i>
     <input
       class="input"
+      v-on:keyup.enter="onEnter"
       placeholder="type to search"
       type="search"
       v-model="search"
@@ -43,7 +44,7 @@
 </style>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "search",
@@ -52,9 +53,17 @@ export default {
       search: ""
     };
   },
+  methods: {
+    ...mapActions(["searchTerm"]),
+    onEnter() {
+      this.searchTerm(this.search);
+    }
+  },
+  created() {
+    this.searchTerm;
+  },
   computed: {
-    ...mapGetters([])
-    // searchBy:
+    ...mapGetters(["searchWord"])
   }
 };
 </script>

@@ -35,7 +35,7 @@
 import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/Search";
 import Equipment from "@/components/equipment";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "catalog",
@@ -44,12 +44,16 @@ export default {
     Search,
     Equipment
   },
-  methods: {
-    ...mapActions(["catalogedEquipment"])
+  methods: {},
+  computed: {
+    ...mapGetters(["allEquipment", "searchWord"])
   },
   computed: mapGetters(["allEquipment"]),
   created() {
     this.catalogedEquipment();
   }
+  // created() {
+  //   this.catalogedEquipment;
+  // }
 };
 </script>
