@@ -31,6 +31,7 @@
 <style></style>
 
 <script>
+/* eslint-disable */
 import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/Search";
 import Equipment from "@/components/equipment";
@@ -48,7 +49,7 @@ export default {
   },
   computed: mapGetters(["allEquipment"]),
   created() {
-    this.catalogedEquipment;
+    this.catalogedEquipment();
   }
 };
 </script>

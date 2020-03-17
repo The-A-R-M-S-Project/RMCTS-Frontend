@@ -47,6 +47,11 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "search",
+  data() {
+    return {
+      search: ""
+    };
+  },
   computed: {
     ...mapGetters([])
     // searchBy:

@@ -1,8 +1,11 @@
 import axios from "axios";
-import equipmentList from "@/services/equipment-service.js";
+// import equipmentList from "@/services/equipment-service.js";
+/* eslint-disable */
+
+const api = "http://localhost:3000";
 
 const state = {
-  equipment: equipmentList
+  equipment: []
 };
 
 const getters = {
@@ -15,16 +18,10 @@ const mutations = {
 const actions = {
   catalogedEquipment: async ({ commit }) => {
     try {
-      let response = await axios
-        .get
-        // equipmentList
-        // "@/services/equipment-service.js"
-        ();
-      // eslint-disable-next-line
+      let response = await axios.get(`${api}/catalog-default`);
       console.log(response.data);
       commit("setEquipment", response.data);
     } catch (error) {
-      // eslint-disable-next-line
       console.log(error);
     }
   }

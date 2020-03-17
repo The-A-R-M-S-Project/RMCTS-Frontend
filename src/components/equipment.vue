@@ -62,7 +62,7 @@ export default {
     title: String,
     location: String,
     url: String,
-    _id: Number
+    _id: String
   }
 };
 </script>
