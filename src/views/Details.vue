@@ -143,7 +143,7 @@ export default {
   methods: {},
   created() {
     const id = this.$route.params.id;
-    this.$http.get(`http://localhost:3000/item/${id}`).then(res => {
+    this.$http.get(`https://rmcts-api.herokuapp.com/item/${id}`).then(res => {
       this.itemDetails = res.data;
     });
   }

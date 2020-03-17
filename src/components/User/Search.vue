@@ -44,6 +44,7 @@
 </style>
 
 <script>
+/* eslint-disable */
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -60,10 +61,10 @@ export default {
     }
   },
   created() {
-    this.searchTerm;
-  },
-  computed: {
-    ...mapGetters(["searchWord"])
+    // this.searchTerm;
   }
+  // computed: {
+  //   ...mapGetters(["searchWord"])
+  // }
 };
 </script>

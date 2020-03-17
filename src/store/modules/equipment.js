@@ -3,7 +3,7 @@
 import axios from "axios";
 import Vue from "vue";
 
-const api = "http://localhost:3000";
+const api = "https://rmcts-api.herokuapp.com";
 const state = {
   myEquipment: []
 };
@@ -32,7 +32,7 @@ const actions = {
   getEquipment: async ({ commit }) => {
     try {
       let equipment = await axios.get(
-        "https://rmcts-api.herokuapp.com/equipment"
+        `${api}/equipment`
       );
       console.log(equipment.data);
       commit("myEquipment", equipment.data);
@@ -43,7 +43,7 @@ const actions = {
   addEquipment: async ({ commit }, data) => {
     try {
       let res = await axios.post(
-        "https://rmcts-api.herokuapp.com/add-item",
+        `${api}/add-item`,
         data
       );
       console.log(res.data);
@@ -55,7 +55,7 @@ const actions = {
   updateEquipment: async ({ commit }, data) => {
     try {
       let res = await axios.put(
-        "https://rmcts-api.herokuapp.com/edit-item",
+        `${api}/edit-item`,
         data
       );
       console.log(res.data);
@@ -66,7 +66,7 @@ const actions = {
   },
   deleteEquipment: async ({ commit }, id) => {
     try {
-      await axios.delete(`https://rmcts-api.herokuapp.com/delete-item/${id}`);
+      await axios.delete(`${api}/delete-item/${id}`);
       console.log("Deleted");
       commit("deleteItem", id);
     } catch (error) {
