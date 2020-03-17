@@ -3,11 +3,12 @@
 import axios from "axios";
 import Vue from "vue";
 
+const api = "https://rmcts-api.herokuapp.com";
 const state = {
   myEquipment: []
 };
 const getters = {
-  myEquipment: state => state.myEquipment
+  myEquipment: state => state.myEquipment,
 };
 const mutations = {
   myEquipment: (state, equipment) => (state.myEquipment = equipment),
@@ -30,7 +31,9 @@ const mutations = {
 const actions = {
   getEquipment: async ({ commit }) => {
     try {
-      let equipment = await axios.get("https://rmcts-api.herokuapp.com/equipment");
+      let equipment = await axios.get(
+        `${api}/equipment`
+      );
       console.log(equipment.data);
       commit("myEquipment", equipment.data);
     } catch (error) {
@@ -39,7 +42,10 @@ const actions = {
   },
   addEquipment: async ({ commit }, data) => {
     try {
-      let res = await axios.post("https://rmcts-api.herokuapp.com/add-item", data);
+      let res = await axios.post(
+        `${api}/add-item`,
+        data
+      );
       console.log(res.data);
       commit("newItem", res.data);
     } catch (error) {
@@ -48,23 +54,25 @@ const actions = {
   },
   updateEquipment: async ({ commit }, data) => {
     try {
-      let res = await axios.put("https://rmcts-api.herokuapp.com/edit-item", data);
+      let res = await axios.put(
+        `${api}/edit-item`,
+        data
+      );
       console.log(res.data);
       commit("updateItem", res.data);
     } catch (error) {
       console.log(error);
     }
   },
-  deleteEquipment: async ({commit}, id) => {
+  deleteEquipment: async ({ commit }, id) => {
     try {
-      let res = await axios.delete(`https://rmcts-api.herokuapp.com/delete-item/${id}`);
-      console.log('Deleted')
-      commit("deleteItem", id)
+      await axios.delete(`${api}/delete-item/${id}`);
+      console.log("Deleted");
+      commit("deleteItem", id);
+    } catch (error) {
+      console.log(error);
     }
-    catch (error){
-      console.log(error)
-    }
-  }
+  },
 };
 
 export default {

@@ -7,12 +7,15 @@
         <router-link class="pr-1 link" to="/catalog">catalog</router-link>/
         <router-link
           class="pl-2 pr-2 current link"
-          :to="{ name: 'details', params: { id: _id } }"
+          :to="{
+            name: 'itemDetails[0]',
+            params: { id: this.$route.params.id }
+          }"
           >item details</router-link
         >
       </div>
       <div class="card-1 pt-5">
-        <h3 class="p-2 text-center">Details</h3>
+        <h3 class="p-2 text-center">details</h3>
         <!-- upper -->
         <div class="section">
           <div class="card">
@@ -20,21 +23,21 @@
               <div class="col-md-5 d-flex align-items-center">
                 <img
                   class="image-fluid"
-                  :src="details.imageURL"
+                  :src="itemDetails[0].imageURL"
                   alt="Image can't be loaded"
                 />
               </div>
 
               <div class="col-md-7">
                 <div class="card-body">
-                  <h4>{{ details.title }}</h4>
+                  <h4>{{ itemDetails[0].title }}</h4>
                   <hr />
                   <p class="card-text text-justify">
-                    {{ details.description }}
+                    {{ itemDetails[0].description }}
                   </p>
                   <hr />
                   <p class="font-weight-lighter" style="color: grey">
-                    {{ details.location }}
+                    {{ itemDetails[0].location }}
                   </p>
                   <div class="buttons">
                     <router-link class="m-3" to="/make-reservation">
@@ -58,7 +61,7 @@
               <h5 class="card-title text-center">
                 Contact Organisation/Facility
               </h5>
-              <p>To: owner@example.com</p>
+              <p>To: {{ itemDetails[1].ownerEmail }}</p>
               <p>From: user@gmail.com</p>
               <textarea
                 class="form-control mt-4"
@@ -118,24 +121,31 @@ export default {
   },
   data() {
     return {
-      _id: null,
-      details: null
+      // _id: null,
+      itemDetails: [
+        {
+          title: "",
+          location: "",
+          imageURL: "",
+          description: "",
+          userId: "",
+          createdAt: "",
+          updatedAt: ""
+        },
+        {
+          ownerName: "",
+          ownerEmail: "",
+          ownerContact: ""
+        }
+      ]
     };
   },
+  methods: {},
   created() {
-    this.initializeView()
-    //eslint-disable-next-line
-    console.log(this.details);
-  },
-  methods: {
-    initializeView(){
-      this._id = this.$route.params.id;
-      this.details = equipmentList.filter(item => item._id === this._id)[0];
-    }
+    const id = this.$route.params.id;
+    this.$http.get(`https://rmcts-api.herokuapp.com/item/${id}`).then(res => {
+      this.itemDetails = res.data;
+    });
   }
-  // mounted(){
-  //   this.id = this.$route.params.id;
-  //   this.details = equipmentList.filter(item => item._id === this.id)[0];
-  // },
 };
 </script>
