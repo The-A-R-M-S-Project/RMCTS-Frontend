@@ -14,7 +14,7 @@
 <style lang="scss" scoped>
 .input {
   min-width: 30vw;
-  height: 5vh;
+  height: 30px;
   border: 1px solid gray;
   border-radius: 10px;
 }
