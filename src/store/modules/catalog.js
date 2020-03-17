@@ -1,36 +1,44 @@
-import axios from "axios";
-import equipmentList from "@/services/equipment-service.js";
+// import axios from "axios";
+import equipmentList from "../../services/equipment-service";
 
 const state = {
-  equipment: []
+  equipment: equipmentList,
+  Search: "",
+  filteredEquipment: []
 };
 
 const getters = {
-  allEquipment: state => state.equipment
+  allEquipment: state => state.equipment,
+  searchWord: state => state.Search
 };
 
 const mutations = {
-  setEquipment: (state, equipment) => (state.equipment = equipment)
+  setEquipment: state => {
+    state.filteredEquipment = state.equipment.filter(equip =>
+      equip["title"].toLowerCase().includes(state.Search.toLowerCase())
+    );
+  },
+  SearchTerm: (state, searchWrd) => (state.Search = searchWrd)
 };
 const actions = {
-  catalogedEquipment: async ({ commit }) => {
-    try {
-      let response = await axios.get(equipmentList);
-      commit("setEquipment", response.data);
-    } catch (error) {
-      // eslint-disable-next-line
-      console.log(error);
-    }
+  // catalogedEquipment: async ({ commit }) => {
+  //   try {
+  //     let response = await axios.get(equipmentList);
+  //     commit("setEquipment", response.data);
+  //     // eslint-disable-next-line
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     // eslint-disable-next-line
+  //     console.log(error);
+  //   }
+  // },
+  searchTerm: ({ commit }, search) => {
+    commit("SearchTerm", search);
+    // eslint-disable-next-line
+    console.log(search);
   },
-  updateCatalog: ({ commit }, query) => {
-    if (query.length != 0) {
-      const results = state.filter(equip => {
-        equip.title == query;
-      });
-      commit("setEquipment", results);
-    } else {
-      this.catalogedEquipment;
-    }
+  updateCatalog: ({ commit }) => {
+    commit("setEquipment");
   }
 };
 

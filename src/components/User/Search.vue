@@ -54,10 +54,9 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["searchTerm", "updateCatalog"]),
+    ...mapActions(["searchTerm"]),
     onEnter() {
       this.searchTerm(this.search);
-      this.updateCatalog(this.search);
     }
   },
   created() {

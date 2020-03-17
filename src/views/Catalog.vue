@@ -34,7 +34,7 @@
 import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/Search";
 import Equipment from "@/components/equipment";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "catalog",
@@ -43,13 +43,16 @@ export default {
     Search,
     Equipment
   },
-  methods: {
-    ...mapActions(["catalogedEquipment", "updateCatalog"])
+  methods: {},
+  computed: {
+    ...mapGetters(["allEquipment", "searchWord"])
   },
-  computed: mapGetters(["allEquipment", "searchWord"]),
-  created() {
-    this.catalogedEquipment;
-    this.updateCatalog;
+  updated: function() {
+    // eslint-disable-next-line
+    console.log(allEquipment);
   }
+  // created() {
+  //   this.catalogedEquipment;
+  // }
 };
 </script>
