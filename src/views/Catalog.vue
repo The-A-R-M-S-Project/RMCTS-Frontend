@@ -8,7 +8,10 @@
         <Search />
       </div>
       <div class="">
-        <div class="row d-flex justify-content-center">
+        <div
+          v-if="allEquipment.length > 0"
+          class="row d-flex justify-content-center"
+        >
           <div
             v-for="equipment in allEquipment"
             :key="equipment._id"
@@ -23,19 +26,33 @@
             />
           </div>
         </div>
+        <div
+          v-else
+          class="container d-flex justify-content-center align-items-center no-match"
+        >
+          No item matches your input
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<style></style>
+<style>
+.no-match {
+  background-color: aliceblue;
+  color: rgb(248, 79, 79);
+  font-size: 30px;
+  height: 67vh;
+  border-radius: 30px;
+}
+</style>
 
 <script>
 /* eslint-disable */
 import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/Search";
 import Equipment from "@/components/equipment";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "catalog",
@@ -44,12 +61,11 @@ export default {
     Search,
     Equipment
   },
-  methods: {},
-  computed: {
-    ...mapGetters(["allEquipment", "searchWord"])
+  methods: {
+    ...mapActions(["catalogedEquipment"])
   },
   computed: mapGetters(["allEquipment"]),
-  created() {
+  mounted() {
     this.catalogedEquipment();
   }
   // created() {
