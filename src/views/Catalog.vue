@@ -48,7 +48,6 @@
 </style>
 
 <script>
-/* eslint-disable */
 import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/Search";
 import Equipment from "@/components/equipment";
@@ -68,8 +67,5 @@ export default {
   mounted() {
     this.catalogedEquipment();
   }
-  // created() {
-  //   this.catalogedEquipment;
-  // }
 };
 </script>
