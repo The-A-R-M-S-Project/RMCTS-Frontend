@@ -31,7 +31,7 @@
               <input
                 class="form-control item"
                 v-model="password"
-                v-validate="'required|max:20|min:8'"
+                v-validate="'required|max:20|min:7'"
                 name="password"
                 :class="{ 'is-danger': errors.has('password') }"
                 type="password"
