@@ -5,7 +5,10 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center card-header">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNIvsoEpZeocbdx9ocsYo9DO1zG4OfEf093dUn78Us553niinuw&s"
+              :src="
+                user.profileImage ||
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNIvsoEpZeocbdx9ocsYo9DO1zG4OfEf093dUn78Us553niinuw&s'
+              "
               class="card-img-top img-fluid profile-image"
               alt="profile picture"
               style="border-radius: 300px;"
