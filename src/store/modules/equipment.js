@@ -4,12 +4,19 @@ import axios from "axios";
 import Vue from "vue";
 
 const api = "https://rmcts-api.herokuapp.com";
+// state
 const state = {
-  myEquipment: []
+  myEquipment: [],
+  // triggers equipment editing modal
+  editing: false
 };
+
+// getters
 const getters = {
   myEquipment: state => state.myEquipment,
+  editing: state => state.editing
 };
+// mutations
 const mutations = {
   myEquipment: (state, equipment) => (state.myEquipment = equipment),
   newItem: (state, item) => state.myEquipment.unshift(item),
@@ -19,6 +26,15 @@ const mutations = {
         Vue.set(state.myEquipment, i, item);
       }
     });
+    state.editing = false
+  },
+  // activates equipment editing modal
+  editItem: (state) => {
+    state.editing = true
+  },
+  // deactivates equipment editing modal
+  cancelEditing: (state) => {
+    state.editing = false
   },
   deleteItem: (state, id) => {
     state.myEquipment.forEach((x, i) => {
@@ -28,13 +44,13 @@ const mutations = {
     });
   }
 };
+// actions
 const actions = {
   getEquipment: async ({ commit }) => {
     try {
       let equipment = await axios.get(
         `${api}/equipment`
       );
-      console.log(equipment.data);
       commit("myEquipment", equipment.data);
     } catch (error) {
       console.log(error);
@@ -46,7 +62,6 @@ const actions = {
         `${api}/add-item`,
         data
       );
-      console.log(res.data);
       commit("newItem", res.data);
     } catch (error) {
       console.log(error);
@@ -58,11 +73,18 @@ const actions = {
         `${api}/edit-item`,
         data
       );
-      console.log(res.data);
       commit("updateItem", res.data);
     } catch (error) {
       console.log(error);
     }
+  },
+  // activates equipment editing modal
+  editEquipment: ({ commit }) => {
+    commit("editItem")
+  },
+  // deactivates equipment editing modal
+  handleCancel: ({ commit }) => {
+    commit("cancelEditing")
   },
   deleteEquipment: async ({ commit }, id) => {
     try {
