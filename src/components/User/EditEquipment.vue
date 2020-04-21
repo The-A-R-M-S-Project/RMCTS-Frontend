@@ -1,9 +1,15 @@
 <template>
-  <div class="containr">
-    <div class="bg-light" style="width: 100%; height: 100%;">
-      <div class="row" style="background-color:  rgb(205, 216, 226)">
+  <div class="">
+    <div>
+      <h1 class="text-white fixed-top">Edit Item</h1>
+    </div>
+    <div class="bg-light">
+      <div
+        class="row"
+        style="background-color:  rgb(205, 216, 226); border-radius: 10px"
+      >
         <div class="col text-center">
-          <form action="" style="">
+          <form action style>
             <input
               type="text"
               class="form-control mt-3"
@@ -38,6 +44,15 @@
             >
               update
             </button>
+            <button
+              type="submit"
+              class="btn btn-success mb-2 mt-3 ml-5"
+              style="width: 100px;"
+              data-dismiss="modal"
+              @click="handleCancel"
+            >
+              cancel
+            </button>
             <div class="loading"></div>
           </form>
         </div>
@@ -47,43 +62,10 @@
 </template>
 
 <style lang="scss" scoped>
-.containr {
-  display: flex;
-  justify-content: center;
-  background-color: rgb(205, 216, 226);
-}
 form {
-  max-width: 800px;
+  min-width: 650px;
   background-color: rgb(205, 216, 226);
   margin: auto;
-}
-.loading {
-  display: flex;
-  justify-content: center;
-
-  div {
-    width: 1rem;
-    height: 1rem;
-    margin: 2rem 0.3rem;
-    background: white;
-    border-radius: 50%;
-    animation: 0.9s bounce infinite alternate;
-
-    &:nth-child(2) {
-      animation-delay: 0.3s;
-    }
-
-    &:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-  }
-}
-
-@keyframes bounce {
-  to {
-    opacity: 0.3;
-    transform: translate3d(0, -1rem, 0);
-  }
 }
 </style>
 
@@ -111,8 +93,9 @@ export default {
     _id: String
   },
   methods: {
-    ...mapActions(["updateEquipment"]),
+    ...mapActions(["updateEquipment", "handleCancel"]),
     handleSubmit(e) {
+      this.$emit("end-editing");
       e.preventDefault();
       this.updateEquipment(this.item);
     }
