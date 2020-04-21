@@ -10,12 +10,10 @@
           />
         </div>
         <div class="col-7 desc">
-          <div class="">
+          <div class>
             <h5 class="card-title">{{ title }}</h5>
-            <p class="text-justify pr-3 mytext">
-              {{ description }}
-            </p>
-            <p class="">
+            <p class="text-justify pr-3 mytext">{{ description }}</p>
+            <p class>
               <small class="text-muted">{{ location }}</small>
             </p>
           </div>
@@ -34,46 +32,24 @@
           type="button"
           class="btn btn-primary m-3"
           style="width: 100px"
-          data-toggle="modal"
-          data-target="#exampleModalCenter"
+          @click="editEquipment()"
         >
           Edit
         </button>
       </div>
     </div>
-    <!-- Modal -->
     <div
-      class="modal fade"
-      id="exampleModalCenter"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true"
+      v-if="editing"
+      @:close-editor="editing = false"
+      class="edit-equipment d-flex justify-content-center align-items-center"
     >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Edit Item</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <EditEquipment
-              :title="title"
-              :description="description"
-              :location="location"
-              :imageURL="url"
-              :_id="_id"
-            />
-          </div>
-        </div>
-      </div>
+      <EditEquipment
+        :title="title"
+        :description="description"
+        :location="location"
+        :imageURL="url"
+        :_id="_id"
+      />
     </div>
   </div>
 </template>
@@ -106,6 +82,18 @@
   overflow-y: scroll;
   height: 40vh;
 }
+.edit-equipment {
+  background: rgba(0, 0, 0, 0.404);
+  color: #666666;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -129,22 +117,34 @@
 
 <script>
 import EditEquipment from "@/components/User/EditEquipment";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "all-equipment",
   components: {
     EditEquipment
   },
+  data() {
+    return {
+      edit_item: false
+    };
+  },
   props: {
     title: String,
     description: String,
     location: String,
     url: String,
-    _id: String
+    _id: String,
+    edit: String
   },
   methods: {
-    ...mapActions(["deleteEquipment"])
+    ...mapActions(["deleteEquipment", "editEquipment"])
+    // editEquipment(){
+    //   this.edit_item = true
+    // }
+  },
+  computed: {
+    ...mapGetters(["editing"])
   }
 };
 </script>
