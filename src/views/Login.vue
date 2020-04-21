@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div v-if="loading">
+      <Loader />
+    </div>
     <main class="login-page page registration-page">
       <section class="clean-block clean-form dark overlay1">
         <div class="container">
@@ -53,6 +56,7 @@
                 >
               </div>
             </div>
+            <small v-if="store_auth" id="msg">Wrong password or email</small>
             <div class="login">
               <button
                 class="btn btn-primary btn-block login"
@@ -88,32 +92,49 @@
 <script>
 /* eslint-disable */
 import axios from "axios";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import Loader from "@/components/loader";
 
 export default {
   name: "login",
+  components: {
+    Loader
+  },
   data() {
     return {
       email: "",
       password: ""
     };
   },
+  computed: {
+    ...mapGetters({ store_loading: "loading", store_auth: "auth_failed" }),
+    // create setter for loading computed property
+    loading: {
+      get() {
+        return this.store_loading;
+      },
+      set(loading) {
+        return loading;
+      }
+    }
+  },
   methods: {
+    // load actions from store
     ...mapActions(["login"]),
+    // method to handle login submission
     handleSubmit(e) {
       e.preventDefault();
-      console.log("here");
-      if (this.password.length > 6) {
-        this.login({ email: this.email, password: this.password }).then(() => {
+      this.loading = true;
+      this.login({ email: this.email, password: this.password })
+        .then(() => {
           if (localStorage.getItem("jwt") != null) {
             this.$emit("loggedIn");
             this.$router.push({ name: "user-profile" });
           }
-        });
-      } else {
-        alert("check your login credentials and try again");
-      }
+        })
+        .catch(err => {});
     },
+    // method to validate fields before submission
     validateBeforeLogin(e) {
       this.$validator.validateAll().then(result => {
         if (result) {
@@ -121,7 +142,6 @@ export default {
           this.handleSubmit(e);
           return;
         }
-        alert("Fill in all necessary fields!");
       });
     }
   }
