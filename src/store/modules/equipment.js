@@ -58,8 +58,9 @@ const actions = {
   },
   addEquipment: async ({ commit }, data) => {
     try {
+      console.log(data)
       let res = await axios.post(
-        `${api}/add-item`,
+        `http://localhost:3000/add-item`,
         data
       );
       commit("newItem", res.data);
