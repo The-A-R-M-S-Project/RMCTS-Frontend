@@ -9,7 +9,7 @@
           <p class="mt-5">Description :</p>
         </div> -->
         <div class="col text-center">
-          <form action="" style="">
+          <form action="" method="POST" encType="multipart/form-data">
             <input
               type="text"
               class="form-control mt-3"
@@ -23,10 +23,11 @@
               v-model="item.location"
             />
             <input
-              type="text"
-              class="form-control mt-3"
-              placeholder="Image URL"
-              v-model="item.imageURL"
+              type="file"
+              class="form-control-file mt-3"
+              name="image"
+              accept="image/*"
+              @change="handleImage"
             />
             <textarea
               class="form-control mt-4"
@@ -83,7 +84,6 @@ form {
     }
   }
 }
-
 @keyframes bounce {
   to {
     opacity: 0.3;
@@ -93,6 +93,7 @@ form {
 </style>
 
 <script>
+/* eslint-disable */
 import { mapActions } from "vuex";
 
 export default {
@@ -102,23 +103,30 @@ export default {
       item: {
         title: "",
         location: "",
-        imageURL: "",
         description: ""
-      }
+      },
+      imageFile: null
     };
   },
   methods: {
     ...mapActions(["addEquipment"]),
     handleSubmit(e) {
       e.preventDefault();
-      this.addEquipment(this.item).then(
+      const formData = new FormData()
+      formData.append('image', this.imageFile, this.imageFile.name)
+      formData.append('title', this.item.title)
+      formData.append('location', this.item.location)
+      formData.append('description', this.item.description)
+      this.addEquipment(formData).then(
         (this.item = {
           title: "",
           location: "",
-          imageURL: "",
           description: ""
-        })
-      );
+        }))
+    },
+    handleImage(e) {
+      this.imageFile = e.target.files[0]
+      console.log(e)
     }
   }
 };
