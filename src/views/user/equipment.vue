@@ -11,9 +11,10 @@
           role="tab"
           aria-controls="nav-home"
           aria-selected="true"
-          ><li class="fa fa-list pt-2 pb-2"></li>
-          All Equipment</a
         >
+          <li class="fa fa-list pt-2 pb-2"></li>
+          All Equipment
+        </a>
         <a
           class="nav-item nav-link"
           id="nav-profile-tab"
@@ -22,9 +23,10 @@
           role="tab"
           aria-controls="nav-profile"
           aria-selected="false"
-          ><li class="fa fa-plus pt-2 pb-2"></li>
-          Add equipment</a
         >
+          <li class="fa fa-plus pt-2 pb-2"></li>
+          Add equipment
+        </a>
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -49,6 +51,19 @@
             />
           </div>
         </div>
+        <div
+          v-if="editing"
+          @:close-editor="editing = false"
+          class="edit-equipment d-flex justify-content-center align-items-center"
+        >
+          <EditEquipment
+            :title="itemBeingEdited.title"
+            :description="itemBeingEdited.description"
+            :location="itemBeingEdited.location"
+            :imageURL="itemBeingEdited.url"
+            :_id="itemBeingEdited._id"
+          />
+        </div>
       </div>
       <div
         class="tab-pane fade"
@@ -65,13 +80,13 @@
 </template>
 
 <style lang="css" scoped>
-.nav-link.active{
+.nav-link.active {
   border-radius: 0px;
 }
-a{
+a {
   color: white;
 }
-a:hover{
+a:hover {
   color: yellow;
   border-radius: 0px;
 }
@@ -82,12 +97,26 @@ a:hover{
 .active {
   border-bottom: 0px;
 }
+.edit-equipment {
+  background: rgba(0, 0, 0, 0.479);
+  color: #666666;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+}
 </style>
 
 <script>
 /* eslint-disable */
 import Equipment from "@/components/User/Equipment.vue";
 import AddEquipment from "@/components/User/AddEquipment.vue";
+import EditEquipment from "@/components/User/EditEquipment";
+
 // import userEquipment from "@/services/user-equipment-service.js";
 import { mapGetters, mapActions } from "vuex";
 
@@ -95,7 +124,8 @@ export default {
   name: "user-equipment",
   components: {
     Equipment,
-    AddEquipment
+    AddEquipment,
+    EditEquipment
   },
   data() {
     return {
@@ -103,13 +133,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["myEquipment"])
+    ...mapGetters(["myEquipment", "editing","itemBeingEdited"])
   },
   methods: {
     ...mapActions(["getEquipment"])
   },
-  created(){
-    this.getEquipment()
+  created() {
+    this.getEquipment();
   }
 };
 </script>

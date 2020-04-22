@@ -10,14 +10,16 @@ const state = {
   // triggers equipment editing modal
   editing: false,
   // triggers loader while adding items
-  addingItem: false
+  addingItem: false,
+  itemBeingEdited: {}
 };
 
 // getters
 const getters = {
   myEquipment: state => state.myEquipment,
   editing: state => state.editing,
-  addingItem: state => state.addingItem
+  addingItem: state => state.addingItem,
+  itemBeingEdited: state=>state.itemBeingEdited
 };
 // mutations
 const mutations = {
@@ -37,8 +39,9 @@ const mutations = {
     state.editing = false
   },
   // activates equipment editing modal
-  editItem: (state) => {
+  editItem: (state, item) => {
     state.editing = true
+    state.itemBeingEdited = item
   },
   // deactivates equipment editing modal
   cancelEditing: (state) => {
@@ -90,8 +93,8 @@ const actions = {
     }
   },
   // activates equipment editing modal
-  editEquipment: ({ commit }) => {
-    commit("editItem")
+  editEquipment: ({ commit }, item) => {
+    commit("editItem", item)
   },
   // deactivates equipment editing modal
   handleCancel: ({ commit }) => {

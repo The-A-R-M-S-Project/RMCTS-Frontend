@@ -32,24 +32,11 @@
           type="button"
           class="btn btn-primary m-3"
           style="width: 100px"
-          @click="editEquipment()"
+          @click="editEquipment({ title, description, location, url, _id })"
         >
           Edit
         </button>
       </div>
-    </div>
-    <div
-      v-if="editing"
-      @:close-editor="editing = false"
-      class="edit-equipment d-flex justify-content-center align-items-center"
-    >
-      <EditEquipment
-        :title="title"
-        :description="description"
-        :location="location"
-        :imageURL="url"
-        :_id="_id"
-      />
     </div>
   </div>
 </template>
@@ -82,7 +69,7 @@
   overflow-y: scroll;
   height: 40vh;
 }
-.edit-equipment {
+/* .edit-equipment {
   background: rgba(0, 0, 0, 0.404);
   color: #666666;
   position: fixed;
@@ -93,7 +80,7 @@
   left: 0;
   float: left;
   text-align: center;
-}
+} */
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -116,13 +103,13 @@
 </style>
 
 <script>
-import EditEquipment from "@/components/User/EditEquipment";
-import { mapActions, mapGetters } from "vuex";
+// import EditEquipment from "@/components/User/EditEquipment";
+import { mapActions } from "vuex";
 
 export default {
   name: "all-equipment",
   components: {
-    EditEquipment
+    // EditEquipment
   },
   data() {
     return {
@@ -134,17 +121,16 @@ export default {
     description: String,
     location: String,
     url: String,
-    _id: String,
-    edit: String
+    _id: String
   },
   methods: {
     ...mapActions(["deleteEquipment", "editEquipment"])
     // editEquipment(){
     //   this.edit_item = true
     // }
-  },
-  computed: {
-    ...mapGetters(["editing"])
   }
+  // computed: {
+  //   ...mapGetters(["editing"])
+  // }
 };
 </script>
