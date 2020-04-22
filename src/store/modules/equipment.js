@@ -8,18 +8,26 @@ const api = "https://rmcts-api.herokuapp.com";
 const state = {
   myEquipment: [],
   // triggers equipment editing modal
-  editing: false
+  editing: false,
+  // triggers loader while adding items
+  addingItem: false
 };
 
 // getters
 const getters = {
   myEquipment: state => state.myEquipment,
-  editing: state => state.editing
+  editing: state => state.editing,
+  addingItem: state => state.addingItem
 };
 // mutations
 const mutations = {
   myEquipment: (state, equipment) => (state.myEquipment = equipment),
-  newItem: (state, item) => state.myEquipment.unshift(item),
+  newItem: (state, item) => {
+    state.myEquipment.unshift(item)
+    state.addingItem = false
+  },
+  // activates loader on item submission
+  addingItem: state => state.addingItem = true,
   updateItem: (state, item) => {
     state.myEquipment.forEach((x, i) => {
       if (x._id == item._id) {
@@ -58,6 +66,7 @@ const actions = {
   },
   addEquipment: async ({ commit }, data) => {
     try {
+      commit("addingItem")
       console.log(data)
       let res = await axios.post(
         `http://localhost:3000/add-item`,
@@ -65,6 +74,7 @@ const actions = {
       );
       commit("newItem", res.data);
     } catch (error) {
+      alert("error occured")
       console.log(error);
     }
   },

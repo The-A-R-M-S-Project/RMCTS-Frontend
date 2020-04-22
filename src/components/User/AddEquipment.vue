@@ -1,13 +1,10 @@
 <template>
   <div class="containr">
+    <div v-if="addingItem">
+      <Loader />
+    </div>
     <div class="bg-light" style="width: 100%; height: 100%;">
       <div class="row" style="background-color:  rgb(205, 216, 226)">
-        <!-- <div class="col-2">
-          <p class="mt-4">Title :</p>
-          <p class="mt-4 mb-1">location :</p>
-          <p class="mt-4">Image URL :</p>
-          <p class="mt-5">Description :</p>
-        </div> -->
         <div class="col text-center">
           <form action="" method="POST" encType="multipart/form-data">
             <input
@@ -94,10 +91,14 @@ form {
 
 <script>
 /* eslint-disable */
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import Loader from "@/components/loader"
 
 export default {
   name: "add-equipment",
+  components: {
+    Loader
+  },
   data() {
     return {
       item: {
@@ -107,6 +108,17 @@ export default {
       },
       imageFile: null
     };
+  },
+  computed: {
+    ...mapGetters({store_adding_item:"addingItem"}),
+    addingItem: {
+      get() {
+        return this.store_adding_item;
+      },
+      set(adding_item) {
+        return adding_item;
+      }
+    }
   },
   methods: {
     ...mapActions(["addEquipment"]),
