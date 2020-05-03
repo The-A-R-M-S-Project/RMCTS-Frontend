@@ -8,6 +8,7 @@
             center: 'timeGridDay, timeGridWeek, dayGridMonth',
             right: 'prev today next'
           }"
+          :weekends="false"
           :plugins="calendarPlugins"
           :events="EVENTS"
           :selectable="true"
