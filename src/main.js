@@ -6,7 +6,7 @@ import store from "./store";
 import modal from "vue-js-modal";
 
 Vue.config.productionTip = false;
-Vue.use(modal, { dialog: true, dynamic: true });
+Vue.use(modal, { dynamic: true });
 
 new Vue({
   router,
