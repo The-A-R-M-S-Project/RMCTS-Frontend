@@ -66,8 +66,8 @@ export default {
         id: new Date().getTime(),
         title: "trial",
         start: tap.start,
-        end: tap.end,
-        allDay: tap.allDay
+        end: tap.end
+        // allDay: tap.allDay
       });
     },
     handleClick(clck) {
