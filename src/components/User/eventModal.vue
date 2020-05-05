@@ -1,19 +1,38 @@
 <template>
   <div>
-    <fieldset>
-      <legend>Event Details</legend>
-      <b>Title:</b> {{ event.title }} <br />
-      <b>start:</b> {{ event.start }} <br />
-      <b>End:</b> {{ event.end }} <br />
-      <b>ID:</b> {{ event.id }} <br />
-    </fieldset>
-    <fieldset>
-      <legend>Edit Event</legend>
-      <input type="text" v-model="title" />
-      <input type="date" v-model="start" />
-      <input type="date" v-model="end" />
-      <button @click="updateEvent">Save changes</button>
-    </fieldset>
+    <div class="container" height="500px">
+      <form>
+        <div class="form-group">
+          <legend>Event Details</legend>
+          <b>Title:</b> {{ event.title }} <br />
+          <b>start:</b> {{ event.start }} <br />
+          <b>End:</b> {{ event.end }} <br />
+          <b>ID:</b> {{ event.id }} <br />
+        </div>
+        <hr class="solid" />
+        <div class="form-group">
+          <h5>Edit Event</h5>
+          <input type="text" class="form-control" v-model="title" />
+          <div class="form-row">
+            <div class="col">
+              <input
+                type="datetime-local"
+                class="form-control col"
+                v-model="start"
+              />
+            </div>
+            <div class="col">
+              <input
+                type="datetime-local"
+                class="form-control col"
+                v-model="end"
+              />
+            </div>
+          </div>
+          <button @click="updateEvent">Save changes</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -46,4 +65,8 @@ export default {
 };
 </script>
 
-<style scoped></style>style
+<style scoped>
+hr.solid {
+  border-top: 2px solid #999;
+}
+</style>
