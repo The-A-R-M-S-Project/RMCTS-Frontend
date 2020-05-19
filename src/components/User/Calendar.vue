@@ -71,10 +71,20 @@ export default {
       });
     },
     handleClick(clck) {
-      this.$modal.show(EventModal, {
-        text: "From the component",
-        event: clck.event
-      });
+      this.$modal.show(
+        EventModal,
+        {
+          text: "From the component",
+          event: clck.event
+        },
+        {
+          height: "auto",
+          width: "50%"
+        },
+        {
+          draggable: true
+        }
+      );
     }
   },
   computed: {
