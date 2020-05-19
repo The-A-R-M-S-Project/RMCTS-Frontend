@@ -2,7 +2,7 @@
   <div>
     <main class="login-page">
       <section class="clean-form dark">
-        <div class="container">
+        <div class="container mb-4">
           <div class="block-heading">
             <h1 class="text-info text-center">Edit Event</h1>
           </div>
@@ -84,7 +84,7 @@ export default {
     this.title = this.event.title;
     this.start = this.event.start;
     this.end = this.event.end;
-  },
+  }
 };
 </script>
 

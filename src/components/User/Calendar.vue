@@ -1,25 +1,23 @@
 <template>
   <div>
     <div class="card container">
-      <div class=" container card">
-        <FullCalendar
-          :header="{
-            left: 'title',
-            center: 'timeGridDay, timeGridWeek, dayGridMonth',
-            right: 'prev today next'
-          }"
-          :weekends="false"
-          :plugins="calendarPlugins"
-          :events="EVENTS"
-          :selectable="true"
-          :editable="true"
-          @select="handleDateClick"
-          @eventClick="handleClick"
-          @eventResize="handleResize"
-          @eventDrop="cancelEvent"
-        />
-        <modals-container />
-      </div>
+      <FullCalendar
+        :header="{
+          left: 'title',
+          center: 'timeGridDay, timeGridWeek, dayGridMonth',
+          right: 'prev today next'
+        }"
+        :weekends="false"
+        :plugins="calendarPlugins"
+        :events="EVENTS"
+        :selectable="true"
+        :editable="true"
+        @select="handleDateClick"
+        @eventClick="handleClick"
+        @eventResize="handleResize"
+        @eventDrop="cancelEvent"
+      />
+      <modals-container />
     </div>
   </div>
 </template>

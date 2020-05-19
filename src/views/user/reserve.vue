@@ -1,7 +1,9 @@
 <template>
   <div>
+    <!-- <div class="row"> -->
     <!-- <Navbar /> -->
-    <div class="m-2">
+    <!-- </div> -->
+    <div class="row ml-5 mt-5">
       <Calendar />
     </div>
   </div>
