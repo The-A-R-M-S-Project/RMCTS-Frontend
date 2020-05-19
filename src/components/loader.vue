@@ -1,0 +1,54 @@
+<template>
+  <div id="overlay" class="d-flex justify-content-center align-items-center">
+    <div class="loader"></div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "loader"
+};
+</script>
+
+<style>
+#overlay {
+  background: rgba(0, 0, 0, 0.404);
+  color: #666666;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+  /* padding-top: 25%; */
+}
+.loader {
+  border: 10px solid #ffffff;
+  border-radius: 100%;
+  border-top: 10px solid yellow;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>

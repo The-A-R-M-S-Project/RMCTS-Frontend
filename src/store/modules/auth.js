@@ -1,19 +1,30 @@
 /* eslint-disable */
 import axios from "axios";
 
+// state
 const state = {
-  status: "",
+  loading: false,
+  failed: false
 };
 
+// mutations
 const mutations = {
-  auth_request: state => (state.status = "loading"),
-  auth_success: (state) => {
-    state.status = "success";
+  auth_request: state => {
+    state.loading = true
+    state.failed = false
   },
-  auth_error: state => (state.status = "error"),
+  auth_success: (state) => {
+    state.loading = false;
+    state.failed = false;
+  },
+  auth_error: state => {
+    state.loading = false
+    state.failed = true
+  },
   signup_success: state => (state.signup = "success")
 };
 
+// actions
 const actions = {
   login: async function({ commit }, data) {
     try {
@@ -21,9 +32,9 @@ const actions = {
       let res = await axios.post("https://rmcts-api.herokuapp.com/admins/login", data);
       localStorage.setItem("jwt", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.admin));
-      commit("auth_success", res.data.admin, res.data.token);
+      commit("auth_success");
     } catch (err) {
-      alert("login failed");
+      commit("auth_error")
     }
   },
   logout: function({ commit }) {
@@ -51,9 +62,11 @@ const actions = {
   }
 };
 
+// getters
 const getters = {
   user: state => state.user,
-  status: state => state.status
+  loading: state => state.loading,
+  auth_failed: state => state.failed
 };
 
 export default {

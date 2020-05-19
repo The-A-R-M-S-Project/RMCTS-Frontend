@@ -4,21 +4,48 @@ import axios from "axios";
 import Vue from "vue";
 
 const api = "https://rmcts-api.herokuapp.com";
+// state
 const state = {
-  myEquipment: []
+  myEquipment: [],
+  // triggers equipment editing modal
+  editing: false,
+  // triggers loader while adding items
+  addingItem: false,
+  itemBeingEdited: {}
 };
+
+// getters
 const getters = {
   myEquipment: state => state.myEquipment,
+  editing: state => state.editing,
+  addingItem: state => state.addingItem,
+  itemBeingEdited: state=>state.itemBeingEdited
 };
+// mutations
 const mutations = {
   myEquipment: (state, equipment) => (state.myEquipment = equipment),
-  newItem: (state, item) => state.myEquipment.unshift(item),
+  newItem: (state, item) => {
+    state.myEquipment.unshift(item)
+    state.addingItem = false
+  },
+  // activates loader on item submission
+  addingItem: state => state.addingItem = true,
   updateItem: (state, item) => {
     state.myEquipment.forEach((x, i) => {
       if (x._id == item._id) {
         Vue.set(state.myEquipment, i, item);
       }
     });
+    state.editing = false
+  },
+  // activates equipment editing modal
+  editItem: (state, item) => {
+    state.editing = true
+    state.itemBeingEdited = item
+  },
+  // deactivates equipment editing modal
+  cancelEditing: (state) => {
+    state.editing = false
   },
   deleteItem: (state, id) => {
     state.myEquipment.forEach((x, i) => {
@@ -28,13 +55,13 @@ const mutations = {
     });
   }
 };
+// actions
 const actions = {
   getEquipment: async ({ commit }) => {
     try {
       let equipment = await axios.get(
         `${api}/equipment`
       );
-      console.log(equipment.data);
       commit("myEquipment", equipment.data);
     } catch (error) {
       console.log(error);
@@ -42,13 +69,15 @@ const actions = {
   },
   addEquipment: async ({ commit }, data) => {
     try {
+      commit("addingItem")
+      console.log(data)
       let res = await axios.post(
-        `${api}/add-item`,
+        `http://localhost:3000/add-item`,
         data
       );
-      console.log(res.data);
       commit("newItem", res.data);
     } catch (error) {
+      alert("error occured")
       console.log(error);
     }
   },
@@ -58,11 +87,18 @@ const actions = {
         `${api}/edit-item`,
         data
       );
-      console.log(res.data);
       commit("updateItem", res.data);
     } catch (error) {
       console.log(error);
     }
+  },
+  // activates equipment editing modal
+  editEquipment: ({ commit }, item) => {
+    commit("editItem", item)
+  },
+  // deactivates equipment editing modal
+  handleCancel: ({ commit }) => {
+    commit("cancelEditing")
   },
   deleteEquipment: async ({ commit }, id) => {
     try {

@@ -9,13 +9,11 @@
             style="width: 100%; height: 40vh; border-top-left-radius: 20px;  object-fit: cover;"
           />
         </div>
-        <div class="col-7">
-          <div class="">
+        <div class="col-7 desc">
+          <div class>
             <h5 class="card-title">{{ title }}</h5>
-            <p class="text-justify pr-3 mytext">
-              {{ description }}
-            </p>
-            <p class="">
+            <p class="text-justify pr-3 mytext">{{ description }}</p>
+            <p class>
               <small class="text-muted">{{ location }}</small>
             </p>
           </div>
@@ -34,45 +32,10 @@
           type="button"
           class="btn btn-primary m-3"
           style="width: 100px"
-          data-toggle="modal"
-          data-target="#exampleModalCenter"
+          @click="editEquipment({ title, description, location, url, _id })"
         >
           Edit
         </button>
-      </div>
-    </div>
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModalCenter"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Edit Item</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <EditEquipment
-              :title="title"
-              :description="description"
-              :location="location"
-              :imageURL="url"
-              :_id="_id"
-            />
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -102,16 +65,56 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
+.desc {
+  overflow-y: scroll;
+  height: 40vh;
+}
+/* .edit-equipment {
+  background: rgba(0, 0, 0, 0.404);
+  color: #666666;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+} */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 123, 255, 0.363);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(2, 74, 150);
+}
 </style>
 
 <script>
-import EditEquipment from "@/components/User/EditEquipment";
+// import EditEquipment from "@/components/User/EditEquipment";
 import { mapActions } from "vuex";
 
 export default {
   name: "all-equipment",
   components: {
-    EditEquipment
+    // EditEquipment
+  },
+  data() {
+    return {
+      edit_item: false
+    };
   },
   props: {
     title: String,
@@ -121,7 +124,13 @@ export default {
     _id: String
   },
   methods: {
-    ...mapActions(["deleteEquipment"])
+    ...mapActions(["deleteEquipment", "editEquipment"])
+    // editEquipment(){
+    //   this.edit_item = true
+    // }
   }
+  // computed: {
+  //   ...mapGetters(["editing"])
+  // }
 };
 </script>
