@@ -8,7 +8,7 @@ import Register from "../views/Registration";
 import ItemDetails from "../views/Details";
 import Reservation from "../views/user/reserve";
 import SignedUp from "../views/SignedUp"
-
+import FaceRecognition from "../views/faceRecognition"
 //user
 import User from "../views/user/User";
 import UserProfile from "../views/user/profile";
@@ -54,6 +54,14 @@ const routes = [
     path: "/signed-up",
     name: "signed-up",
     component: SignedUp,
+    meta: {
+      guest: true
+    }
+  },
+  {
+    path: "/face-auth",
+    name: "face-recognition",
+    component: FaceRecognition,
     meta: {
       guest: true
     }
