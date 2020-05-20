@@ -131,6 +131,7 @@
                 class="btn btn-primary btn-block col-sm-3"
                 type="submit"
                 data-dismiss="modal"
+                :click="saveEvent()"
               >
                 Add
               </button>
@@ -176,6 +177,11 @@ export default {
       endMonth: "",
       endYear: ""
     };
+  },
+  methods: {
+    saveEvent() {
+      
+    }
   }
 };
 </script>
