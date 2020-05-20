@@ -11,7 +11,7 @@
               <label for="email">Event Name</label>
               <input v-model="title" class="form-control item" type="text" />
             </div>
-
+            <hr class="solid1" />
             <div class="form-group row ml-2">
               <div class="form-row">
                 <label for="time">Start:</label>
@@ -35,6 +35,7 @@
 
               <div class="col-md-3">
                 <select v-model="startPeriod" class="form-control" id="time">
+                  <option value="" disabled selected hidden>AM</option>
                   <option v-for="i in periods" :key="i">{{ i }}</option>
                 </select>
               </div>
@@ -42,28 +43,28 @@
 
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label for="day">Day</label>
                 <select v-model="startDay" class="form-control" id="day">
+                  <option value="" disabled selected hidden>Day</option>
                   <option v-for="i in days" :key="i">{{ i }}</option>
                 </select>
               </div>
               <div class="form-group col-md-4">
-                <label for="month">Month</label>
                 <select v-model="startMonth" class="form-control" id="month">
+                  <option value="" disabled selected hidden>Month</option>
                   <option v-for="i in months" :key="i">{{ i }}</option>
                 </select>
               </div>
               <div class="form-group col-md-4">
-                <label for="year">Year</label>
                 <input
                   v-model="startYear"
                   class="form-control"
                   type="text"
                   id="year"
+                  placeholder="Year"
                 />
               </div>
             </div>
-
+            <hr class="solid" />
             <div class="form-group row ml-2">
               <div class="form-row">
                 <label for="time">End: </label>
@@ -87,6 +88,7 @@
 
               <div class="col-md-3">
                 <select v-model="endPeriod" class="form-control" id="time">
+                  <option value="" disabled selected hidden>AM</option>
                   <option v-for="i in periods" :key="i">{{ i }}</option>
                 </select>
               </div>
@@ -94,28 +96,28 @@
 
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label for="day">Day</label>
                 <select v-model="endDay" class="form-control" id="day">
+                  <option value="" disabled selected hidden>Day</option>
                   <option v-for="i in days" :key="i">{{ i }}</option>
                 </select>
               </div>
               <div class="form-group col-md-4">
-                <label for="month">Month</label>
                 <select v-model="endMonth" class="form-control" id="month">
+                  <option value="" disabled selected hidden>Month</option>
                   <option v-for="i in months" :key="i">{{ i }}</option>
                 </select>
               </div>
               <div class="form-group col-md-4">
-                <label for="year">Year</label>
                 <input
                   v-model="endYear"
                   class="form-control"
                   type="text"
                   id="year"
+                  placeholder="Year"
                 />
               </div>
             </div>
-
+            <hr class="solid1" />
             <div class="form-group">
               <label for="eventDetails">Add Details:</label>
               <textarea
@@ -178,4 +180,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+hr.solid {
+  border-top: 2px solid #999;
+}
+hr.solid1 {
+  border-top: 0.3px solid #999;
+}
+</style>
