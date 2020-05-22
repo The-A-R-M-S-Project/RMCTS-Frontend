@@ -9,7 +9,7 @@
         }"
         :weekends="false"
         :plugins="calendarPlugins"
-        :events="EVENTS"
+        :events="allEvents"
         :selectable="true"
         :editable="true"
         @select="handleDateClick"
@@ -86,7 +86,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["EVENTS"])
+    ...mapGetters(["allEvents"])
   }
 };
 </script>

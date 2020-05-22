@@ -1,11 +1,11 @@
-// import events from "../../services/reservations";
+import events from "../../services/reservations";
 
 const state = {
-  Events: []
+  Events: events
 };
 
 const getters = {
-  EVENTS: state => state.Events
+  allEvents: state => state.Events
 };
 
 const mutations = {
