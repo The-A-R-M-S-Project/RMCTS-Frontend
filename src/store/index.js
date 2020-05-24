@@ -4,6 +4,7 @@ import auth from "./modules/auth";
 import equipment from "./modules/equipment";
 import search from "./modules/search";
 import catalog from "./modules/catalog";
+import facerecon from "./modules/facerecon";
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     auth,
     equipment,
     search,
-    catalog
+    catalog,
+    facerecon
   }
 });
