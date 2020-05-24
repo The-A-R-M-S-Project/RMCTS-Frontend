@@ -20,7 +20,7 @@
         style="height: 75px; width: 75px; border-radius: 40px"
         @click="recognizeFace"
       >
-        detect
+        {{ getaction }}
       </button>
     </div>
     <div>
@@ -84,9 +84,9 @@ export default {
     return {
     };
   },
-  computed: mapGetters(['detectionComplete', 'getUser', 'detection']),
+  computed: mapGetters(['detectionComplete', 'getUser', 'detection', 'getaction']),
   methods: {
-    ...mapActions(['detectFace']),
+    ...mapActions(['detectFace', 'reset']),
     initialise() {
       if (
         "mediaDevices" in navigator &&
@@ -105,6 +105,9 @@ export default {
       canvas.getContext("2d").drawImage(video, 0, 0);
       this.detectFace({datauri: `${canvas.toDataURL("image/png")}`})
     }
+  },
+  created(){
+    this.reset()
   },
   beforeMount() {
     this.initialise();
