@@ -62,12 +62,18 @@
                 class="btn btn-primary btn-block login"
                 @click.prevent="validateBeforeLogin"
                 type="submit"
-                data-dismiss="modal"
               >
                 Log In
               </button>
             </div>
-            <div class="form-group" data-dismiss="modal">
+            <div class="login">
+              <router-link to="face-auth" style="text-decoration: none">
+                <button class="btn btn-success btn-block mt-3">
+                  Login with face recognition
+                </button>
+              </router-link>
+            </div>
+            <div class="form-group">
               <router-link to="register">
                 <p>Don't Have an account?</p>
               </router-link>
