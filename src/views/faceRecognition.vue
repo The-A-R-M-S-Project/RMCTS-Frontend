@@ -4,8 +4,8 @@
       <video autoplay id="v" class="webcam"></video>
     </div>
     <!-- <input type="email"> -->
-    <div>
-      <h4 style="color: white">Your face has been as {{ name }}</h4>
+    <div v-if="detectionComplete">
+      <h4 style="color: white">Your are {{ getUser }}</h4>
     </div>
     <div>
       <button
@@ -65,14 +65,17 @@
 <script>
 /* eslint-disable */
 import axios from "axios";
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: "face-recognition",
   data() {
     return {
-      name: "..."
     };
   },
+  computed: mapGetters(['detectionComplete', 'getUser']),
   methods: {
+    ...mapActions(['detectFace']),
     initialise() {
       if (
         "mediaDevices" in navigator &&
@@ -89,14 +92,7 @@ export default {
       const canvas = document.getElementById("c");
       const video = document.getElementById("v");
       canvas.getContext("2d").drawImage(video, 0, 0);
-      axios
-        .post("http://localhost:5000/detect", {
-          datauri: `${canvas.toDataURL("image/png")}`
-        })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => console.log(err));
+      this.detectFace({datauri: `${canvas.toDataURL("image/png")}`})
     }
   },
   beforeMount() {
