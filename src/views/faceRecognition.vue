@@ -1,11 +1,18 @@
 <template>
   <div class="camera d-flex align-items-center flex-column">
+    <div
+      v-if="detection"
+      style="color: white; text-align: center; font-weight: light"
+    >
+      <h2>Detecting...</h2>
+      <Loader />
+    </div>
     <div>
       <video autoplay id="v" class="webcam"></video>
     </div>
     <!-- <input type="email"> -->
     <div v-if="detectionComplete">
-      <h4 style="color: white">Your are {{ getUser }}</h4>
+      <p style="color: white">Your are {{ getUser }}</p>
     </div>
     <div>
       <button
@@ -66,14 +73,18 @@
 /* eslint-disable */
 import axios from "axios";
 import { mapActions, mapGetters } from 'vuex';
+import Loader from "../components/loader";
 
 export default {
   name: "face-recognition",
+  components: {
+    Loader
+  },
   data() {
     return {
     };
   },
-  computed: mapGetters(['detectionComplete', 'getUser']),
+  computed: mapGetters(['detectionComplete', 'getUser', 'detection']),
   methods: {
     ...mapActions(['detectFace']),
     initialise() {
