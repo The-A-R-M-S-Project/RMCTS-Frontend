@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from 'axios'
 
-const api = "http://localhost:5000/detect"
+const api = "https://facerecon-api.herokuapp.com/detect"
 
 const state = {
     detectionComplete: false,
@@ -33,7 +33,7 @@ const actions = {
 
             commit("updateUser", res.data.user)
         } catch (err) { console.log(err) };
-    }
+    },
 };
 
 export default {
