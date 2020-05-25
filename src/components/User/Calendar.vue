@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card container">
+    <div class="container">
       <FullCalendar
         :header="{
           left: 'title',
@@ -60,9 +60,11 @@ export default {
     },
     cancelEvent() {},
     handleDateClick(tap) {
+      // eslint-disable-next-line no-console
+      console.log(tap);
       this.$store.commit("SetEvents", {
         id: new Date().getTime(),
-        title: "trial",
+        title: "",
         start: tap.start,
         end: tap.end
         // allDay: tap.allDay

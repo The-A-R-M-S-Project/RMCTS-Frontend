@@ -1,7 +1,7 @@
-import events from "../../services/reservations";
+// import events from "../../services/reservations";
 
 const state = {
-  Events: events
+  Events: []
 };
 
 const getters = {
