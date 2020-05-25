@@ -66,15 +66,11 @@ export default {
     updateEvent() {
       this.$store.commit("UpdateEvents", {
         id: this.event.id,
-        title: this.event.id,
+        title: this.title,
         start: this.start,
         end: this.end
       });
     }
-    // formatDate(date) {
-    //   var options = { day: "2-digit", month: "2-digit", year: "numeric" };
-    //   let string = date.toLocaleDateString("en-UG", options).replace;
-    // }
   },
   props: {
     text: String,
@@ -82,10 +78,15 @@ export default {
   },
   mounted() {
     this.title = this.event.title;
-    this.start = this.event.start;
-    this.end = this.event.end;
+    this.start = formatDate(this.event.start);
+    this.end = formatDate(this.event.end);
   }
 };
+function formatDate(date) {
+  var options = { day: "2-digit", month: "2-digit", year: "numeric" };
+  let string = date.toLocaleDateString("ko-KR", options).replace(/\. /g, "-");
+  return string.substr(0, string.length - 1);
+}
 </script>
 
 <style scoped>
