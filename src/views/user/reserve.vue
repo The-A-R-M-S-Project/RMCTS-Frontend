@@ -1,21 +1,21 @@
 <template>
   <div>
-    <!-- <div class="row"> -->
-    <!-- <Navbar /> -->
-    <!-- </div> -->
-    <div class="row ml-5 mt-5">
+    <div>
+      <Navbar />
+    </div>
+    <div style="border-top: solid white 95px;">
       <Calendar />
     </div>
   </div>
 </template>
 
 <script>
-// import Navbar from "@/components/User/Navigation";
+import Navbar from "@/components/User/Navigation";
 import Calendar from "@/components/User/Calendar";
 export default {
   components: {
-    Calendar
-    // Navbar
+    Calendar,
+    Navbar
   }
 };
 </script>
