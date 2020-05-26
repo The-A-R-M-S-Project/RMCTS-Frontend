@@ -89,6 +89,9 @@ export default {
   },
   computed: {
     ...mapGetters(["allEvents"])
+  },
+  created() {
+    this.$store.dispatch("getEvents");
   }
 };
 </script>
