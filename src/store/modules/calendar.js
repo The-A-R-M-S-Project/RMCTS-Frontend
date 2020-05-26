@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const state = {
   Events: []
 };
@@ -15,9 +17,29 @@ const mutations = {
     state.Events[index].start = start;
     state.Events[index].end = end;
   }
+  // isLoaded: state => !!state.Events.length
 };
 
-const actions = {};
+const actions = {
+  // get event from db
+  async getEvents(reservation) {
+    const Events = (await axios.get("http://localhost:3000/events")).data;
+    reservation.commit("setEvents", Events);
+  },
+  // addevent to db
+  async createEvent(reserve, { title, start, end, begin, stop }) {
+    const event = (
+      await axios.post("http://localhost:3000/events", {
+        title,
+        start,
+        end,
+        begin,
+        stop
+      })
+    ).data;
+    reserve.commit("UpdateEvents", event);
+  }
+};
 
 export default {
   state,
