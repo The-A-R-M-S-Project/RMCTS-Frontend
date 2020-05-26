@@ -20,7 +20,6 @@
                 <input
                   v-model="startHr"
                   class="form-control"
-                  id="time"
                   placeholder="Hr"
                 />
               </div>
@@ -28,13 +27,12 @@
                 <input
                   v-model="startMin"
                   class="form-control"
-                  id="time"
                   placeholder="Mins"
                 />
               </div>
 
               <div class="col-md-3">
-                <select v-model="startPeriod" class="form-control" id="time">
+                <select v-model="startPeriod" class="form-control">
                   <option value="" disabled selected hidden>AM</option>
                   <option v-for="i in periods" :key="i">{{ i }}</option>
                 </select>
@@ -43,10 +41,11 @@
 
             <div class="form-row">
               <div class="form-group col-md-4">
-                <select v-model="startDay" class="form-control" id="day">
-                  <option value="" disabled selected hidden>Day</option>
-                  <option v-for="i in days" :key="i">{{ i }}</option>
-                </select>
+                <input
+                  v-model="startDay"
+                  class="form-control"
+                  placeholder="Day"
+                />
               </div>
               <div class="form-group col-md-4">
                 <select v-model="startMonth" class="form-control" id="month">
@@ -59,7 +58,6 @@
                   v-model="startYear"
                   class="form-control"
                   type="text"
-                  id="year"
                   placeholder="Year"
                 />
               </div>
@@ -70,24 +68,18 @@
                 <label for="time">End: </label>
               </div>
               <div class="col-md-3">
-                <input
-                  v-model="endHr"
-                  class="form-control"
-                  id="time"
-                  placeholder="Hr"
-                />
+                <input v-model="endHr" class="form-control" placeholder="Hr" />
               </div>
               <div class="col-md-3">
                 <input
                   v-model="endMin"
                   class="form-control"
-                  id="time"
                   placeholder="Mins"
                 />
               </div>
 
               <div class="col-md-3">
-                <select v-model="endPeriod" class="form-control" id="time">
+                <select v-model="endPeriod" class="form-control">
                   <option value="" disabled selected hidden>AM</option>
                   <option v-for="i in periods" :key="i">{{ i }}</option>
                 </select>
@@ -96,10 +88,7 @@
 
             <div class="form-row">
               <div class="form-group col-md-4">
-                <select v-model="endDay" class="form-control" id="day">
-                  <option value="" disabled selected hidden>Day</option>
-                  <option v-for="i in days" :key="i">{{ i }}</option>
-                </select>
+                <input v-model="endDay" class="form-control" placeholder="Hr" />
               </div>
               <div class="form-group col-md-4">
                 <select v-model="endMonth" class="form-control" id="month">
@@ -112,7 +101,6 @@
                   v-model="endYear"
                   class="form-control"
                   type="text"
-                  id="year"
                   placeholder="Year"
                 />
               </div>
@@ -148,7 +136,6 @@ export default {
   name: "addEventsModal",
   data() {
     return {
-      days: ["Mon", "Tue", "Wed", "Thur", "Fri"],
       months: [
         "Jan",
         "Feb",
@@ -188,13 +175,13 @@ export default {
           "-" +
           String(this.months.indexOf(this.startMonth) + 1) +
           "-" +
-          String(this.days.indexOf(this.startDay) + 1),
+          this.startDay,
         end:
           this.endYear +
           "-" +
           String(this.months.indexOf(this.endMonth) + 1) +
           "-" +
-          String(this.days.indexOf(this.endDay) + 1),
+          this.endDay,
         begin: this.startHr + ":" + this.startMin + " " + this.startPeriod,
         stop: this.endHr + ":" + this.endMin + " " + this.endPeriod
       });
