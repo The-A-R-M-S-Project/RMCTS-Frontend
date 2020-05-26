@@ -1,5 +1,3 @@
-// import events from "../../services/reservations";
-
 const state = {
   Events: []
 };
