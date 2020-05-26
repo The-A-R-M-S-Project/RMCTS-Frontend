@@ -27,14 +27,15 @@ const actions = {
     reservation.commit("setEvents", Events);
   },
   // addevent to db
-  async createEvent(reserve, { title, start, end, begin, stop }) {
+  async createEvent(reserve, { title, start, end, begin, stop, details }) {
     const event = (
       await axios.post("http://localhost:3000/events", {
         title,
         start,
         end,
         begin,
-        stop
+        stop,
+        details
       })
     ).data;
     reserve.commit("UpdateEvents", event);

@@ -110,6 +110,7 @@
               <label for="eventDetails">Add Details:</label>
               <textarea
                 class="form-control"
+                v-model="details"
                 id="eventDetails"
                 rows="2"
               ></textarea>
@@ -152,6 +153,7 @@ export default {
       ],
       periods: ["AM", "PM"],
       title: "",
+      details: "",
       startHr: "",
       startMin: "",
       startPeriod: "",
@@ -183,7 +185,8 @@ export default {
           "-" +
           this.endDay,
         begin: this.startHr + ":" + this.startMin + " " + this.startPeriod,
-        stop: this.endHr + ":" + this.endMin + " " + this.endPeriod
+        stop: this.endHr + ":" + this.endMin + " " + this.endPeriod,
+        details: this.details
       });
     }
   }
