@@ -131,7 +131,7 @@
                 class="btn btn-primary btn-block col-sm-3"
                 type="submit"
                 data-dismiss="modal"
-                :click="saveEvent()"
+                @click="saveEvent()"
               >
                 Add
               </button>
@@ -164,6 +164,7 @@ export default {
         "Dec"
       ],
       periods: ["AM", "PM"],
+      title: "",
       startHr: "",
       startMin: "",
       startPeriod: "",
@@ -180,7 +181,23 @@ export default {
   },
   methods: {
     saveEvent() {
-      
+      this.$store.dispatch("createEvent", {
+        title: this.title,
+        start:
+          this.startYear +
+          "-" +
+          String(this.months.indexOf(this.startMonth) + 1) +
+          "-" +
+          String(this.days.indexOf(this.startDay) + 1),
+        end:
+          this.endYear +
+          "-" +
+          String(this.months.indexOf(this.endMonth) + 1) +
+          "-" +
+          String(this.days.indexOf(this.endDay) + 1),
+        begin: this.startHr + ":" + this.startMin + " " + this.startPeriod,
+        stop: this.endHr + ":" + this.endMin + " " + this.endPeriod
+      });
     }
   }
 };
