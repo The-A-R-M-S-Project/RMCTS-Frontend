@@ -70,6 +70,14 @@ export default {
         start: this.start,
         end: this.end
       });
+    },
+    editEvent() {
+      this.$store.dispatch("editEvent", {
+        id: this.$route.params.id,
+        title: this.title,
+        start: this.start,
+        end: this.end
+      });
     }
   },
   props: {

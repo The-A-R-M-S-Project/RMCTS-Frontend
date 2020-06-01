@@ -39,6 +39,22 @@ const actions = {
       })
     ).data;
     reserve.commit("UpdateEvents", event);
+  },
+  //edit event
+  async editEvent({ id, title, start, end, begin, stop, details }) {
+    const updatedEvent = await axios.put(
+      `http://localhost:3000/events"/${this.$route.params.id}`,
+      {
+        id,
+        title,
+        start,
+        end,
+        begin,
+        stop,
+        details
+      }
+    );
+    updatedEvent.commit();
   }
 };
 
