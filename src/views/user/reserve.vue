@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="row">
+    <div>
       <Navbar />
     </div>
-    <div class="container">
+    <div style="border-top: solid white 95px;">
       <Calendar />
     </div>
   </div>

@@ -6,6 +6,7 @@ import search from "./modules/search";
 import catalog from "./modules/catalog";
 import facerecon from "./modules/facerecon";
 import createPersistedState from "vuex-persistedstate";
+import calendar from "./modules/calendar";
 
 Vue.use(Vuex);
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     equipment,
     search,
     catalog,
-    facerecon
+    facerecon,
+    calendar
   }
 });

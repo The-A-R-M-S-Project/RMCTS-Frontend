@@ -5,6 +5,8 @@ import router from "./router";
 import store from "./store";
 import axios from "axios";
 import VeeValidate from "vee-validate";
+import modal from "vue-js-modal";
+// import PortalVue from "portal-vue";
 
 Vue.prototype.$http = axios;
 axios.interceptors.request.use(config => {
@@ -21,6 +23,9 @@ Vue.use(VeeValidate, {
     invalid: "is-invalid"
   }
 });
+
+Vue.use(modal, { dynamic: true });
+// Vue.use(PortalVue);
 
 new Vue({
   router,
