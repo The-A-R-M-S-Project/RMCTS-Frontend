@@ -8,31 +8,18 @@
           class="clean-block clean-hero overlay"
           style="color:rgba(9, 162, 255, 0.85);"
         >
-          <!-- <div class="text">
-            <div class="input-group mb-3 pt-5">
-              <input
-                type="search"
-                placeholder="Type here..."
-                class="form-control"
-              />
-            </div>
-            <button class="btn btn-outline-light btn-lg" type="button">
-              Search
-            </button>
-            <h2>Search your equipment/institute here</h2>
-            <p>
-              Need resources, services or equipment to facilitate your research?
-            </p>
-          </div> -->
           <div class="text">
-            <h2>Search your equipment/institute here</h2>
-            <p>
+            <h2>
               Need resources, services or equipment to facilitate your research?
+            </h2>
+            <p>
+              Login as an Organisation to post equipment for use. Or as a
+              ***normal User*** to book and reserve equipment for your research.
             </p>
-            <button class="btn btn-outline-light btn-lg" type="button">
+            <button class="btn btn-danger btn-lg round mr-3" type="button">
               Institution/Organisation
             </button>
-            <button class="btn btn-outline-light btn-lg" type="button">
+            <button class="btn btn-success btn-lg round ml-3" type="button">
               Normal User
             </button>
           </div>
@@ -94,5 +81,8 @@ export default {
   color: white;
   padding-bottom: 3px;
   text-align: center;
+}
+.round {
+  border-radius: 25px;
 }
 </style>
