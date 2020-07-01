@@ -8,7 +8,7 @@
           class="clean-block clean-hero overlay"
           style="color:rgba(9, 162, 255, 0.85);"
         >
-          <div class="text">
+          <!-- <div class="text">
             <div class="input-group mb-3 pt-5">
               <input
                 type="search"
@@ -23,7 +23,7 @@
             <p>
               Need resources, services or equipment to facilitate your research?
             </p>
-          </div>
+          </div> -->
         </section>
         <!-- section 2 -->
         <section class="clean-block clean-info dark">
