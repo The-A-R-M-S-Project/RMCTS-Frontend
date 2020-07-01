@@ -24,6 +24,18 @@
               Need resources, services or equipment to facilitate your research?
             </p>
           </div> -->
+          <div class="text">
+            <h2>Search your equipment/institute here</h2>
+            <p>
+              Need resources, services or equipment to facilitate your research?
+            </p>
+            <button class="btn btn-outline-light btn-lg" type="button">
+              Institution/Organisation
+            </button>
+            <button class="btn btn-outline-light btn-lg" type="button">
+              Normal User
+            </button>
+          </div>
         </section>
         <!-- section 2 -->
         <section class="clean-block clean-info dark">
