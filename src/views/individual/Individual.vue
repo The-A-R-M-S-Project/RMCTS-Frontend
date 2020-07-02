@@ -1,24 +1,27 @@
 <template>
-  <div class="view">
+  <div class="main-display">
     <div class="row">
       <div class="col-3 side-nav">
         <SideNav />
       </div>
-      <div class="col-9"></div>
+      <div class="col-9 display-area">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.view {
-  /* overflow: hidden;
-  overflow-x: auto;
-  width: 100vw; */
+.main-display {
+  overflow-y: hidden;
   min-width: 1000px;
-  overflow-x: scroll;
+  //   overflow-x: scroll;
+}
+.display-area {
+  height: 100vh;
+  overflow: scroll;
 }
 .side-nav {
-  position: fixed;
   top: 0px;
   bottom: 0px;
 }
