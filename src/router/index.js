@@ -2,7 +2,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Index from "../views/LandingPage";
-import Login from "../views/Login";
 import Catalog from "../views/Catalog";
 import Register from "../views/Registration";
 import ItemDetails from "../views/Details";
@@ -10,10 +9,14 @@ import Reservation from "../views/user/reserve";
 import SignedUp from "../views/SignedUp"
 import FaceRecognition from "../views/faceRecognition"
 //user
+import Login from "../views/Login";
 import User from "../views/user/User";
 import UserProfile from "../views/user/profile";
 import UserBookings from "../views/user/bookings";
 import UserEquipment from "../views/user/equipment";
+
+//institute
+import OrgLogin from "../views/institute/orgLogin";
 
 Vue.use(VueRouter);
 
@@ -27,9 +30,17 @@ const routes = [
     }
   },
   {
-    path: "/login",
+    path: "/individual-login",
     name: "login",
     component: Login,
+    meta: {
+      guest: true
+    }
+  },
+  {
+    path: "/institute-login",
+    name: "orglogin",
+    component: OrgLogin,
     meta: {
       guest: true
     }
