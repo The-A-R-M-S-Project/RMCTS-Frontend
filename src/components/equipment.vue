@@ -5,7 +5,7 @@
         <img
           :src="url"
           class="card-img-top image-fluid"
-          style="width: 279px; height: 200px; border-top-left-radius: 20px; border-top-right-radius: 20px;  object-fit: cover;"
+          style="width: 250px; height: 200px; border-top-left-radius: 20px; border-top-right-radius: 20px;  object-fit: cover;"
         />
       </div>
       <div class="card-body">
@@ -38,7 +38,7 @@
 <style scoped>
 .this-card {
   border-radius: 20px;
-  min-width: 280px;
+  min-width: 250px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .this-image {

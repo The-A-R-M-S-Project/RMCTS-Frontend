@@ -156,14 +156,14 @@ export default {
       return this.$route.path;
     },
   },
-  // methods: {
-  //   ...mapActions(['logout']),
-  //   handleLogout(){
-  //     this.logout().then(() =>  this.$router.push({ name: "index" })).catch((err)=> console.log(err))
-  //   }
-  // },
-  // created(){
-  //   this.user = JSON.parse(localStorage.getItem("user"))
-  // }
+  methods: {
+    ...mapActions(['logout']),
+    handleLogout(){
+      // this.logout().then(() =>  this.$router.push({ name: "index" })).catch((err)=> console.log(err))
+    }
+  },
+  created(){
+    // this.user = JSON.parse(localStorage.getItem("user"))
+  }
 };
 </script>
