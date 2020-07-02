@@ -30,7 +30,7 @@ const routes = [
     }
   },
   {
-    path: "/individual/login",
+    path: "/individual-login",
     name: "login",
     component: Login,
     meta: {
@@ -38,7 +38,7 @@ const routes = [
     }
   },
   {
-    path: "/institute/login",
+    path: "/institute-login",
     name: "orglogin",
     component: OrgLogin,
     meta: {
