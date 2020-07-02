@@ -29,6 +29,7 @@ import EquipmentReservations from "../views/user/EquipmentReservations";
 import Individual from "../views/individual/Individual";
 import IndividualLogin from "../views/individual/IndividualLogin";
 import IndividualProfile from "../views/individual/IndividualProfile";
+import IndividualCatalog from "../views/individual/IndividualCatalog";
 Vue.use(VueRouter);
 
 const routes = [{
