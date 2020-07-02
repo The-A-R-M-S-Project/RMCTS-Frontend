@@ -5,7 +5,7 @@
         <!-- section 1 -->
         <section class="overlay">
           <div>
-            <h4>RMCTS</h4>
+            <h4 class="logo">RMCTS</h4>
           </div>
           <div class="content">
             <p class="main-text">
@@ -93,5 +93,40 @@ h4 {
 }
 .btn {
   border-radius: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .main-text {
+    font-size: 25px;
+    font-weight: 100;
+    transform: scale(1, 1.5);
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding-top: 8vw;
+    text-align: center;
+  }
+  .logo {
+    font-size: 15px;
+  }
+  .description {
+    padding-top: 15vw;
+    font-size: 15px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    text-align: center;
+  }
+  .btn {
+    width: 120px;
+    padding: 2px;
+    font-size: 15px;
+  }
+  .footer-content {
+    position: fixed;
+    bottom: 0px;
+    color: white;
+    width: 100%;
+    background-color: rgb(75, 75, 75);
+    font-size: 15px;
+  }
 }
 </style>
