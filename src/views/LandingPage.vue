@@ -16,12 +16,12 @@
               individual to reserve equipment for your research.
             </p>
             <div class="buttons">
-              <router-link to="/login">
+              <router-link to="/institute/login">
                 <button class="btn btn-danger btn-lg mr-3" type="button">
                   Institution
                 </button>
               </router-link>
-              <router-link to="/individua/login">
+              <router-link to="/individual/login">
                 <button class="btn btn-success btn-lg ml-3" type="button">
                   Individual
                 </button>
