@@ -45,6 +45,7 @@ export default {
 .main {
   height: 100vh;
   background-image: url("~@/assets/img/tech/image5.jpg");
+  background-size: cover;
 }
 h1,
 h4,
