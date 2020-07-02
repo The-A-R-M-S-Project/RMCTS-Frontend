@@ -1,63 +1,37 @@
 <template>
   <div>
-    <Navbar1 />
     <div>
-      <main class="page landing-page">
+      <main class="main">
         <!-- section 1 -->
-        <section
-          class="clean-block clean-hero overlay"
-          style="color:rgba(9, 162, 255, 0.85);"
-        >
-          <div class="text">
-            <div class="input-group mb-3 pt-5">
-              <input
-                type="search"
-                placeholder="Type here..."
-                class="form-control"
-              />
-            </div>
-            <button class="btn btn-outline-light btn-lg" type="button">
-              Search
-            </button>
-            <h2>Search your equipment/institute here</h2>
-            <p>
+        <section class="overlay">
+          <div>
+            <h4 class="logo">RMCTS</h4>
+          </div>
+          <div class="content">
+            <p class="main-text">
               Need resources, services or equipment to facilitate your research?
             </p>
-          </div>
-        </section>
-        <!-- section 2 -->
-        <section class="clean-block clean-info dark">
-          <div class="container">
-            <div class="block-heading">
-              <h2 class="text-info">More Information</h2>
-              <p></p>
-            </div>
-            <div class="row align-items-center">
-              <div class="col-md-6">
-                <img class="img-thumbnail" src="@/assets/img/tech/image6.jpg" />
-              </div>
-              <div class="col-md-6">
-                <h3>Register with Us!</h3>
-                <div class="getting-started-info">
-                  <p>
-                    To fully access the system services, register as a user or
-                    organisation.
-                  </p>
-                </div>
-                <router-link to="register">
-                  <button class="btn btn-outline-primary btn-lg" type="button">
-                    Register Now
-                  </button>
-                </router-link>
-              </div>
+            <p class="description">
+              Login as an Institution to add equipment for use. Or as an
+              individual to reserve equipment for your research.
+            </p>
+            <div class="buttons">
+              <router-link to="/login">
+                <button class="btn btn-danger btn-lg mr-3" type="button">
+                  Institution
+                </button>
+              </router-link>
+              <router-link to="/individua/login">
+                <button class="btn btn-success btn-lg ml-3" type="button">
+                  Individual
+                </button>
+              </router-link>
             </div>
           </div>
         </section>
         <!-- copyright section -->
-        <footer class="">
-          <div class="page-footer dark footer-copyright footer">
-            <p>RMCTS© 2019 Copyright All rights reserved</p>
-          </div>
+        <footer class="footer-content d-flex justify-content-center">
+          <p>The A.R.M.S Project© 2019 Copyright All rights reserved</p>
         </footer>
       </main>
     </div>
@@ -65,22 +39,99 @@
 </template>
 
 <script>
-import Navbar1 from "@/components/navbar1.vue";
 export default {
   name: "index",
-  components: {
-    Navbar1
-  }
+  components: {}
 };
 </script>
 
 <style lang="css">
-.overlay {
+.main {
+  height: 100vh;
   background-image: url("~@/assets/img/tech/image5.jpg");
+  background-size: cover;
 }
-.footer {
+h1,
+h4,
+p {
   color: white;
-  padding-bottom: 3px;
+}
+h4 {
+  padding: 20px;
+}
+.main-text {
+  font-size: 3.3vw;
+  font-weight: 100;
+  transform: scale(1, 1.5);
+  margin-left: 15vw;
+  margin-right: 15vw;
+  padding-top: 6vw;
   text-align: center;
+}
+.overlay {
+  position: absolute;
+  bottom: 0px;
+  top: 0px;
+  background-color: rgba(9, 162, 255, 0.7);
+  height: auto;
+  width: 100%;
+}
+.footer-content {
+  position: fixed;
+  bottom: 0px;
+  color: white;
+  width: 100%;
+  background-color: rgb(75, 75, 75);
+}
+
+.round {
+  border-radius: 25px;
+}
+.description {
+  padding: 4vw;
+  text-align: center;
+}
+.buttons {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 6vw;
+}
+.btn {
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .main-text {
+    font-size: 25px;
+    font-weight: 100;
+    transform: scale(1, 1.5);
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding-top: 8vw;
+    text-align: center;
+  }
+  .logo {
+    font-size: 15px;
+  }
+  .description {
+    padding-top: 15vw;
+    font-size: 15px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    text-align: center;
+  }
+  .btn {
+    width: 120px;
+    padding: 2px;
+    font-size: 15px;
+  }
+  .footer-content {
+    position: fixed;
+    bottom: 0px;
+    color: white;
+    width: 100%;
+    background-color: rgb(75, 75, 75);
+    font-size: 15px;
+  }
 }
 </style>
