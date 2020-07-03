@@ -17,6 +17,7 @@ import UserEquipment from "../views/user/equipment";
 
 //institute
 import OrgLogin from "../views/institute/orgLogin";
+import OrgForm1 from "../views/institute/orgReg1";
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,14 @@ const routes = [
     path: "/institute-login",
     name: "orglogin",
     component: OrgLogin,
+    meta: {
+      guest: true
+    }
+  },
+  {
+    path: "/institute-register/1",
+    name: "orgreg",
+    component: OrgForm1,
     meta: {
       guest: true
     }
