@@ -29,49 +29,24 @@
                 >{{ errors.first("contact") }}</span
               >
             </div>
-            <!-- <div class="form-group">
-              <label for="userRegisterOption">Registering As:</label>
-              <select
-                class="form-control"
-                id="userRegisterOption"
-                v-model="user.selected"
-              >
-                <option>Organisation/Institution/Company</option>
-                <option>Individual</option>
-              </select>
-            </div> -->
-            <!-- <div v-if="selected == 'Organisation/Company'">
-              <div class="form-group">
-                <label for="address">Address</label
-                ><input class="form-control item" type="address" />
-              </div>
-              <div class="form-group">
-                <label for="address">Website</label
-                ><input
-                  class="form-control item"
-                  name="url"
-                  v-validate="url"
-                  :class="{ input: true, 'is-danger': errors.has('url') }"
-                  type="text"
-                />
-                <i v-show="errors.has('url')" class="fa fa-warning"></i>
-                <span v-show="errors.has('url')" class="help is-danger">{{
-                  errors.first("url")
-                }}</span>
-              </div>
+            <div class="form-group">
+              <label for="address">Address</label
+              ><input class="form-control item" type="address" />
             </div>
-            <div v-if="selected == 'Student'">
-              <div class="form-group">
-                <label for="name">University/Institute</label
-                ><input class="form-control item" type="text" />
-              </div>
+            <div class="form-group">
+              <label for="address">Website</label
+              ><input
+                class="form-control item"
+                name="url"
+                v-validate="url"
+                :class="{ input: true, 'is-danger': errors.has('url') }"
+                type="text"
+              />
+              <i v-show="errors.has('url')" class="fa fa-warning"></i>
+              <span v-show="errors.has('url')" class="help is-danger">{{
+                errors.first("url")
+              }}</span>
             </div>
-            <div v-if="selected == 'Lecturer'">
-              <div class="form-group">
-                <label for="name">University/Institute</label
-                ><input class="form-control item" type="text" />
-              </div>
-            </div> -->
             <button
               class="btn btn-primary btn-block"
               @click.prevent="validateBeforeSubmit"
@@ -79,7 +54,7 @@
             >
               Sign Up
             </button>
-            <router-link to="/login">
+            <router-link to="/institute-login">
               <p>Already have an account?</p>
             </router-link>
           </form>
@@ -107,12 +82,9 @@ export default {
   name: "Register",
   data() {
     return {
-      selected: "",
       user: {
-        name: "",
-        password: "",
-        confirmPassword: "",
-        email: "",
+        address: "",
+        url: "",
         contact: ""
       }
     };
@@ -124,7 +96,7 @@ export default {
       this.signup(this.user).then(this.$router.push({ name: "signed-up" }));
     },
     validateBeforeSubmit(e) {
-      this.$validator.validateAll().then(result => {
+      this.$validator.validateAll().then((result) => {
         if (result) {
           // eslint-disable-next-line
           this.onSubmit(e);
@@ -133,17 +105,17 @@ export default {
 
         alert("Fill in all necessary fields!");
       });
-    }
+    },
   },
   created() {
     this.$validator.extend("upCase", {
       getMessage: () => "Must have atleast one uppercase character",
-      validate: value => value.match(/[A-Z]/g) !== null
+      validate: (value) => value.match(/[A-Z]/g) !== null,
     });
     this.$validator.extend("number", {
       getMessage: () => "Must have atleast one number",
-      validate: value => value.match(/[0-9]/g) !== null
+      validate: (value) => value.match(/[0-9]/g) !== null,
     });
-  }
+  },
 };
 </script>
