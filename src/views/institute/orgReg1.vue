@@ -97,57 +97,15 @@
                 >{{ errors.first("email") }}</span
               >
             </div>
-            <!-- <div class="form-group">
-              <label for="userRegisterOption">Registering As:</label>
-              <select
-                class="form-control"
-                id="userRegisterOption"
-                v-model="user.selected"
-              >
-                <option>Organisation/Institution/Company</option>
-                <option>Individual</option>
-              </select>
-            </div> -->
-            <!-- <div v-if="selected == 'Organisation/Company'">
-              <div class="form-group">
-                <label for="address">Address</label
-                ><input class="form-control item" type="address" />
-              </div>
-              <div class="form-group">
-                <label for="address">Website</label
-                ><input
-                  class="form-control item"
-                  name="url"
-                  v-validate="url"
-                  :class="{ input: true, 'is-danger': errors.has('url') }"
-                  type="text"
-                />
-                <i v-show="errors.has('url')" class="fa fa-warning"></i>
-                <span v-show="errors.has('url')" class="help is-danger">{{
-                  errors.first("url")
-                }}</span>
-              </div>
-            </div>
-            <div v-if="selected == 'Student'">
-              <div class="form-group">
-                <label for="name">University/Institute</label
-                ><input class="form-control item" type="text" />
-              </div>
-            </div>
-            <div v-if="selected == 'Lecturer'">
-              <div class="form-group">
-                <label for="name">University/Institute</label
-                ><input class="form-control item" type="text" />
-              </div>
-            </div> -->
+
             <button
-              class="btn btn-primary btn-block"
+              class="btn btn-primary"
               @click.prevent="validateBeforeSubmit"
               type="submit"
             >
-              Sign Up
+              Next
             </button>
-            <router-link to="/login">
+            <router-link to="/institute-login">
               <p>Already have an account?</p>
             </router-link>
           </form>
