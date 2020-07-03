@@ -101,6 +101,7 @@
             <button
               class="btn btn-primary"
               @click.prevent="validateBeforeSubmit"
+              style="float: right"
               type="submit"
             >
               Next
@@ -133,7 +134,6 @@ export default {
   name: "Register",
   data() {
     return {
-      selected: "",
       user: {
         name: "",
         password: "",
