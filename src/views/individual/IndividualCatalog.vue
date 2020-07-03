@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .no-match {
   background-color: aliceblue;
   color: rgb(248, 79, 79);
