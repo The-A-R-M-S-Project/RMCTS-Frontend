@@ -18,6 +18,7 @@ import UserEquipment from "../views/user/equipment";
 //institute
 import OrgLogin from "../views/institute/orgLogin";
 import OrgForm1 from "../views/institute/orgReg1";
+import OrgForm2 from "../views/institute/orgReg2";
 
 Vue.use(VueRouter);
 
@@ -47,9 +48,17 @@ const routes = [
     }
   },
   {
-    path: "/institute-register/1",
-    name: "orgreg",
+    path: "/institute-register/first-step",
+    name: "first-step",
     component: OrgForm1,
+    meta: {
+      guest: true
+    }
+  },
+  {
+    path: "/institute-register/last-step",
+    name: "last-step",
+    component: OrgForm2,
     meta: {
       guest: true
     }
