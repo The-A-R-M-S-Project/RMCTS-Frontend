@@ -30,6 +30,8 @@ import Individual from "../views/individual/Individual";
 import IndividualLogin from "../views/individual/IndividualLogin";
 import IndividualProfile from "../views/individual/IndividualProfile";
 import IndividualCatalog from "../views/individual/IndividualCatalog";
+import IndividualEditProfile from "../views/individual/IndividualEditProfile";
+
 Vue.use(VueRouter);
 
 const routes = [{

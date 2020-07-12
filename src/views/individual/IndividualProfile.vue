@@ -3,7 +3,7 @@
     <section>
       <div class="row pt-5">
         <p class="greeting">Hi username</p>
-        <router-link to="/inidvidual/edit-profile"
+        <router-link to="/individual/edit-profile"
           ><span class="edit-profile-link">edit profile</span></router-link
         >
       </div>
