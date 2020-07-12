@@ -11,7 +11,7 @@
               <label for="tel">Contact</label
               ><input
                 class="form-control item"
-                v-model="user.contact"
+                v-model="institute.contact"
                 name="contact"
                 v-validate="'required|numeric'"
                 :class="{ input: true, 'is-danger': errors.has('contact') }"
@@ -29,15 +29,31 @@
                 >{{ errors.first("contact") }}</span
               >
             </div>
+
             <div class="form-group">
               <label for="address">Address</label
-              ><input class="form-control item" type="address" />
+              ><input
+                class="form-control item"
+                name="address"
+                v-validate="address"
+                v-model="institute.address"
+                :class="{ input: true, 'is-danger': errors.has('address') }"
+                type="address"
+              />
+              <span
+                v-show="errors.has('address')"
+                class="help is-danger"
+                id="msg"
+                >{{ errors.first("address") }}
+              </span>
             </div>
+
             <div class="form-group">
               <label for="address">Website</label
               ><input
                 class="form-control item"
                 name="url"
+                v-model="institute.url"
                 v-validate="url"
                 :class="{ input: true, 'is-danger': errors.has('url') }"
                 type="text"
@@ -82,7 +98,7 @@ export default {
   name: "Register",
   data() {
     return {
-      user: {
+      institute: {
         address: "",
         url: "",
         contact: ""
@@ -90,10 +106,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["signup"]),
+    ...mapActions(["orgSignup"]),
     onSubmit(e) {
       e.preventDefault();
-      this.signup(this.user).then(this.$router.push({ name: "signed-up" }));
+      this.orgSignup(this.institute).then(this.$router.push({ name: "signed-up" }));
     },
     validateBeforeSubmit(e) {
       this.$validator.validateAll().then((result) => {
