@@ -11,7 +11,7 @@
               <label for="name">Name</label
               ><input
                 class="form-control item"
-                v-model="user.name"
+                v-model="institute.name"
                 name="name"
                 v-validate="'required|alpha_spaces|max:25'"
                 :class="{ input: true, 'is-danger': errors.has('name') }"
@@ -29,7 +29,7 @@
               <label for="password">Password</label
               ><input
                 class="form-control item"
-                v-model="user.password"
+                v-model="institute.password"
                 v-validate="'required|max:25|min:8|upCase|number'"
                 name="password"
                 :class="{ 'is-danger': errors.has('password') }"
@@ -55,7 +55,7 @@
                 class="form-control item"
                 type="password"
                 id="password1"
-                v-model="user.confirmPassword"
+                v-model="institute.confirmPassword"
                 v-validate="'required|confirmed:password'"
                 name="password_confirmation"
                 :class="{ 'is-danger': errors.has('password_confirmation') }"
@@ -76,7 +76,7 @@
             <div class="form-group">
               <label for="email">Email</label
               ><input
-                v-model="user.email"
+                v-model="institute.email"
                 v-validate="'required|email'"
                 class="form-control item"
                 name="email"
@@ -134,7 +134,7 @@ export default {
   name: "Register",
   data() {
     return {
-      user: {
+      institute: {
         name: "",
         password: "",
         confirmPassword: "",
@@ -146,7 +146,7 @@ export default {
     ...mapActions(["signup"]),
     onSubmit(e) {
       e.preventDefault();
-      this.signup(this.user).then(this.$router.push({ name: "signed-up" }));
+      this.signup(this.institute).then(this.$router.push({ name: "signed-up" }));
     },
     validateBeforeSubmit(e) {
       this.$validator.validateAll().then(result => {
