@@ -67,7 +67,7 @@
               </button>
             </div>
             <div class="form-group">
-              <router-link to="/institute-register/1">
+              <router-link to="/institute-register/first-step">
                 <p>Don't Have an account?</p>
               </router-link>
             </div>
