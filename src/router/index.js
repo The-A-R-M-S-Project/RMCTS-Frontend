@@ -16,6 +16,7 @@ import UserBookings from "../views/user/bookings";
 import UserEquipment from "../views/user/equipment";
 
 //institute
+import Institute from "../views/institute/institute";
 import OrgLogin from "../views/institute/orgLogin";
 import OrgForm1 from "../views/institute/orgReg1";
 import OrgForm2 from "../views/institute/orgReg2";
@@ -126,6 +127,44 @@ const routes = [
         component: UserEquipment,
         meta: {
           requiresAuth: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/institute",
+    name: "institute",
+    component: Institute,
+    meta: {
+      // requiresAuth: true
+      guest: true
+    },
+    children: [
+      {
+        path: "profile",
+        name: "user-profile",
+        component: UserProfile,
+        meta: {
+          // requiresAuth: true
+          guest: true
+        }
+      },
+      {
+        path: "bookings",
+        name: "user-bookings",
+        component: UserBookings,
+        meta: {
+          // requiresAuth: true
+          guest: true
+        }
+      },
+      {
+        path: "equipment",
+        name: "user-equipment",
+        component: UserEquipment,
+        meta: {
+          // requiresAuth: true
+          guest: true
         }
       }
     ]
