@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Index from "../views/LandingPage";
@@ -6,8 +5,8 @@ import Catalog from "../views/Catalog";
 import Register from "../views/Registration";
 import ItemDetails from "../views/Details";
 import Reservation from "../views/user/reserve";
-import SignedUp from "../views/SignedUp"
-import FaceRecognition from "../views/faceRecognition"
+import SignedUp from "../views/SignedUp";
+import FaceRecognition from "../views/faceRecognition";
 //user
 import Login from "../views/Login";
 import User from "../views/user/User";
@@ -174,6 +173,7 @@ const routes = [
     name: "details",
     component: ItemDetails,
     watch: {
+      // eslint-disable-next-line no-unused-vars
       $route(to, from) {
         // react to route changes...
       }
@@ -205,7 +205,7 @@ router.beforeEach((to, from, next) => {
         name: "register"
       });
     } else {
-      next()
+      next();
     }
     next();
   } else if (to.matched.some(record => record.meta.guest)) {
