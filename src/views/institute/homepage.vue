@@ -91,7 +91,7 @@
 </style>
 
 <script>
-import ActivityCalendar from "@/components/Institute/activityCalender";
+import ActivityCalendar from "@/components/Institute/activityCalendar";
 
 export default {
   name: "institute-homepage",
