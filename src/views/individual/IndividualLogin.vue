@@ -48,13 +48,14 @@
             <small v-if="store_auth" id="msg">Wrong password or email</small>
             <div class="buttons">
               <div class="login">
-                <button
-                  class="btn btn-primary login"
-                  @click.prevent="validateBeforeLogin"
-                  type="submit"
+                <router-link
+                  to="/individual/profile"
+                  style="text-decoration: none"
                 >
-                  Login
-                </button>
+                  <button class="btn btn-primary login" type="submit">
+                    Login
+                  </button>
+                </router-link>
               </div>
               <div class>
                 <router-link to="face-auth" style="text-decoration: none">
