@@ -1,14 +1,13 @@
 <template>
   <div class="view">
-    <!-- central navigation component -->
-    <!-- <Navbar /> -->
     <div style="min-width: 1000px;">
       <div class="row">
         <div class="col-2">
           <SideNav />
         </div>
         <div class="col-10 landing pt-3">
-          <router-view></router-view>
+          <!-- <router-view></router-view> -->
+          <Body />
         </div>
       </div>
     </div>
@@ -47,13 +46,13 @@
 </style>
 
 <script>
-// import Navbar from "@/components/User/Navigation";
-import SideNav from "@/components/institute/orgSideNav";
+import SideNav from "@/components/Institute/orgSideNav";
+import Body from "@/views/institute/homepage";
 export default {
-  name: "user",
+  name: "institute",
   components: {
-    // Navbar,
-    SideNav
+    SideNav,
+    Body
   }
 };
 </script>
