@@ -6,8 +6,7 @@
           <SideNav />
         </div>
         <div class="col-10 landing pt-3">
-          <!-- <router-view></router-view> -->
-          <Body />
+          <router-view></router-view>
         </div>
       </div>
     </div>
@@ -47,12 +46,11 @@
 
 <script>
 import SideNav from "@/components/Institute/orgSideNav";
-import Body from "@/views/institute/homepage";
+// import Body from "@/views/institute/homepage";
 export default {
   name: "institute",
   components: {
-    SideNav,
-    Body
+    SideNav
   }
 };
 </script>
