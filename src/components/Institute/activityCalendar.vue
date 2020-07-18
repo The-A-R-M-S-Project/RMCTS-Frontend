@@ -38,7 +38,7 @@ import EventModal from "@/components/User/editEventModal";
 
 // State Management
 import { mapGetters } from "vuex";
-// , mapActions
+
 export default {
   name: "calendar",
   components: {
