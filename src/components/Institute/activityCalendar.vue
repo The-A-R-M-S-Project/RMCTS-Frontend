@@ -4,7 +4,6 @@
       <FullCalendar
         :header="{
           left: 'title',
-          center: 'timeGridDay, timeGridWeek, dayGridMonth',
           right: 'prev today next'
         }"
         :weekends="false"
