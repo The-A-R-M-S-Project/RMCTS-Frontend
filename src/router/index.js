@@ -12,10 +12,10 @@ import Login from "../views/Login";
 import User from "../views/user/User";
 import UserProfile from "../views/user/profile";
 import UserBookings from "../views/user/bookings";
-import UserEquipment from "../views/user/equipment";
 
 //institute
 import Institute from "../views/institute/institute";
+import InstituteEquipment from "../views/institute/equipment";
 import InstituteHomepage from "../views/institute/homepage";
 import OrgLogin from "../views/institute/orgLogin";
 import OrgForm1 from "../views/institute/orgReg1";
@@ -120,15 +120,15 @@ const routes = [
         meta: {
           requiresAuth: true
         }
-      },
-      {
-        path: "equipment",
-        name: "user-equipment",
-        component: UserEquipment,
-        meta: {
-          requiresAuth: true
-        }
       }
+      // {
+      //   path: "equipment",
+      //   name: "user-equipment",
+      //   component: UserEquipment,
+      //   meta: {
+      //     requiresAuth: true
+      //   }
+      // }
     ]
   },
   {
@@ -148,7 +148,7 @@ const routes = [
           requiresAuth: true
           // guest: true
         }
-      }
+      },
       // {
       //   path: "bookings",
       //   name: "user-bookings",
@@ -158,15 +158,15 @@ const routes = [
       //     guest: true
       //   }
       // },
-      // {
-      //   path: "equipment",
-      //   name: "user-equipment",
-      //   component: UserEquipment,
-      //   meta: {
-      //     // requiresAuth: true
-      //     guest: true
-      //   }
-      // }
+      {
+        path: "equipment",
+        name: "institute-equipment",
+        component: InstituteEquipment,
+        meta: {
+          // requiresAuth: true
+          guest: true
+        }
+      }
     ]
   },
   {
