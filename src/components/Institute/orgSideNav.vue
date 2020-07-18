@@ -7,14 +7,14 @@
             <img
               :src="
                 institute.profileImage ||
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNIvsoEpZeocbdx9ocsYo9DO1zG4OfEf093dUn78Us553niinuw&s'
+                  'https://image.freepik.com/free-icon/organization_318-1631.jpg'
               "
-              class="card-img-top img-fluid profile-image"
-              alt="profile picture"
+              class=" mt-3 card-img-top img-fluid profile-image"
+              alt="profile
+            picture"
               style="border-radius: 300px;"
-              height=""
             />
-            <h5 class="p-0">{{ institute.name }}</h5>
+            <h5 class="mt-3 p-0">{{ institute.name }}</h5>
             <p class="p-1">{{ institute.email }}</p>
           </li>
           <router-link
