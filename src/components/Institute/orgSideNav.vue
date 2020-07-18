@@ -38,12 +38,14 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/user/equipment"
+            to="/institute/equipment"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
               :class="[
-                currentRoute.includes('user/equipment') ? 'button-active' : ''
+                currentRoute.includes('institute/equipment')
+                  ? 'button-active'
+                  : ''
               ]"
               type="button"
             >
@@ -143,14 +145,14 @@ button {
 
 <script>
 /* eslint-disable */
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 export default {
   name: "SideNav",
-  data(){
+  data() {
     return {
       user: {},
-      institute: {}
-    }
+      institute: {},
+    };
   },
   computed: {
     currentRoute() {
@@ -158,14 +160,16 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['logout']),
-    handleLogout(){
-      this.logout().then(() =>  this.$router.push({ name: "index" })).catch((err)=> console.log(err))
-    }
+    ...mapActions(["logout"]),
+    handleLogout() {
+      this.logout()
+        .then(() => this.$router.push({ name: "index" }))
+        .catch((err) => console.log(err));
+    },
   },
-  created(){
-    this.user = JSON.parse(localStorage.getItem("user"))
-    this.institute = JSON.parse(localStorage.getItem("institute"))
-  }
+  created() {
+    this.user = JSON.parse(localStorage.getItem("user"));
+    this.institute = JSON.parse(localStorage.getItem("institute"));
+  },
 };
 </script>
