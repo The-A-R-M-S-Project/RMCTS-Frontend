@@ -2,10 +2,10 @@
   <div class="view">
     <div style="min-width: 1000px;">
       <div class="row">
-        <div class="col-2">
+        <div class="col-3">
           <SideNav />
         </div>
-        <div class="col-10 landing pt-3">
+        <div class="col-9 landing pt-3">
           <router-view></router-view>
         </div>
       </div>
