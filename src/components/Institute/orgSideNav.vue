@@ -6,16 +6,16 @@
           <li class="list-group-item text-center card-header">
             <img
               :src="
-                user.profileImage ||
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNIvsoEpZeocbdx9ocsYo9DO1zG4OfEf093dUn78Us553niinuw&s'
+                institute.profileImage ||
+                  'https://image.freepik.com/free-icon/organization_318-1631.jpg'
               "
-              class="card-img-top img-fluid profile-image"
-              alt="profile picture"
+              class=" mt-3 card-img-top img-fluid profile-image"
+              alt="profile
+            picture"
               style="border-radius: 300px;"
-              height=""
             />
-            <h5 class="p-0">{{ user.name }}</h5>
-            <p class="p-1">{{ user.email }}</p>
+            <h5 class="mt-3 p-0">{{ institute.name }}</h5>
+            <p class="p-1">{{ institute.email }}</p>
           </li>
           <router-link
             class="sidenav-button list-group-item"
@@ -36,18 +36,25 @@
               </div>
             </button>
           </router-link>
-          <router-link class="sidenav-button list-group-item" to="/catalog">
+          <router-link
+            class="sidenav-button list-group-item"
+            to="/institute/equipment"
+          >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
-              :class="[currentRoute.includes('catalog') ? 'button-active' : '']"
+              :class="[
+                currentRoute.includes('institute/equipment')
+                  ? 'button-active'
+                  : ''
+              ]"
               type="button"
             >
               <div class="row">
                 <div class="col-3">
-                  <li class="fa fa-database"></li>
+                  <li class="fa fa-server"></li>
                 </div>
                 <div class="col-9 text-left">
-                  <span style="font-size: smaller;">Catalog</span>
+                  <span style="font-size: smaller;">Equipment</span>
                 </div>
               </div>
             </button>
@@ -68,7 +75,7 @@
                   <li class="fa fa-clock-o"></li>
                 </div>
                 <div class="col-9 text-left">
-                  <span style="font-size: smaller;">My Reservations</span>
+                  <span style="font-size: smaller;">Bookings</span>
                 </div>
               </div>
             </button>
@@ -144,6 +151,7 @@ export default {
   data() {
     return {
       user: {},
+      institute: {},
     };
   },
   computed: {
@@ -161,6 +169,7 @@ export default {
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("user"));
+    this.institute = JSON.parse(localStorage.getItem("institute"));
   },
 };
 </script>

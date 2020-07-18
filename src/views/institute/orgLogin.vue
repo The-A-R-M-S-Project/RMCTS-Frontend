@@ -67,7 +67,7 @@
               </button>
             </div>
             <div class="form-group">
-              <router-link to="register">
+              <router-link to="/institute-register/first-step">
                 <p>Don't Have an account?</p>
               </router-link>
             </div>
@@ -128,7 +128,7 @@ export default {
         .then(() => {
           if (localStorage.getItem("jwt") != null) {
             this.$emit("loggedIn");
-            this.$router.push({ name: "user-profile" });
+            this.$router.push({ name: "institute-homepage" });
           }
         })
         .catch(err => {});

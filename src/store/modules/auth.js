@@ -32,6 +32,7 @@ const actions = {
       let res = await axios.post("https://rmcts-api.herokuapp.com/admins/login", data);
       localStorage.setItem("jwt", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.admin));
+      localStorage.setItem("institute", JSON.stringify(res.data.admin));
       commit("auth_success");
     } catch (err) {
       commit("auth_error")
@@ -59,12 +60,24 @@ const actions = {
       console.log(err);
       alert(err);
     }
-  }
+  },
+  orgSignup: async function({ commit }, institute) {
+    try {
+      let res = await axios.post("https://rmcts-api.herokuapp.com/admins", institute);
+      console.log(res);
+      commit("signup_success");
+    } catch (err) {
+      console.log(err);
+      alert(err);
+    }
+  },
+
 };
 
 // getters
 const getters = {
   user: state => state.user,
+  institute: state => state.institute,
   loading: state => state.loading,
   auth_failed: state => state.failed
 };

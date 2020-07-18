@@ -114,8 +114,8 @@ a:hover {
 <script>
 /* eslint-disable */
 import Equipment from "@/components/User/Equipment.vue";
-import AddEquipment from "@/components/User/AddEquipment.vue";
-import EditEquipment from "@/components/User/EditEquipment";
+import AddEquipment from "@/components/Institute/AddEquipment.vue";
+import EditEquipment from "@/components/Institute/EditEquipment";
 
 // import userEquipment from "@/services/user-equipment-service.js";
 import { mapGetters, mapActions } from "vuex";

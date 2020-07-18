@@ -33,8 +33,6 @@
 .table-hover {
   color: rgb(165, 165, 165);
 }
-.my-table {
-}
 </style>
 
 <script>
