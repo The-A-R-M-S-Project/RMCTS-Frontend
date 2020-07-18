@@ -52,7 +52,7 @@
     rgb(248, 188, 120),
     rgb(255, 243, 14)
   );
-  height: 30vh;
+  height: 25vh;
   cursor: pointer;
   box-shadow: 10px 10px 20px #a3a3a3;
 }
@@ -70,7 +70,7 @@
     rgb(79, 50, 248),
     rgb(195, 0, 255)
   );
-  height: 30vh;
+  height: 25vh;
   cursor: pointer;
   box-shadow: 10px 10px 20px #a3a3a3;
 }
