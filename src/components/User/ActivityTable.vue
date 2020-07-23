@@ -11,11 +11,11 @@
         :events="allEvents"
         :selectable="true"
         :editable="true"
-        @select="handleDateClick"
         @eventClick="handleClick"
         @eventResize="handleResize"
         @eventDrop="cancelEvent"
       />
+      <!-- @select="handleDateClick" -->
       <modals-container />
     </div>
   </div>
