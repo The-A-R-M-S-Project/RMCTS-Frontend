@@ -14,7 +14,7 @@
       </div>
       <div class="col-6">
         <p class="text-center">
-          Reservations
+          My Reservations
         </p>
         <router-link to="reservations">
           <div class="reservation-card">
