@@ -17,7 +17,7 @@ import UserBookings from "../views/user/bookings";
 import Institute from "../views/institute/institute";
 import InstituteEquipment from "../views/institute/equipment";
 import InstituteProfile from "../views/institute/homepage";
-import InstituteBookings from "../views/institute/bookings";
+import EquipmentResevations from "../views/institute/bookings";
 import OrgLogin from "../views/institute/orgLogin";
 import OrgForm1 from "../views/institute/orgReg1";
 import OrgForm2 from "../views/institute/orgReg2";
@@ -152,9 +152,9 @@ const routes = [
         }
       },
       {
-        path: "bookings",
-        name: "institute-bookings",
-        component: InstituteBookings,
+        path: "reservations",
+        name: "equipment-reservations",
+        component: EquipmentResevations,
         meta: {
           requiresAuth: true
           // guest: true

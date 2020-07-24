@@ -43,7 +43,9 @@
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
               :class="[
-                currentRoute.includes('equipment') ? 'button-active' : ''
+                currentRoute.includes('institute/equipment')
+                  ? 'button-active'
+                  : ''
               ]"
               type="button"
             >
@@ -59,12 +61,12 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/bookings"
+            to="/institute/reservations"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
               :class="[
-                currentRoute.includes('institute/bookings')
+                currentRoute.includes('reservations')
                   ? 'button-active'
                   : ''
               ]"
