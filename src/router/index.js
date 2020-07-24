@@ -11,12 +11,13 @@ import FaceRecognition from "../views/faceRecognition";
 import Login from "../views/Login";
 import User from "../views/user/User";
 import UserProfile from "../views/user/profile";
-import UserBookings from "../views/user/bookings";
+import UserBookings from "../views/user/userBookings";
 
 //institute
 import Institute from "../views/institute/institute";
 import InstituteEquipment from "../views/institute/equipment";
-import InstituteHomepage from "../views/institute/homepage";
+import InstituteProfile from "../views/institute/homepage";
+import EquipmentResevations from "../views/institute/bookings";
 import OrgLogin from "../views/institute/orgLogin";
 import OrgForm1 from "../views/institute/orgReg1";
 import OrgForm2 from "../views/institute/orgReg2";
@@ -121,14 +122,6 @@ const routes = [
           requiresAuth: true
         }
       }
-      // {
-      //   path: "equipment",
-      //   name: "user-equipment",
-      //   component: UserEquipment,
-      //   meta: {
-      //     requiresAuth: true
-      //   }
-      // }
     ]
   },
   {
@@ -136,35 +129,35 @@ const routes = [
     name: "institute",
     component: Institute,
     meta: {
-      // requiresAuth: true
-      guest: true
+      requiresAuth: true
+      // guest: true
     },
     children: [
       {
-        path: "homepage",
-        name: "institute-homepage",
-        component: InstituteHomepage,
+        path: "profile",
+        name: "institute-profile",
+        component: InstituteProfile,
         meta: {
           requiresAuth: true
           // guest: true
         }
       },
-      // {
-      //   path: "bookings",
-      //   name: "user-bookings",
-      //   component: UserBookings,
-      //   meta: {
-      //     // requiresAuth: true
-      //     guest: true
-      //   }
-      // },
       {
         path: "equipment",
         name: "institute-equipment",
         component: InstituteEquipment,
         meta: {
-          // requiresAuth: true
-          guest: true
+          requiresAuth: true
+          // guest: true
+        }
+      },
+      {
+        path: "reservations",
+        name: "equipment-reservations",
+        component: EquipmentResevations,
+        meta: {
+          requiresAuth: true
+          // guest: true
         }
       }
     ]
@@ -213,7 +206,7 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem("jwt") == null) {
       next();
     } else {
-      next({ name: "institute-homepage" });
+      next({ name: "institute-profile" });
     }
     next();
   } else {

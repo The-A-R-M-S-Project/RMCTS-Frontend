@@ -19,7 +19,7 @@
           </li>
           <router-link
             class="sidenav-button list-group-item"
-            to="/user/profile"
+            to="/institute/profile"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
@@ -61,12 +61,12 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/user/bookings"
+            to="/institute/reservations"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
               :class="[
-                currentRoute.includes('user/bookings') ? 'button-active' : ''
+                currentRoute.includes('reservations') ? 'button-active' : ''
               ]"
               type="button"
             >

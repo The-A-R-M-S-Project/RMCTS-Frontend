@@ -33,7 +33,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import EventModal from "@/components/User/editEventModal";
+import EventModal from "@/components/Institute/viewEventModal";
 
 // State Management
 import { mapGetters } from "vuex";
