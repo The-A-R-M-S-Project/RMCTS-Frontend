@@ -66,9 +66,7 @@
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
               :class="[
-                currentRoute.includes('reservations')
-                  ? 'button-active'
-                  : ''
+                currentRoute.includes('reservations') ? 'button-active' : ''
               ]"
               type="button"
             >

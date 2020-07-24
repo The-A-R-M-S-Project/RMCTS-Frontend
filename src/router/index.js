@@ -11,7 +11,7 @@ import FaceRecognition from "../views/faceRecognition";
 import Login from "../views/Login";
 import User from "../views/user/User";
 import UserProfile from "../views/user/profile";
-import UserBookings from "../views/user/bookings";
+import UserBookings from "../views/user/userBookings";
 
 //institute
 import Institute from "../views/institute/institute";
