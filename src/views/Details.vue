@@ -1,10 +1,12 @@
 <template>
   <div>
     <!-- central navigation  -->
-    <Navbar />
-    <div style="margin-top: 13vh">
+    <!-- <Navbar /> -->
+    <div style="">
       <div class="breadcrumb">
-        <router-link class="pr-1 link" to="/catalog">catalog</router-link>/
+        <router-link class="pr-1 link" to="/institute/catalog"
+          >catalog</router-link
+        >/
         <router-link
           class="pl-2 pr-2 current link"
           :to="{
@@ -14,15 +16,15 @@
           >item details</router-link
         >
       </div>
-      <div class="card-1 pt-5">
+      <div class="card-1">
         <h3 class="p-2 text-center">details</h3>
         <!-- upper -->
         <div class="section">
           <div class="card">
             <div class="row no-gutters">
-              <div class="col-md-5 d-flex align-items-center">
+              <div class="col-md-5">
                 <img
-                  class="image-fluid"
+                  class="image-fluid mt-3"
                   :src="itemDetails[0].imageURL"
                   alt="Image can't be loaded"
                 />
@@ -113,6 +115,7 @@
 <style scoped>
 .breadcrumb {
   position: fixed;
+  top: 0px;
   z-index: 2;
   width: 100%;
 }
@@ -125,8 +128,8 @@
 }
 .card-1 {
   margin-top: 50px;
-  margin-left: 10vw;
-  margin-right: 10vw;
+  /* margin-left: 10vw;
+  margin-right: 10vw; */
 }
 img {
   width: 100%;
@@ -144,13 +147,13 @@ img {
 <script>
 /* eslint-disable */
 import equipmentList from "@/services/equipment-service.js";
-import Navbar from "@/components/User/Navigation";
+// import Navbar from "@/components/User/Navigation";
 import addEventsModal from "@/components/User/addEventModal";
 
 export default {
   name: "item-details",
   components: {
-    Navbar,
+    // Navbar,
     addEventsModal
   },
   data() {

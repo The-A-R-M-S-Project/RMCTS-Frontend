@@ -159,22 +159,30 @@ const routes = [
           requiresAuth: true
           // guest: true
         }
+      },
+      {
+        path: "catalog",
+        name: "catalog-view",
+        component: Catalog,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: "details/:id",
+        name: "details",
+        component: ItemDetails,
+        watch: {
+          // eslint-disable-next-line no-unused-vars
+          $route(to, from) {
+            // react to route changes...
+          }
+        },
+        meta: {
+          requiresAuth: true
+        }
       }
     ]
-  },
-  {
-    path: "/details/:id",
-    name: "details",
-    component: ItemDetails,
-    watch: {
-      // eslint-disable-next-line no-unused-vars
-      $route(to, from) {
-        // react to route changes...
-      }
-    },
-    meta: {
-      requiresAuth: true
-    }
   },
   {
     path: "/make-reservation",
