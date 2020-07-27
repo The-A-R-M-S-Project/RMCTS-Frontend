@@ -2,9 +2,9 @@
   <!-- eslint-disable vue/no-v-html -->
   <div class="view">
     <!-- central navigation component -->
-    <Navbar />
-    <div class="m-2" style="border-top: solid white 85px;">
-      <div class="p-4">
+    <!-- <Navbar /> -->
+    <div class="" style="border-top: solid white 85px;">
+      <div class="pb-3">
         <Search />
       </div>
       <div class="">
@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .no-match {
   background-color: aliceblue;
   color: rgb(248, 79, 79);
@@ -48,7 +48,7 @@
 </style>
 
 <script>
-import Navbar from "@/components/User/Navigation";
+// import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/Search";
 import Equipment from "@/components/equipment";
 import { mapGetters, mapActions } from "vuex";
@@ -56,7 +56,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "catalog",
   components: {
-    Navbar,
+    // Navbar,
     Search,
     Equipment
   },
