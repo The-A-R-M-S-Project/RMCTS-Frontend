@@ -181,16 +181,16 @@ const routes = [
         meta: {
           requiresAuth: true
         }
+      },
+      {
+        path: "make-reservation",
+        name: "reservation",
+        component: Reservation,
+        meta: {
+          requiresAuth: true
+        }
       }
     ]
-  },
-  {
-    path: "/make-reservation",
-    name: "reservation",
-    component: Reservation,
-    meta: {
-      requiresAuth: true
-    }
   }
 ];
 

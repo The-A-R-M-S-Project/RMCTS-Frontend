@@ -43,14 +43,16 @@
                   </p>
                   <div class="buttons">
                     <div class="m-3">
-                      <button
-                        type="button"
-                        class="btn btn-success"
-                        data-toggle="modal"
-                        data-target="#addEventsModal"
+                      <router-link to="/institute/make-reservation">
+                        <button
+                          type="button"
+                          class="btn btn-success"
+                          data-toggle="modal"
+                          data-target="#addEventsModal"
+                        >
+                          Make reservations
+                        </button></router-link
                       >
-                        Make reservations
-                      </button>
                     </div>
                     <router-link class="m-3" to="">
                       <button type="button" class="btn btn-primary" disabled>
@@ -63,7 +65,7 @@
             </div>
           </div>
           <!-- modal -->
-          <div
+          <!-- <div
             class="modal fade"
             id="addEventsModal"
             tabindex="-1"
@@ -88,7 +90,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- bottom -->
           <div class="card mt-3 mb-4">
             <div class="card-body">
@@ -154,7 +156,7 @@ export default {
   name: "item-details",
   components: {
     // Navbar,
-    addEventsModal
+    addEventsModal,
   },
   data() {
     return {
@@ -167,21 +169,21 @@ export default {
           description: "",
           userId: "",
           createdAt: "",
-          updatedAt: ""
+          updatedAt: "",
         },
         {
           ownerName: "",
           ownerEmail: "",
-          ownerContact: ""
-        }
-      ]
+          ownerContact: "",
+        },
+      ],
     };
   },
   created() {
     const id = this.$route.params.id;
-    this.$http.get(`https://rmcts-api.herokuapp.com/item/${id}`).then(res => {
+    this.$http.get(`https://rmcts-api.herokuapp.com/item/${id}`).then((res) => {
       this.itemDetails = res.data;
     });
-  }
+  },
 };
 </script>
