@@ -17,10 +17,11 @@ import UserBookings from "../views/user/userBookings";
 import Institute from "../views/institute/institute";
 import InstituteEquipment from "../views/institute/equipment";
 import InstituteProfile from "../views/institute/homepage";
-import EquipmentResevations from "../views/institute/bookings";
+// import EquipmentResevations from "../views/institute/bookings";
 import OrgLogin from "../views/institute/orgLogin";
 import OrgForm1 from "../views/institute/orgReg1";
 import OrgForm2 from "../views/institute/orgReg2";
+import EquipmentReservations from "../views/user/EquipmentReservations";
 
 Vue.use(VueRouter);
 
@@ -154,7 +155,7 @@ const routes = [
       {
         path: "reservations",
         name: "equipment-reservations",
-        component: EquipmentResevations,
+        component: EquipmentReservations,
         meta: {
           requiresAuth: true
           // guest: true
