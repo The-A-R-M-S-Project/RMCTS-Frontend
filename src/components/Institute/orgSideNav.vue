@@ -9,7 +9,7 @@
                 institute.profileImage ||
                   'https://image.freepik.com/free-icon/organization_318-1631.jpg'
               "
-              class=" mt-3 card-img-top img-fluid profile-image"
+              class="mt-3 card-img-top img-fluid profile-image"
               alt="profile
             picture"
               style="border-radius: 300px;"
@@ -170,25 +170,25 @@ export default {
   data() {
     return {
       user: {},
-      institute: {},
+      institute: {}
     };
   },
   computed: {
     currentRoute() {
       return this.$route.path;
-    },
+    }
   },
   methods: {
     ...mapActions(["logout"]),
     handleLogout() {
       this.logout()
         .then(() => this.$router.push({ name: "index" }))
-        .catch((err) => console.log(err));
-    },
+        .catch(err => console.log(err));
+    }
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.institute = JSON.parse(localStorage.getItem("institute"));
-  },
+  }
 };
 </script>
