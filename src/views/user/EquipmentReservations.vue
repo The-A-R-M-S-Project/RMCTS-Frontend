@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .nav-link.active {
   border-radius: 0px;
 }

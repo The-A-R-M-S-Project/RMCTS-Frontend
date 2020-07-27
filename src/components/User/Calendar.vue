@@ -36,7 +36,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import EventModal from "./editEventModal";
-import ReservationForm from "./ReservationForm";
+import ReservationForm from "./reservationForm";
 
 // State Management
 import { mapGetters } from "vuex";

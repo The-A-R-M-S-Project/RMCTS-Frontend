@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Calendar from "@/components/User/Calendar";
+import Calendar from "@/components/User/calendar";
 export default {
   components: {
     Calendar
