@@ -45,6 +45,7 @@ const actions = {
         .then(res => {
           localStorage.removeItem("jwt");
           localStorage.removeItem("user");
+          window.localStorage.clear()
         })
         .catch(err => {
           console.log(err.response.data.message);
