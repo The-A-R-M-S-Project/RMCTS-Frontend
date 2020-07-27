@@ -11,7 +11,6 @@
             <p class="shrink"><strong>Title:</strong> {{ event.title }}</p>
             <p class="shrink"><strong>Start:</strong> {{ event.start }}</p>
             <p class="shrink"><strong>End:</strong> {{ event.end }}</p>
-            <p class="shrink"><strong>ID:</strong> {{ event.id }}</p>
           </div>
           <hr class="solid" />
           <form>
@@ -45,9 +44,14 @@
                 />
               </div>
             </div>
-            <button @click="updateEvent" class="btn btn-success col-sm-3">
-              Save changes
-            </button>
+            <div class="text-center">
+              <button @click="updateEvent" class="btn btn-success col-sm-3">
+                Save changes
+              </button>
+              <button @click="updateEvent" class="btn btn-danger col-sm-3 ml-3">
+                Delete
+              </button>
+            </div>
           </form>
         </div>
       </section>

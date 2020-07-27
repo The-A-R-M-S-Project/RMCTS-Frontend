@@ -11,7 +11,7 @@
         :plugins="calendarPlugins"
         :events="allEvents"
         :selectable="true"
-        :editable="true"
+        :editable="false"
         @select="handleDateClick"
         @eventClick="handleClick"
         @eventResize="handleResize"
@@ -101,7 +101,7 @@ export default {
           width: "50%",
         },
         {
-          draggable: true,
+          // draggable: true,
         }
       );
     },
