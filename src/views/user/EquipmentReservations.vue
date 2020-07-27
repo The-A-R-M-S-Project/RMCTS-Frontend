@@ -46,7 +46,7 @@
         aria-labelledby="nav-profile-tab"
       >
         <div class="content-area">
-          List view
+          <ReservationsList />
         </div>
       </div>
     </div>
@@ -54,8 +54,12 @@
 </template>
 
 <script>
+import ReservationsList from "./ReservationsList";
 export default {
-  name: "equipment-reservations"
+  name: "equipment-reservations",
+  components: {
+    ReservationsList
+  }
 };
 </script>
 

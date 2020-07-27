@@ -133,7 +133,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["myEquipment", "editing","itemBeingEdited"])
+    ...mapGetters(["myEquipment", "editing", "itemBeingEdited"])
   },
   methods: {
     ...mapActions(["getEquipment"])
