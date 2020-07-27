@@ -29,12 +29,14 @@
 </style>
 
 <script>
+/* eslint-disable */
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import EventModal from "./editEventModal";
+import ReservationForm from "./ReservationForm";
 
 // State Management
 import { mapGetters } from "vuex";
@@ -42,7 +44,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "calendar",
   components: {
-    FullCalendar
+    FullCalendar,
   },
   data() {
     return {
@@ -50,8 +52,8 @@ export default {
         dayGridPlugin,
         timeGridPlugin,
         interactionPlugin,
-        listPlugin
-      ]
+        listPlugin,
+      ],
     };
   },
   methods: {
@@ -60,38 +62,55 @@ export default {
     },
     cancelEvent() {},
     handleDateClick(tap) {
+      console.log(this.$store)
+      let currentDate = new Date().getTime();
+      if (tap.start < currentDate) {
+        alert("Date has passed");
+      } else {
+        this.$modal.show(
+          ReservationForm,
+          {
+            text: "From the component",
+            event: tap.event,
+          },
+          {
+            height: "auto",
+            width: "50%",
+          },
+        );
+      }
       // eslint-disable-next-line no-console
-      console.log(tap);
-      this.$store.commit("SetEvents", {
-        id: new Date().getTime(),
-        title: "",
-        start: tap.start,
-        end: tap.end
-        // allDay: tap.allDay
-      });
+      // console.log(tap);
+      // this.$store.commit("SetEvents", {
+      //   id: new Date().getTime(),
+      //   title: "",
+      //   start: tap.start,
+      //   end: tap.end
+      //   // allDay: tap.allDay
+      // });
     },
     handleClick(clck) {
       this.$modal.show(
         EventModal,
         {
           text: "From the component",
-          event: clck.event
+          event: clck.event,
         },
         {
           height: "auto",
-          width: "50%"
+          width: "50%",
         },
         {
-          draggable: true
+          draggable: true,
         }
       );
-    }
+    },
   },
   computed: {
-    ...mapGetters(["allEvents"])
+    ...mapGetters(["allEvents"]),
   },
   created() {
     this.$store.dispatch("getEvents");
-  }
+  },
 };
 </script>

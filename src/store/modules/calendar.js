@@ -16,6 +16,9 @@ const mutations = {
     state.Events[index].title = title;
     state.Events[index].start = start;
     state.Events[index].end = end;
+  },
+  AddReservation: (state, reservation) => {
+    state.Events.push(reservation);
   }
   // isLoaded: state => !!state.Events.length
 };
