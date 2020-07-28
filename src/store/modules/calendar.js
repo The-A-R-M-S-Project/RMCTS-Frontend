@@ -1,28 +1,42 @@
 import axios from "axios";
-
+//============================================================================================
+//                            STATE
+//============================================================================================
 const state = {
-  Events: []
+  events: [],
+  my_reservations: []
 };
 
+//============================================================================================
+//                            GETTERS
+//============================================================================================
 const getters = {
-  allEvents: state => state.Events
+  allEvents: state => state.events,
+  myReservations: state => state.my_reservations
 };
 
+//============================================================================================
+//                            MUTATIONS
+//============================================================================================
 const mutations = {
-  SetEvents: (state, reservations) => state.Events.push(reservations),
-  UpdateEvents: (state, { id, title, start, end }) => {
-    let index = state.Events.findIndex(evnt => evnt.id == id);
+  set_events: (state, reservations) => state.events.push(reservations),
+  update_events: (state, { id, title, start, end }) => {
+    let index = state.events.findIndex(evnt => evnt.id == id);
 
     state.Events[index].title = title;
     state.Events[index].start = start;
     state.Events[index].end = end;
   },
-  AddReservation: (state, reservation) => {
-    state.Events.push(reservation);
+
+  add_reservation: (state, reservation) => {
+    state.events.push(reservation);
   }
   // isLoaded: state => !!state.Events.length
 };
 
+//============================================================================================
+//                            ACTIONS
+//============================================================================================
 const actions = {
   // get event from db
   async getEvents(reservation) {
