@@ -36,7 +36,7 @@
         aria-labelledby="nav-home-tab"
       >
         <div class="content-area">
-          Calendar view
+          <MyReservationsCalendar />
         </div>
       </div>
       <div
@@ -55,10 +55,12 @@
 
 <script>
 import ReservationsList from "./ReservationsList";
+import MyReservationsCalendar from "@/components/User/myReservationsCalendar";
 export default {
   name: "equipment-reservations",
   components: {
-    ReservationsList
+    ReservationsList,
+    MyReservationsCalendar
   }
 };
 </script>
