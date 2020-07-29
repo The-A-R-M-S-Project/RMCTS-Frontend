@@ -57,8 +57,6 @@ export default {
   methods: {
     cancelEvent() {},
     handleClick(click) {
-      console.log(click.event.extendedProps);
-      // const reservation = this.account_reservations.filter(x => x._id == clic)
       this.$modal.show(
         EventModal,
         {
