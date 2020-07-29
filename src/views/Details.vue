@@ -1,10 +1,12 @@
 <template>
   <div>
     <!-- central navigation  -->
-    <Navbar />
-    <div style="margin-top: 13vh">
+    <!-- <Navbar /> -->
+    <div style="">
       <div class="breadcrumb">
-        <router-link class="pr-1 link" to="/catalog">catalog</router-link>/
+        <router-link class="pr-1 link" to="/institute/catalog"
+          >catalog</router-link
+        >/
         <router-link
           class="pl-2 pr-2 current link"
           :to="{
@@ -14,15 +16,15 @@
           >item details</router-link
         >
       </div>
-      <div class="card-1 pt-5">
+      <div class="card-1">
         <h3 class="p-2 text-center">details</h3>
         <!-- upper -->
         <div class="section">
           <div class="card">
             <div class="row no-gutters">
-              <div class="col-md-5 d-flex align-items-center">
+              <div class="col-md-5">
                 <img
-                  class="image-fluid"
+                  class="image-fluid mt-3"
                   :src="itemDetails[0].imageURL"
                   alt="Image can't be loaded"
                 />
@@ -41,14 +43,16 @@
                   </p>
                   <div class="buttons">
                     <div class="m-3">
-                      <button
-                        type="button"
-                        class="btn btn-success"
-                        data-toggle="modal"
-                        data-target="#addEventsModal"
+                      <router-link to="/institute/make-reservation">
+                        <button
+                          type="button"
+                          class="btn btn-success"
+                          data-toggle="modal"
+                          data-target="#addEventsModal"
+                        >
+                          Make reservations
+                        </button></router-link
                       >
-                        Make reservations
-                      </button>
                     </div>
                     <router-link class="m-3" to="">
                       <button type="button" class="btn btn-primary" disabled>
@@ -61,7 +65,7 @@
             </div>
           </div>
           <!-- modal -->
-          <div
+          <!-- <div
             class="modal fade"
             id="addEventsModal"
             tabindex="-1"
@@ -86,7 +90,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- bottom -->
           <div class="card mt-3 mb-4">
             <div class="card-body">
@@ -113,6 +117,7 @@
 <style scoped>
 .breadcrumb {
   position: fixed;
+  top: 0px;
   z-index: 2;
   width: 100%;
 }
@@ -125,8 +130,8 @@
 }
 .card-1 {
   margin-top: 50px;
-  margin-left: 10vw;
-  margin-right: 10vw;
+  /* margin-left: 10vw;
+  margin-right: 10vw; */
 }
 img {
   width: 100%;
@@ -144,14 +149,14 @@ img {
 <script>
 /* eslint-disable */
 import equipmentList from "@/services/equipment-service.js";
-import Navbar from "@/components/User/Navigation";
+// import Navbar from "@/components/User/Navigation";
 import addEventsModal from "@/components/User/addEventModal";
 
 export default {
   name: "item-details",
   components: {
-    Navbar,
-    addEventsModal
+    // Navbar,
+    addEventsModal,
   },
   data() {
     return {
@@ -164,21 +169,21 @@ export default {
           description: "",
           userId: "",
           createdAt: "",
-          updatedAt: ""
+          updatedAt: "",
         },
         {
           ownerName: "",
           ownerEmail: "",
-          ownerContact: ""
-        }
-      ]
+          ownerContact: "",
+        },
+      ],
     };
   },
   created() {
     const id = this.$route.params.id;
-    this.$http.get(`https://rmcts-api.herokuapp.com/item/${id}`).then(res => {
+    this.$http.get(`https://rmcts-api.herokuapp.com/item/${id}`).then((res) => {
       this.itemDetails = res.data;
     });
-  }
+  },
 };
 </script>

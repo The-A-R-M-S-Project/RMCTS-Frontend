@@ -9,7 +9,7 @@
                 institute.profileImage ||
                   'https://image.freepik.com/free-icon/organization_318-1631.jpg'
               "
-              class=" mt-3 card-img-top img-fluid profile-image"
+              class="mt-3 card-img-top img-fluid profile-image"
               alt="profile
             picture"
               style="border-radius: 300px;"
@@ -61,6 +61,27 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
+            to="/institute/bookings"
+          >
+            <button
+              class="btn btn-primary btn-lg btn-block ph-2"
+              :class="[
+                currentRoute.includes('bookings') ? 'button-active' : ''
+              ]"
+              type="button"
+            >
+              <div class="row">
+                <div class="col-3">
+                  <li class="fa fa-clock-o"></li>
+                </div>
+                <div class="col-9 text-left">
+                  <span style="font-size: smaller;">Customer Bookings</span>
+                </div>
+              </div>
+            </button>
+          </router-link>
+          <router-link
+            class="sidenav-button list-group-item"
             to="/institute/reservations"
           >
             <button
@@ -75,7 +96,26 @@
                   <li class="fa fa-clock-o"></li>
                 </div>
                 <div class="col-9 text-left">
-                  <span style="font-size: smaller;">Bookings</span>
+                  <span style="font-size: smaller;">My Reservations</span>
+                </div>
+              </div>
+            </button>
+          </router-link>
+          <router-link
+            class="sidenav-button list-group-item"
+            to="/institute/catalog"
+          >
+            <button
+              class="btn btn-primary btn-lg btn-block ph-2"
+              :class="[currentRoute.includes('catalog') ? 'button-active' : '']"
+              type="button"
+            >
+              <div class="row">
+                <div class="col-3">
+                  <li class="fa fa-clock-o"></li>
+                </div>
+                <div class="col-9 text-left">
+                  <span style="font-size: smaller;">Catalog</span>
                 </div>
               </div>
             </button>
@@ -140,6 +180,9 @@
 }
 button {
   border-radius: 0px;
+}
+.btn-lg {
+  font-size: 16px;
 }
 </style>
 

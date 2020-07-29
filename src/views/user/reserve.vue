@@ -1,21 +1,17 @@
 <template>
-  <div>
+  <div class="mt-3">
+    <h3 class="text-success p-4">Click on date to schedule reservation ...</h3>
     <div>
-      <Navbar />
-    </div>
-    <div style="border-top: solid white 95px;">
       <Calendar />
     </div>
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/User/Navigation";
-import Calendar from "@/components/User/Calendar";
+import Calendar from "@/components/User/calendar";
 export default {
   components: {
-    Calendar,
-    Navbar
+    Calendar
   }
 };
 </script>

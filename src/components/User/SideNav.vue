@@ -19,7 +19,7 @@
           </li>
           <router-link
             class="sidenav-button list-group-item"
-            to="/user/profile"
+            to="/institute/profile"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"

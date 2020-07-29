@@ -4,23 +4,25 @@ import Index from "../views/LandingPage";
 import Catalog from "../views/Catalog";
 import Register from "../views/Registration";
 import ItemDetails from "../views/Details";
-import Reservation from "../views/user/reserve";
+import Reservation from "../views/user/Reserve";
 import SignedUp from "../views/SignedUp";
-import FaceRecognition from "../views/faceRecognition";
+import FaceRecognition from "../views/FaceRecognition";
+import TokenSent from "../views/TokenSent";
 //user
 import Login from "../views/Login";
 import User from "../views/user/User";
-import UserProfile from "../views/user/profile";
-import UserBookings from "../views/user/userBookings";
+import UserProfile from "../views/user/Profile";
+import UserBookings from "../views/user/UserBookings";
 
 //institute
-import Institute from "../views/institute/institute";
-import InstituteEquipment from "../views/institute/equipment";
-import InstituteProfile from "../views/institute/homepage";
-import EquipmentResevations from "../views/institute/bookings";
-import OrgLogin from "../views/institute/orgLogin";
-import OrgForm1 from "../views/institute/orgReg1";
-import OrgForm2 from "../views/institute/orgReg2";
+import Institute from "../views/institute/Institute";
+import InstituteEquipment from "../views/institute/Equipment";
+import InstituteProfile from "../views/institute/HomePage";
+// import EquipmentResevations from "../views/institute/bookings";
+import OrgLogin from "../views/institute/OrgLogin";
+import OrgForm1 from "../views/institute/OrgReg1";
+import OrgForm2 from "../views/institute/OrgReg2";
+import EquipmentReservations from "../views/user/EquipmentReservations";
 
 Vue.use(VueRouter);
 
@@ -79,6 +81,14 @@ const routes = [
     component: Catalog,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: "/token-sent",
+    name: "token-sent",
+    component: TokenSent,
+    meta: {
+      guest: true
     }
   },
   {
@@ -154,35 +164,43 @@ const routes = [
       {
         path: "reservations",
         name: "equipment-reservations",
-        component: EquipmentResevations,
+        component: EquipmentReservations,
         meta: {
           requiresAuth: true
           // guest: true
         }
+      },
+      {
+        path: "catalog",
+        name: "catalog-view",
+        component: Catalog,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: "details/:id",
+        name: "details",
+        component: ItemDetails,
+        watch: {
+          // eslint-disable-next-line no-unused-vars
+          $route(to, from) {
+            // react to route changes...
+          }
+        },
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: "make-reservation",
+        name: "reservation",
+        component: Reservation,
+        meta: {
+          requiresAuth: true
+        }
       }
     ]
-  },
-  {
-    path: "/details/:id",
-    name: "details",
-    component: ItemDetails,
-    watch: {
-      // eslint-disable-next-line no-unused-vars
-      $route(to, from) {
-        // react to route changes...
-      }
-    },
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/make-reservation",
-    name: "reservation",
-    component: Reservation,
-    meta: {
-      requiresAuth: true
-    }
   }
 ];
 

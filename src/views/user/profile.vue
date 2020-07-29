@@ -91,7 +91,7 @@
 
 <script>
 /* eslint-disable */
-import ActivityTable from "@/components/User/ActivityTable";
+import ActivityTable from "@/components/User/activityTable";
 // import { mapGetters } from "vuex";
 export default {
   name: "user-profile",

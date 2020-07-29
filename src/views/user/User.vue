@@ -48,7 +48,7 @@
 
 <script>
 // import Navbar from "@/components/User/Navigation";
-import SideNav from "@/components/User/SideNav";
+import SideNav from "@/components/User/sideNav";
 export default {
   name: "user",
   components: {

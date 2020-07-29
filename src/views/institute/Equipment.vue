@@ -113,9 +113,9 @@ a:hover {
 
 <script>
 /* eslint-disable */
-import Equipment from "@/components/User/Equipment.vue";
-import AddEquipment from "@/components/Institute/AddEquipment.vue";
-import EditEquipment from "@/components/Institute/EditEquipment";
+import Equipment from "@/components/User/equipment.vue";
+import AddEquipment from "@/components/Institute/addEquipment.vue";
+import EditEquipment from "@/components/Institute/editEquipment";
 
 // import userEquipment from "@/services/user-equipment-service.js";
 import { mapGetters, mapActions } from "vuex";
@@ -133,7 +133,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["myEquipment", "editing","itemBeingEdited"])
+    ...mapGetters(["myEquipment", "editing", "itemBeingEdited"])
   },
   methods: {
     ...mapActions(["getEquipment"])

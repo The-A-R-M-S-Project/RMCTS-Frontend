@@ -14,9 +14,9 @@
       </div>
       <div class="col-6">
         <p class="text-center">
-          Customer's Bookings
+          My Reservations
         </p>
-        <router-link to="reservations">
+        <router-link to="/institute/reservations">
           <div class="reservation-card">
             <i class="fa fa-calendar icon"></i>
           </div>
