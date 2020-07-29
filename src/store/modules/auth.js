@@ -10,10 +10,16 @@ const state = {
 
 // mutations
 const mutations = {
+  info_submission: (state) => {
+    state.loading = true;
+  },
+  submission_complete: (state) => {
+    state.loading = false;
+  },
   auth_request: (state) => {
     state.loading = true;
     state.failed = false;
-    state.accountVerified=false;
+    state.accountVerified = false;
   },
   auth_success: (state) => {
     state.loading = false;
@@ -26,8 +32,8 @@ const mutations = {
   },
   signup_success: (state) => (state.signup = "success"),
   verification_error: (state) => {
-    state.accountVerified = true,
-    state.loading = false}
+    (state.accountVerified = true), (state.loading = false);
+  },
 };
 
 // actions
@@ -45,12 +51,10 @@ const actions = {
       localStorage.setItem("institute", JSON.stringify(res.data.admin));
       commit("auth_success");
     } catch (err) {
-      console.log(err.response.data.type, err.response.data.type == "not-verified")
+      console.log(err.response.data.type);
       if (err.response.data.type == "not-verified") {
         commit("verification_error");
-        console.log(err.response.data.type)
       } else {
-        // console.log(err.response.data.type);
         commit("auth_error");
       }
     }

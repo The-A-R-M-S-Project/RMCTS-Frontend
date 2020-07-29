@@ -38,6 +38,8 @@
 
 <script>
 /* eslint-disable */
+import axios from "axios";
+
 export default {
   name: "not-verified",
   data() {
@@ -48,7 +50,20 @@ export default {
   methods: {
     handleRedirect(e) {
       e.preventDefault();
-      console.log(this.email);
+      const data = { email: this.email };
+      this.$store.commit("info_submission");
+      // const my = function()
+      axios
+        .post("https://rmcts-api.herokuapp.com/admins/resend", data)
+        .then((res)=>{
+          console.log(res);
+          this.$store.commit("submission_complete");
+          this.$router.push({ name: "token-sent", params: {email: this.email} })
+        })
+        .catch((err)=>{
+          this.$store.commit("submission_complete");
+          console.log(err.response);
+        });
     },
     // method to validate fields before submission
     validateBeforeSubmit(e) {
