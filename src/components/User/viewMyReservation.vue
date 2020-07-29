@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="login-page">
+    <main class="login-page pt-3">
       <section class="clean-form dark">
         <div class="container mb-4">
           <div class="block-heading">

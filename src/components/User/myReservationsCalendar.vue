@@ -8,7 +8,7 @@
         }"
         :weekends="false"
         :plugins="calendarPlugins"
-        :events="allEvents"
+        :events="account_reservations"
         :selectable="true"
         @eventClick="handleClick"
       />
@@ -28,12 +28,13 @@
 </style>
 
 <script>
+/* eslint-disable */
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import EventModal from "@/components/User/editEventModal";
+import EventModal from "@/components/User/viewMyReservation";
 
 // State Management
 import { mapGetters } from "vuex";
@@ -41,7 +42,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "my-reservations-calendar",
   components: {
-    FullCalendar
+    FullCalendar,
   },
   data() {
     return {
@@ -49,34 +50,40 @@ export default {
         dayGridPlugin,
         timeGridPlugin,
         interactionPlugin,
-        listPlugin
-      ]
+        listPlugin,
+      ],
     };
   },
   methods: {
     cancelEvent() {},
     handleClick(click) {
+      console.log(click.event.extendedProps);
+      // const reservation = this.account_reservations.filter(x => x._id == clic)
       this.$modal.show(
         EventModal,
         {
           text: "From the component",
-          event: click.event
+          event: this.account_reservations.filter(
+            (x) => x._id == click.event.extendedProps._id
+          )[0],
         },
         {
           height: "auto",
-          width: "50%"
+          width: "50%",
+          adaptive: true,
+          minWidth: 300,
         },
         {
-          draggable: true
+          draggable: true,
         }
       );
-    }
+    },
   },
   computed: {
-    ...mapGetters([""])
+    ...mapGetters(["account_reservations"]),
   },
   created() {
-    this.$store.dispatch("");
-  }
+    this.$store.dispatch("myReservations");
+  },
 };
 </script>
