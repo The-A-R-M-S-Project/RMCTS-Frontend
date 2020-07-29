@@ -7,6 +7,7 @@ import ItemDetails from "../views/Details";
 import Reservation from "../views/user/Reserve";
 import SignedUp from "../views/SignedUp";
 import FaceRecognition from "../views/FaceRecognition";
+import TokenSent from "../views/TokenSent";
 //user
 import Login from "../views/Login";
 import User from "../views/user/User";
@@ -80,6 +81,14 @@ const routes = [
     component: Catalog,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: "/token-sent",
+    name: "token-sent",
+    component: TokenSent,
+    meta: {
+      guest: true
     }
   },
   {
