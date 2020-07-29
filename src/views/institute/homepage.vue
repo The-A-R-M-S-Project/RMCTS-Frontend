@@ -38,7 +38,7 @@
 
 <style scoped>
 .activity {
-  background-color: rgba(220, 239, 255, 0.918);
+  background-color: rgb(245, 248, 250);
   min-height: 40vh;
 }
 .equipment-card {

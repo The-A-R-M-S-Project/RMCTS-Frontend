@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li :class="['nav-item']">
-          <router-link to="/" class="nav-link" href="#">Home</router-link>
+          <router-link to="/user/profile" class="nav-link" href="#">Home</router-link>
         </li>
         <li
           :class="[

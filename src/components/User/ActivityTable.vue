@@ -57,7 +57,9 @@ export default {
     handleResize(drag) {
       this.$store.commit("UpdateEvents", drag.event);
     },
-    cancelEvent() {},
+    cancelEvent() {
+      // delete event
+    },
     handleDateClick(tap) {
       // eslint-disable-next-line no-console
       console.log(tap);
