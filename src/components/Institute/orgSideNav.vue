@@ -181,6 +181,9 @@
 button {
   border-radius: 0px;
 }
+.btn-lg {
+  font-size: 16px;
+}
 </style>
 
 <script>
@@ -191,25 +194,25 @@ export default {
   data() {
     return {
       user: {},
-      institute: {}
+      institute: {},
     };
   },
   computed: {
     currentRoute() {
       return this.$route.path;
-    }
+    },
   },
   methods: {
     ...mapActions(["logout"]),
     handleLogout() {
       this.logout()
         .then(() => this.$router.push({ name: "index" }))
-        .catch(err => console.log(err));
-    }
+        .catch((err) => console.log(err));
+    },
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.institute = JSON.parse(localStorage.getItem("institute"));
-  }
+  },
 };
 </script>
