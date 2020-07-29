@@ -1,6 +1,6 @@
 <template>
   <div class="bookings">
-    <div v-if="Activity.length == 0" class="none">
+    <div v-if="account_reservations.length == 0" class="none">
       <p style="font-size: 22px;">You currently have no bookings</p>
       <i
         class="fa fa-exclamation-circle icon"
@@ -8,23 +8,31 @@
         style="font-size: 25vw;"
       ></i>
     </div>
-    <div class="container" v-else>
-      <div v-for="bookings in Bookeditems" :key="bookings.equipment">
-        <div
-          v-for="equipment in equipmentList.filter(item =>
-            bookings.equipment.includes(item._id)
-          )"
-          :key="equipment._id"
+
+    <div class="table-responsive" v-else>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Time Scheduled</th>
+            <th scope="col">Date Scheduled</th>
+          </tr>
+        </thead>
+        <tbody
+          v-for="reservation in account_reservations"
+          :key="reservation._id"
         >
           <Booked
-            :title="equipment.title"
-            :url="equipment.imageURL"
-            :duration="bookings.duration"
-            :dateScheduled="bookings.date_scheduled"
-            :timeScheduled="bookings.time_scheduled"
+            :title="reservation.title"
+            :duration="duration(reservation)"
+            :url="imageURL(reservation)"
+            :dateScheduled="reservation.start.split('T')[0]"
+            :timeScheduled="reservation.start.split('T')[1] + 'hrs (EAT)  '"
           />
-        </div>
-      </div>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -46,20 +54,59 @@
 </style>
 
 <script>
+/* eslint-disable */
+
 import Booked from "@/components/User/booked";
 import Bookeditems from "@/services/user-bookings.js";
 import equipmentList from "@/services/equipment-service.js";
+import { mapGetters } from "vuex";
+
+// :url="equipment.imageURL"
+// :duration="bookings.duration"
+// :dateScheduled="bookings.date_scheduled"
+// :timeScheduled="bookings.time_scheduled"
+
 export default {
   name: "reservations-list",
   data() {
     return {
       Activity: [1],
-      Bookeditems,
-      equipmentList
+      url: "",
+      // duration: "",
+      date: "",
+      time: "",
     };
   },
   components: {
-    Booked
-  }
+    Booked,
+  },
+  computed: {
+    ...mapGetters(["account_reservations"]),
+  },
+  methods: {
+    duration(reservation) {
+      const d1 = new Date(reservation.start);
+      const d2 = new Date(reservation.end);
+
+      //calculate hours
+      let hrs = Math.floor((d2 - d1) / 3600000);
+      //calculate time
+      let mins = ((d2 - d1) % 3600000) / 60000;
+      return hrs + "hrs " + mins + "mins";
+    },
+
+    imageURL(reservation) {
+      this.$http
+        .get(`https://rmcts-api.herokuapp.com/item/${reservation.itemId}`)
+        .then((res) => {
+          this.url = res.data[0].imageURL;
+        });
+      return this.url;
+    },
+  },
+  created() {
+    // get all reservations
+    this.$store.dispatch("myReservations");
+  },
 };
 </script>
