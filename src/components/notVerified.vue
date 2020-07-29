@@ -38,8 +38,6 @@
 
 <script>
 /* eslint-disable */
-import axios from "axios";
-
 export default {
   name: "not-verified",
   data() {
@@ -53,7 +51,7 @@ export default {
       const data = { email: this.email };
       this.$store.commit("info_submission");
       // const my = function()
-      axios
+      this.$http
         .post("https://rmcts-api.herokuapp.com/admins/resend", data)
         .then((res)=>{
           console.log(res);
