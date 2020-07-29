@@ -8,6 +8,7 @@ import VeeValidate from "vee-validate";
 import modal from "vue-js-modal";
 // import PortalVue from "portal-vue";
 
+Vue.prototype.$http = axios;
 axios.interceptors.request.use(config => {
   const token = localStorage.getItem("jwt");
   config.headers.Authorization = token;
