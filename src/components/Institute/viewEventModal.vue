@@ -4,14 +4,33 @@
       <section class="clean-form dark">
         <div class="container mb-4">
           <div class="block-heading">
-            <h1 class="text-info text-center">Event Details</h1>
+            <h3 class="text-info text-center pt-4 pb-2">Booking Details</h3>
+            <hr />
           </div>
           <div>
             <p class="shrink"><strong>Customer:</strong> {{ event.user }}</p>
             <p class="shrink"><strong>Title:</strong> {{ event.title }}</p>
-            <p class="shrink"><strong>Start:</strong> {{ event.start }}</p>
-            <p class="shrink"><strong>End:</strong> {{ event.end }}</p>
-            <p class="shrink"><strong>ID:</strong> {{ event.id }}</p>
+            <p class="shrink">
+              <strong>Start:</strong>
+              {{
+                event.start.split("T")[0] +
+                  ", " +
+                  event.start.split("T")[1] +
+                  "hrs EAT"
+              }}
+            </p>
+            <p class="shrink">
+              <strong>End:</strong>
+              {{
+                event.end.split("T")[0] +
+                  ", " +
+                  event.end.split("T")[1] +
+                  "hrs EAT"
+              }}
+            </p>
+            <p class="shrink">
+              <strong>Description:</strong> {{ event.description }}
+            </p>
           </div>
           <hr class="solid" />
         </div>
@@ -33,17 +52,8 @@ export default {
     text: String,
     event: Object
   },
-  mounted() {
-    this.title = this.event.title;
-    this.start = formatDate(this.event.start);
-    this.end = formatDate(this.event.end);
-  }
+  mounted() {}
 };
-function formatDate(date) {
-  var options = { day: "2-digit", month: "2-digit", year: "numeric" };
-  let string = date.toLocaleDateString("ko-KR", options).replace(/\. /g, "-");
-  return string.substr(0, string.length - 1);
-}
 </script>
 
 <style scoped>

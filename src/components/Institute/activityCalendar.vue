@@ -8,12 +8,10 @@
         }"
         :weekends="false"
         :plugins="calendarPlugins"
-        :events="allEvents"
+        eventColor="#F9F98D"
+        :events="account_bookings"
         :selectable="true"
-        :editable="true"
         @eventClick="handleClick"
-        @eventResize="handleResize"
-        @eventDrop="cancelEvent"
       />
       <!-- @select="handleDateClick" -->
       <modals-container />
@@ -28,6 +26,7 @@
 </style>
 
 <script>
+/* eslint-disable */
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -41,7 +40,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "calendar",
   components: {
-    FullCalendar
+    FullCalendar,
   },
   data() {
     return {
@@ -49,48 +48,39 @@ export default {
         dayGridPlugin,
         timeGridPlugin,
         interactionPlugin,
-        listPlugin
-      ]
+        listPlugin,
+      ],
     };
   },
   methods: {
-    handleResize(drag) {
-      this.$store.commit("UpdateEvents", drag.event);
-    },
     cancelEvent() {},
-    handleDateClick(tap) {
-      // eslint-disable-next-line no-console
-      console.log(tap);
-      this.$store.commit("SetEvents", {
-        id: new Date().getTime(),
-        title: "",
-        start: tap.start,
-        end: tap.end
-        // allDay: tap.allDay
-      });
-    },
-    handleClick(clck) {
+
+    handleClick(click) {
       this.$modal.show(
         EventModal,
         {
           text: "From the component",
-          event: clck.event
+          event: this.account_bookings.filter(
+            (x) => x._id == click.event.extendedProps._id
+          )[0],
         },
         {
           height: "auto",
-          width: "50%"
+          width: "50%",
+          adaptive: true,
+          minWidth: 300,
         },
         {
-          draggable: true
+          draggable: true,
         }
       );
-    }
+    },
   },
   computed: {
-    ...mapGetters(["allEvents"])
+    ...mapGetters(["account_bookings"]),
   },
   created() {
-    this.$store.dispatch("getEvents");
-  }
+    this.$store.dispatch("myBookings");
+  },
 };
 </script>
