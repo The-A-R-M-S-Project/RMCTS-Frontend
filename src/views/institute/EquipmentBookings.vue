@@ -37,7 +37,7 @@
       >
         <div class="content-area">
           <div class="calendar">
-            <MyReservationsCalendar />
+            <MyBookingsCalendar />
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
         aria-labelledby="nav-profile-tab"
       >
         <div class="content-area">
-          <ReservationsList />
+          <BookingsList />
         </div>
       </div>
     </div>
@@ -56,13 +56,13 @@
 </template>
 
 <script>
-import ReservationsList from "./ReservationsList";
-import MyReservationsCalendar from "@/components/User/myReservationsCalendar";
+import BookingsList from "./BookingsList";
+import MyBookingsCalendar from "@/components/Institute/activityCalendar";
 export default {
   name: "equipment-reservations",
   components: {
-    ReservationsList,
-    MyReservationsCalendar
+    BookingsList,
+    MyBookingsCalendar
   }
 };
 </script>
@@ -79,10 +79,11 @@ a:hover {
   border-radius: 0px;
 }
 .content-area {
+  height: 100%;
   min-height: 85vh;
   margin-top: 10px;
   padding-top: 10px;
-  background-color: #abe2f855;
+  background-color: #abf8db55;
   border-radius: 5px;
 }
 .active {

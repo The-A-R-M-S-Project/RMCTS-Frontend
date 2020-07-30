@@ -18,6 +18,7 @@ import UserBookings from "../views/user/UserBookings";
 import Institute from "../views/institute/Institute";
 import InstituteEquipment from "../views/institute/Equipment";
 import InstituteProfile from "../views/institute/HomePage";
+import EquipmentBookings from "../views/institute/EquipmentBookings.vue";
 // import EquipmentResevations from "../views/institute/bookings";
 import OrgLogin from "../views/institute/OrgLogin";
 import OrgForm1 from "../views/institute/OrgReg1";
@@ -174,6 +175,14 @@ const routes = [
         path: "catalog",
         name: "catalog-view",
         component: Catalog,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: "bookings",
+        name: "equipment-bookings",
+        component: EquipmentBookings,
         meta: {
           requiresAuth: true
         }
