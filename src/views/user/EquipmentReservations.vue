@@ -36,7 +36,9 @@
         aria-labelledby="nav-home-tab"
       >
         <div class="content-area">
-          <MyReservationsCalendar />
+          <div class="calendar">
+            <MyReservationsCalendar />
+          </div>
         </div>
       </div>
       <div
@@ -79,6 +81,9 @@ a:hover {
 .content-area {
   min-height: 63vh;
   margin-top: 10px;
+  padding-top: 10px;
+  background-color: #abe2f855;
+  border-radius: 5px;
 }
 .active {
   border-bottom: 0px;
@@ -94,5 +99,9 @@ a:hover {
   left: 0;
   float: left;
   text-align: center;
+}
+.calendar {
+  padding-left: 100px;
+  padding-right: 100px;
 }
 </style>
