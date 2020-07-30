@@ -214,7 +214,7 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem("jwt") == null) {
       alert("Signup/login");
       next({
-        name: "register"
+        name: "index"
       });
     } else {
       next();
