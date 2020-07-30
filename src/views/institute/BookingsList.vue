@@ -1,7 +1,7 @@
 <template>
   <div class="bookings">
-    <div v-if="account_reservations.length == 0" class="none">
-      <p style="font-size: 22px;">You currently have no reservations</p>
+    <div v-if="account_bookings.length == 0" class="none">
+      <p style="font-size: 22px;">You currently have no bookings</p>
       <i
         class="fa fa-exclamation-circle icon"
         aria-hidden="true"
@@ -18,18 +18,17 @@
             <th scope="col">Duration</th>
             <th scope="col">Time Scheduled</th>
             <th scope="col">Date Scheduled</th>
+            <th scope="col">Customer</th>
           </tr>
         </thead>
-        <tbody
-          v-for="reservation in account_reservations"
-          :key="reservation._id"
-        >
+        <tbody v-for="reservation in account_bookings" :key="reservation._id">
           <Booked
             :title="reservation.title"
             :duration="duration(reservation)"
             :url="imageURL(reservation)"
             :dateScheduled="reservation.start.split('T')[0]"
             :timeScheduled="reservation.start.split('T')[1] + 'hrs (EAT)  '"
+            :customer="'customer'"
           />
         </tbody>
       </table>
@@ -45,7 +44,7 @@
   flex-direction: column;
   border: solid 2px rgb(9, 162, 255);
   border-radius: 15px;
-  min-height: 82vh;
+  height: 72vh;
   margin: 2vh;
 }
 .icon {
@@ -56,15 +55,11 @@
 <script>
 /* eslint-disable */
 
-import Booked from "@/components/User/booked";
+import Booked from "@/components/Institute/booked";
 import Bookeditems from "@/services/user-bookings.js";
 import equipmentList from "@/services/equipment-service.js";
 import { mapGetters } from "vuex";
 
-// :url="equipment.imageURL"
-// :duration="bookings.duration"
-// :dateScheduled="bookings.date_scheduled"
-// :timeScheduled="bookings.time_scheduled"
 
 export default {
   name: "reservations-list",
@@ -72,7 +67,6 @@ export default {
     return {
       Activity: [1],
       url: "",
-      // duration: "",
       date: "",
       time: "",
     };
@@ -81,7 +75,7 @@ export default {
     Booked,
   },
   computed: {
-    ...mapGetters(["account_reservations"]),
+    ...mapGetters(["account_bookings"]),
   },
   methods: {
     duration(reservation) {
@@ -106,7 +100,7 @@ export default {
   },
   created() {
     // get all reservations
-    this.$store.dispatch("myReservations");
+    this.$store.dispatch("myBookings");
   },
 };
 </script>
