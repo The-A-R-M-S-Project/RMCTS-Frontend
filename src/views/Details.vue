@@ -145,6 +145,14 @@ img {
 .buttons {
   text-align: center;
 }
+@media (max-width: 800px) {
+  .breadcrumb {
+    position: absolute;
+    top: 0px;
+    z-index: 2;
+    width: 100%;
+  }
+}
 </style>
 <script>
 /* eslint-disable */
