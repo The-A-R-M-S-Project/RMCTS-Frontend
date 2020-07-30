@@ -9,7 +9,8 @@ const api = "https://rmcts-api.herokuapp.com";
 //============================================================================================
 const state = {
   events: [],
-  my_reservations: []
+  my_reservations: [],
+  my_bookings: []
 };
 
 
@@ -17,7 +18,8 @@ const state = {
 //                            GETTERS
 //============================================================================================
 const getters = {
-  account_reservations: state => state.my_reservations
+  account_reservations: state => state.my_reservations,
+  account_bookings: state => state.my_bookings
 };
 
 
@@ -27,6 +29,10 @@ const getters = {
 const mutations = {
   my_reservations: (state, res)=>{
     state.my_reservations = res;
+  },
+
+  my_bookings: (state, res)=>{
+    state.my_bookings = res
   }
 }
 
@@ -44,6 +50,19 @@ const actions = {
     }
     catch(error){
       console.log(error)
+    }
+  },
+
+  // Get account's bookings
+  async myBookings({commit}){
+    try{
+      let bookings = await axios.get(`${api}/bookings`)
+      bookings = bookings.data
+      console.log(bookings)
+      commit("my_bookings", bookings)
+    }
+    catch(error){
+      console.log(error.response)
     }
   }
 };
