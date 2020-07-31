@@ -1,14 +1,21 @@
 <template>
   <div>
-    <main class="login-page">
+    <main class="login-page pt-3">
       <section class="clean-form dark">
         <div class="container mb-4">
           <div class="block-heading">
-            <h3 class="text-info text-center pt-4 pb-2">Booking Details</h3>
-            <hr />
+            <h4 class="text-info text-center">Reservation Details</h4>
+            <hr class="solid" />
           </div>
           <div>
-            <p class="shrink"><strong>Customer:</strong> {{ event.user }}</p>
+            <p class="shrink">
+              <strong>Item:</strong>
+              <router-link :to="`/institute/details/${event.itemId}`"
+                ><a style="text-decoration: underline">
+                  {{ " " + itemName }}
+                </a></router-link
+              >
+            </p>
             <p class="shrink"><strong>Title:</strong> {{ event.title }}</p>
             <p class="shrink">
               <strong>Start:</strong>
@@ -28,11 +35,7 @@
                   "hrs EAT"
               }}
             </p>
-            <p class="shrink">
-              <strong>Description:</strong> {{ event.description }}
-            </p>
           </div>
-          <hr class="solid" />
         </div>
       </section>
     </main>
@@ -40,20 +43,32 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   data: () => ({
-    user: "",
+    itemName: "",
     title: "",
     start: {},
-    end: {}
+    end: {},
   }),
   methods: {},
   props: {
     text: String,
-    event: Object
+    event: Object,
   },
-  mounted() {}
+  created() {
+    this.$http
+      .get(`https://rmcts-api.herokuapp.com/item/${this.event.itemId}`)
+      .then((res) => {
+        console.log(res);
+        this.itemName = res.data[0].title;
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  },
 };
+//
 </script>
 
 <style scoped>

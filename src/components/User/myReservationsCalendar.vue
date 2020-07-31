@@ -8,7 +8,7 @@
         }"
         :weekends="false"
         :plugins="calendarPlugins"
-        :events="allEvents"
+        :events="account_reservations"
         :selectable="true"
         @eventClick="handleClick"
       />
@@ -22,18 +22,16 @@
 @import "~@fullcalendar/core/main.css";
 @import "~@fullcalendar/daygrid/main.css";
 @import "~@fullcalendar/timegrid/main.css";
-.container {
-  background-color: #abe2f860;
-}
 </style>
 
 <script>
+/* eslint-disable */
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import EventModal from "@/components/User/editEventModal";
+import EventModal from "@/components/User/viewMyReservation";
 
 // State Management
 import { mapGetters } from "vuex";
@@ -41,7 +39,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "my-reservations-calendar",
   components: {
-    FullCalendar
+    FullCalendar,
   },
   data() {
     return {
@@ -49,8 +47,8 @@ export default {
         dayGridPlugin,
         timeGridPlugin,
         interactionPlugin,
-        listPlugin
-      ]
+        listPlugin,
+      ],
     };
   },
   methods: {
@@ -60,23 +58,27 @@ export default {
         EventModal,
         {
           text: "From the component",
-          event: click.event
+          event: this.account_reservations.filter(
+            (x) => x._id == click.event.extendedProps._id
+          )[0],
         },
         {
           height: "auto",
-          width: "50%"
+          width: "50%",
+          adaptive: true,
+          minWidth: 300,
         },
         {
-          draggable: true
+          draggable: true,
         }
       );
-    }
+    },
   },
   computed: {
-    ...mapGetters([""])
+    ...mapGetters(["account_reservations"]),
   },
   created() {
-    this.$store.dispatch("");
-  }
+    this.$store.dispatch("myReservations");
+  },
 };
 </script>

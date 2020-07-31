@@ -7,6 +7,7 @@
     <td>{{ duration }}</td>
     <td>{{ timeScheduled }}</td>
     <td>{{ dateScheduled }}</td>
+    <td>{{ customer }}</td>
     <hr />
   </tr>
 </template>
@@ -29,7 +30,8 @@ export default {
     url: String,
     dateScheduled: String,
     timeScheduled: String,
-    duration: String
+    duration: String,
+    customer: String
   }
 };
 </script>

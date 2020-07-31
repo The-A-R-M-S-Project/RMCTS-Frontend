@@ -22,12 +22,12 @@
               placeholder="location, e.g (kampala, Makerere University, CEDAT, old builiding, room 143)"
               v-model="item.location"
             />
-            <input
+            <!-- <input
               type="text"
               class="form-control mt-3"
               placeholder="Image URL"
               v-model="item.imageURL"
-            />
+            /> -->
             <textarea
               class="form-control mt-4"
               id="exampleFormControlTextarea1"
@@ -79,7 +79,6 @@ export default {
       item: {
         title: this.title,
         location: this.location,
-        imageURL: this.imageURL,
         description: this.description,
         _id: this._id
       }
@@ -89,7 +88,6 @@ export default {
     title: String,
     description: String,
     location: String,
-    imageURL: String,
     _id: String
   },
   methods: {
@@ -97,7 +95,10 @@ export default {
     handleSubmit(e) {
       this.$emit("end-editing");
       e.preventDefault();
-      this.updateEquipment(this.item);
+      this.$store.commit("info_submission");
+      this.updateEquipment(this.item).then(() => {
+        this.$store.commit("submission_complete");
+      });
     }
   }
 };
