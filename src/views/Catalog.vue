@@ -3,7 +3,7 @@
   <div class="view">
     <!-- central navigation component -->
     <!-- <Navbar /> -->
-    <div class="" style="border-top: solid white 85px;">
+    <div class="mt-5 mb-2">
       <div class="pb-3">
         <Search />
       </div>
@@ -16,7 +16,7 @@
             v-for="equipment in allEquipment"
             :key="equipment._id"
             class="col-md-4 m-3"
-            style="max-width: 340px"
+            style="max-width: 300px"
           >
             <Equipment
               :title="equipment.title"
