@@ -112,7 +112,7 @@
             >
               <div class="row">
                 <div class="col-3">
-                  <li class="fa fa-clock-o"></li>
+                  <li class="fa fa-database"></li>
                 </div>
                 <div class="col-9 text-left">
                   <span style="font-size: smaller;">Catalog</span>
