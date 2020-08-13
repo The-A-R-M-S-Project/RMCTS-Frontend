@@ -47,7 +47,9 @@ const actions = {
       );
       console.log(res.body);
       localStorage.setItem("jwt", res.data.token);
+      // if (data.role == "individual") {}
       localStorage.setItem("user", JSON.stringify(res.data.admin));
+      // else {}
       localStorage.setItem("institute", JSON.stringify(res.data.admin));
       commit("auth_success");
     } catch (err) {
@@ -62,10 +64,11 @@ const actions = {
   logout: function({ commit }) {
     if (localStorage.getItem("jwt") != null) {
       axios
-        .post(`https://rmcts-api.herokuapp.com/users/me/logout`)
+        .post(`https://rmcts-api.herokuapp.com/users/logout`)
         .then((res) => {
           localStorage.removeItem("jwt");
           localStorage.removeItem("user");
+          localStorage.removeItem("institute");
           window.localStorage.clear();
         })
         .catch((err) => {

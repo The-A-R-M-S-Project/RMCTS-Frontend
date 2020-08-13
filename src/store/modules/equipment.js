@@ -1,5 +1,4 @@
-/* eslint-disable */
-
+/* eslint-disable no-console */
 import axios from "axios";
 import Vue from "vue";
 
@@ -19,33 +18,33 @@ const getters = {
   myEquipment: state => state.myEquipment,
   editing: state => state.editing,
   addingItem: state => state.addingItem,
-  itemBeingEdited: state=>state.itemBeingEdited
+  itemBeingEdited: state => state.itemBeingEdited
 };
 // mutations
 const mutations = {
   myEquipment: (state, equipment) => (state.myEquipment = equipment),
   newItem: (state, item) => {
-    state.myEquipment.unshift(item)
-    state.addingItem = false
+    state.myEquipment.unshift(item);
+    state.addingItem = false;
   },
   // activates loader on item submission
-  addingItem: state => state.addingItem = true,
+  addingItem: state => (state.addingItem = true),
   updateItem: (state, item) => {
     state.myEquipment.forEach((x, i) => {
       if (x._id == item._id) {
         Vue.set(state.myEquipment, i, item);
       }
     });
-    state.editing = false
+    state.editing = false;
   },
   // activates equipment editing modal
   editItem: (state, item) => {
-    state.editing = true
-    state.itemBeingEdited = item
+    state.editing = true;
+    state.itemBeingEdited = item;
   },
   // deactivates equipment editing modal
-  cancelEditing: (state) => {
-    state.editing = false
+  cancelEditing: state => {
+    state.editing = false;
   },
   deleteItem: (state, id) => {
     state.myEquipment.forEach((x, i) => {
@@ -59,9 +58,7 @@ const mutations = {
 const actions = {
   getEquipment: async ({ commit }) => {
     try {
-      let equipment = await axios.get(
-        `${api}/equipment`
-      );
+      let equipment = await axios.get(`${api}/equipment`);
       commit("myEquipment", equipment.data);
     } catch (error) {
       console.log(error);
@@ -69,24 +66,18 @@ const actions = {
   },
   addEquipment: async ({ commit }, data) => {
     try {
-      commit("addingItem")
-      console.log(data)
-      let res = await axios.post(
-        `${api}/add-item`,
-        data
-      );
+      commit("addingItem");
+      console.log(data);
+      let res = await axios.post(`${api}/item`, data);
       commit("newItem", res.data);
     } catch (error) {
-      alert("error occured")
+      alert("error occured");
       console.log(error);
     }
   },
   updateEquipment: async ({ commit }, data) => {
     try {
-      let res = await axios.put(
-        `${api}/edit-item`,
-        data
-      );
+      let res = await axios.patch(`${api}/item`, data);
       commit("updateItem", res.data);
     } catch (error) {
       console.log(error);
@@ -94,11 +85,11 @@ const actions = {
   },
   // activates equipment editing modal
   editEquipment: ({ commit }, item) => {
-    commit("editItem", item)
+    commit("editItem", item);
   },
   // deactivates equipment editing modal
   handleCancel: ({ commit }) => {
-    commit("cancelEditing")
+    commit("cancelEditing");
   },
   deleteEquipment: async ({ commit }, id) => {
     try {
@@ -108,7 +99,7 @@ const actions = {
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 };
 
 export default {
