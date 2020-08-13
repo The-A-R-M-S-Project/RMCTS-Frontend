@@ -42,7 +42,7 @@ const actions = {
     try {
       commit("auth_request");
       let res = await axios.post(
-        "https://rmcts-api.herokuapp.com/admins/login",
+        "https://rmcts-api.herokuapp.com/users/login",
         data
       );
       console.log(res.body);
@@ -62,7 +62,7 @@ const actions = {
   logout: function({ commit }) {
     if (localStorage.getItem("jwt") != null) {
       axios
-        .post(`https://rmcts-api.herokuapp.com/admins/me/logout`)
+        .post(`https://rmcts-api.herokuapp.com/users/me/logout`)
         .then((res) => {
           localStorage.removeItem("jwt");
           localStorage.removeItem("user");
@@ -76,7 +76,7 @@ const actions = {
   signup: async function({ commit }, user) {
     try {
       let res = await axios.post(
-        "https://rmcts-api.herokuapp.com/admins",
+        "https://rmcts-api.herokuapp.com/users",
         user
       );
       console.log(res);
@@ -89,7 +89,7 @@ const actions = {
   orgSignup: async function({ commit }, institute) {
     try {
       let res = await axios.post(
-        "https://rmcts-api.herokuapp.com/admins",
+        "https://rmcts-api.herokuapp.com/users",
         institute
       );
       console.log(res);
