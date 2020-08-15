@@ -9,9 +9,10 @@ import modal from "vue-js-modal";
 // import PortalVue from "portal-vue";
 
 Vue.prototype.$http = axios;
+Vue.prototype.$user = JSON.parse(localStorage.getItem("user"));
 axios.interceptors.request.use(config => {
   const token = localStorage.getItem("jwt");
-  config.headers.Authorization = token;
+  config.headers.Authorization = "Bearer " + token;
   return config;
 });
 Vue.config.productionTip = false;
