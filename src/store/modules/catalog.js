@@ -21,14 +21,14 @@ const mutations = {
 const actions = {
   catalogedEquipment: async ({ commit }) => {
     try {
-      let response = await axios.get(`${api}/catalog-default`);
+      let response = await axios.get(`${api}/equipment/catalog`);
       await commit("UpdateEquipment", response.data);
     } catch (error) {
       console.log(error);
     }
   },
   searchTerm: ({ commit }, search) => {
-    axios.post(`${api}/search`, { search: search }).then(res => {
+    axios.post(`${api}/equipment/search`, { search: search }).then(res => {
       console.log(res.data);
       console.log(search);
       commit("UpdateEquipment", res.data);

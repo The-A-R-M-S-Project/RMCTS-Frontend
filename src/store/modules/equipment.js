@@ -60,7 +60,7 @@ const actions = {
   getEquipment: async ({ commit }) => {
     try {
       let equipment = await axios.get(
-        `${api}/equipment`
+        `${api}/equipment/equipment`
       );
       commit("myEquipment", equipment.data);
     } catch (error) {
@@ -72,7 +72,7 @@ const actions = {
       commit("addingItem")
       console.log(data)
       let res = await axios.post(
-        `${api}/add-item`,
+        `${api}/equipment/item`,
         data
       );
       commit("newItem", res.data);
@@ -83,8 +83,8 @@ const actions = {
   },
   updateEquipment: async ({ commit }, data) => {
     try {
-      let res = await axios.put(
-        `${api}/edit-item`,
+      let res = await axios.patch(
+        `${api}/equipment/item`,
         data
       );
       commit("updateItem", res.data);
