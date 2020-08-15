@@ -12,7 +12,7 @@
               class="card-img-top img-fluid profile-image"
               alt="profile picture"
               style="border-radius: 300px;"
-              height=""
+              height
             />
             <h5 class="m-3">{{ user.name || "username" }}</h5>
             <!-- <p class="p-1">{{ user.email }}</p> -->
@@ -143,27 +143,40 @@ button {
 
 <script>
 /* eslint-disable */
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
+const api = "https://rmcts-api.herokuapp.com/";
+
 export default {
   name: "SideNav",
-  data(){
+  data() {
     return {
       user: {}
-    }
+    };
   },
   computed: {
     currentRoute() {
       return this.$route.path;
-    },
-  },
-  methods: {
-    ...mapActions(['logout']),
-    handleLogout(){
-      // this.logout().then(() =>  this.$router.push({ name: "index" })).catch((err)=> console.log(err))
     }
   },
-  created(){
-    // this.user = JSON.parse(localStorage.getItem("user"))
+  methods: {
+    ...mapActions(["logout"]),
+    handleLogout() {
+      if (localStorage.getItem("jwt") != null) {
+        this.$http
+          .post(api + `users/logout`)
+          .then(res => {
+            localStorage.clear();
+            sessionStorage.clear();
+            this.$router.push("/");
+          })
+          .catch(err => {
+            console.log(err.response.data.message);
+          });
+      }
+    }
+  },
+  created() {
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 };
 </script>
