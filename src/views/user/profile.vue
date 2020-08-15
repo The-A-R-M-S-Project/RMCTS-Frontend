@@ -26,7 +26,7 @@
     <div class="row p-2">
       <div class="col-12 activity mt-4">
         <p class="text-center m-2">
-          activity table showing reservation for your equipment from other users
+          Personal Calendar
         </p>
         <div class="m-4 activity-table">
           <ActivityTable />
@@ -38,8 +38,7 @@
 
 <style scoped>
 .activity {
-  background-color: rgb(205, 216, 226);
-  max-height: 70vh;
+  background-color: rgb(245, 248, 250);
   min-height: 40vh;
 }
 .equipment-card {
