@@ -19,7 +19,9 @@
       </div>
       <div class="card-footer buttons-area">
         <div class="butn">
-          <router-link :to="{ name: 'details', params: { id: _id } }">
+          <router-link
+            :to="{ name: `${this.$user.role}-details`, params: { id: _id } }"
+          >
             <button
               type="button"
               id="btn-color"

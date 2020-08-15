@@ -154,7 +154,7 @@ const routes = [
             },
             {
                 path: "details/:id",
-                name: "details",
+                name: "institution-details",
                 component: ItemDetails,
                 watch: {
                     // eslint-disable-next-line no-unused-vars
@@ -232,7 +232,7 @@ const routes = [
             },
             {
                 path: "details/:id",
-                name: "details",
+                name: "individual-details",
                 component: ItemDetails,
                 watch: {
                     // eslint-disable-next-line no-unused-vars
