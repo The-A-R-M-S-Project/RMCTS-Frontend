@@ -47,7 +47,7 @@
 </style>
 
 <script>
-import Search from "@/components/User/Search";
+import Search from "@/components/User/search";
 import Equipment from "@/components/equipment";
 import { mapGetters, mapActions } from "vuex";
 
