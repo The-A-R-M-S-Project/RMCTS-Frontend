@@ -1,6 +1,9 @@
 /* eslint-disable */
 import axios from "axios";
 
+const api = "https://rmcts-api.herokuapp.com/"
+
+
 // state
 const state = {
   loading: false,
@@ -42,7 +45,7 @@ const actions = {
     try {
       commit("auth_request");
       let res = await axios.post(
-        "https://rmcts-api.herokuapp.com/users/login",
+        api+"users/login",
         data
       );
       console.log(res.body);
@@ -59,24 +62,36 @@ const actions = {
       }
     }
   },
-  logout: function({ commit }) {
-    if (localStorage.getItem("jwt") != null) {
-      axios
-        .post(`https://rmcts-api.herokuapp.com/users/me/logout`)
-        .then((res) => {
-          localStorage.removeItem("jwt");
-          localStorage.removeItem("user");
-          window.localStorage.clear();
-        })
-        .catch((err) => {
-          console.log(err.response.data.message);
-        });
+  individualLogin: async function({ commit }, data) {
+    try {
+      commit("auth_request");
+      let res = await axios.post(
+        api+"users/login",
+        data
+      );
+      console.log(res.data);
+      const user = res.data.data.user
+      const token = res.data.token
+      if(user.role === "individual"){
+        localStorage.setItem("jwt", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        commit("auth_success");
+      }else {
+        commit("auth_error")
+      }
+    } catch (err) {
+      console.log(err.response.data.type);
+      if (err.response.data.type == "not-verified") {
+        commit("verification_error");
+      } else {
+        commit("auth_error");
+      }
     }
   },
   signup: async function({ commit }, user) {
     try {
       let res = await axios.post(
-        "https://rmcts-api.herokuapp.com/users",
+        api+"users",
         user
       );
       console.log(res);
@@ -89,7 +104,7 @@ const actions = {
   orgSignup: async function({ commit }, institute) {
     try {
       let res = await axios.post(
-        "https://rmcts-api.herokuapp.com/users",
+        api+"users",
         institute
       );
       console.log(res);
