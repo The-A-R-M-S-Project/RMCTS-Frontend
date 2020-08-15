@@ -9,7 +9,6 @@ import SignedUp from "../views/SignedUp";
 import FaceRecognition from "../views/FaceRecognition";
 import TokenSent from "../views/TokenSent";
 
-
 //institute
 import Institute from "../views/institute/Institute";
 import InstituteEquipment from "../views/institute/Equipment";
@@ -106,24 +105,24 @@ const routes = [
         component: Institute,
         meta: {
             requiresAuth: true,
-            // guest: true
+            is_institution: true,
         },
         children: [{
                 path: "profile",
-                name: "institute-profile",
+                name: "institution-profile",
                 component: InstituteProfile,
                 meta: {
                     requiresAuth: true,
-                    // guest: true
+                    is_institution: true,
                 },
             },
             {
                 path: "equipment",
-                name: "institute-equipment",
+                name: "institution-equipment",
                 component: InstituteEquipment,
                 meta: {
                     requiresAuth: true,
-                    // guest: true
+                    is_institution: true,
                 },
             },
             {
@@ -132,7 +131,7 @@ const routes = [
                 component: EquipmentReservations,
                 meta: {
                     requiresAuth: true,
-                    // guest: true
+                    is_institution: true,
                 },
             },
             {
@@ -141,6 +140,7 @@ const routes = [
                 component: Catalog,
                 meta: {
                     requiresAuth: true,
+                    is_institution: true,
                 },
             },
             {
@@ -149,6 +149,7 @@ const routes = [
                 component: EquipmentBookings,
                 meta: {
                     requiresAuth: true,
+                    is_institution: true,
                 },
             },
             {
@@ -163,6 +164,7 @@ const routes = [
                 },
                 meta: {
                     requiresAuth: true,
+                    is_institution: true,
                 },
             },
             {
@@ -171,13 +173,17 @@ const routes = [
                 component: Reservation,
                 meta: {
                     requiresAuth: true,
+                    is_institution: true,
                 },
             },
             {
                 path: "catalog",
-                name: "individual-catalog",
+                name: "institution-catalog",
                 component: IndividualCatalog,
-                meta: {},
+                meta: {
+                    requiresAuth: true,
+                    is_institution: true,
+                },
             },
         ],
     },
@@ -193,7 +199,8 @@ const routes = [
                 name: "individual-profile",
                 component: IndividualProfile,
                 meta: {
-                    guest: true
+                    requires_auth: true,
+                    is_individual: true,
                 },
             },
             {
@@ -201,24 +208,27 @@ const routes = [
                 name: "individual-catalog",
                 component: IndividualCatalog,
                 meta: {
-                    guest: true
-                }
+                    requires_auth: true,
+                    is_individual: true,
+                },
             },
             {
                 path: "reservations",
                 name: "individual-reservations",
                 component: EquipmentReservations,
                 meta: {
-                    guest: true
-                }
+                    requires_auth: true,
+                    is_individual: true,
+                },
             },
             {
                 path: "edit-profile",
                 name: "individual-edit-profile",
                 component: IndividualEditProfile,
                 meta: {
-                    guest: true
-                }
+                    requires_auth: true,
+                    is_individual: true,
+                },
             },
             {
                 path: "details/:id",
@@ -231,7 +241,8 @@ const routes = [
                     },
                 },
                 meta: {
-                    requiresAuth: true,
+                    requires_auth: true,
+                    is_individual: true,
                 },
             },
             {
@@ -239,7 +250,8 @@ const routes = [
                 name: "reservation",
                 component: Reservation,
                 meta: {
-                    requiresAuth: true,
+                    requires_auth: true,
+                    is_individual: true,
                 },
             },
         ],
@@ -254,20 +266,40 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.requiresAuth)) {
         if (localStorage.getItem("jwt") == null) {
-            alert("Signup/login");
+            alert("You're not logged in");
             next({
-                name: "register",
+                name: "index",
             });
         } else {
-            next();
+            const user = JSON.parse(localStorage.getItem("user"));
+            if (
+                to.matched.some((record) => record.meta.is_individual) &&
+                user.role === "individual"
+            ) {
+                next();
+            } else if (
+                to.matched.some((record) => record.meta.is_institution) &&
+                user.role === "institution"
+            ) {
+                next();
+            } else {
+                next();
+                return;
+            }
         }
         next();
     } else if (to.matched.some((record) => record.meta.guest)) {
         if (localStorage.getItem("jwt") == null) {
             next();
         } else {
-            next();
+            const role =  JSON.parse(localStorage.getItem("user")).role;
+            next(
+                {name: `${role}-profile`}
+            );
         }
+    }else{
+        next();
+        return
     }
 });
 export default router;
