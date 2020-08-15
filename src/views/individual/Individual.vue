@@ -1,24 +1,29 @@
 <template>
-  <div class="view">
-    <!-- central navigation component -->
-    <!-- <Navbar /> -->
-    <div style="min-width: 1000px;">
-      <div class="row">
-        <div class="col-3">
-          <SideNav />
-        </div>
-        <div class="col-9 landing pt-3">
-          <router-view></router-view>
-        </div>
+  <div class="main-display">
+    <div class="row">
+      <div class="col-3 side-nav">
+        <SideNav />
+      </div>
+      <div class="col-9 display-area">
+        <router-view />
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.view {
+<style lang="scss" scoped>
+.main-display {
   overflow-y: hidden;
-  overflow-x: scroll;
+  min-width: 1000px;
+  //   overflow-x: scroll;
+}
+.display-area {
+  height: 100vh;
+  overflow: scroll;
+}
+.side-nav {
+  top: 0px;
+  bottom: 0px;
 }
 .landing {
   height: 100vh;
@@ -48,7 +53,7 @@
 
 <script>
 // import Navbar from "@/components/User/Navigation";
-import SideNav from "@/components/User/sideNav";
+import SideNav from "@/components/individual/sideNav";
 export default {
   name: "user",
   components: {

@@ -2,9 +2,8 @@
   <!-- eslint-disable vue/no-v-html -->
   <div class="view">
     <!-- central navigation component -->
-    <!-- <Navbar /> -->
-    <div class="mt-5 mb-2">
-      <div class="pb-3">
+    <div class="">
+      <div class="p-4" style="text-align: center; background-color: white">
         <Search />
       </div>
       <div class="">
@@ -28,7 +27,7 @@
         </div>
         <div
           v-else
-          class="container d-flex justify-content-center align-items-center no-match"
+          class="mt-5 container d-flex justify-content-center align-items-center no-match"
         >
           No item matches your input
         </div>
@@ -48,7 +47,6 @@
 </style>
 
 <script>
-// import Navbar from "@/components/User/Navigation";
 import Search from "@/components/User/search";
 import Equipment from "@/components/equipment";
 import { mapGetters, mapActions } from "vuex";
@@ -56,7 +54,6 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "catalog",
   components: {
-    // Navbar,
     Search,
     Equipment
   },

@@ -6,20 +6,43 @@
           <li class="list-group-item text-center card-header">
             <img
               :src="
-                institute.profileImage ||
-                  'https://image.freepik.com/free-icon/organization_318-1631.jpg'
+                user.profileImage ||
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNIvsoEpZeocbdx9ocsYo9DO1zG4OfEf093dUn78Us553niinuw&s'
               "
-              class="mt-3 card-img-top img-fluid profile-image"
-              alt="profile
-            picture"
+              class="card-img-top img-fluid profile-image"
+              alt="profile picture"
               style="border-radius: 300px;"
+              height=""
             />
-            <h5 class="mt-3 p-0">{{ institute.name }}</h5>
-            <p class="p-1">{{ institute.email }}</p>
+            <h5 class="m-3">{{ user.name || "username" }}</h5>
+            <!-- <p class="p-1">{{ user.email }}</p> -->
           </li>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/profile"
+            to="/individual/reservations"
+          >
+            <button
+              class="btn btn-primary btn-lg btn-block ph-2"
+              :class="[
+                currentRoute.includes('individual/reservations')
+                  ? 'button-active'
+                  : ''
+              ]"
+              type="button"
+            >
+              <div class="row">
+                <div class="col-3">
+                  <li class="fa fa-clock-o"></li>
+                </div>
+                <div class="col-9 text-left">
+                  <span style="font-size: smaller;">reservations</span>
+                </div>
+              </div>
+            </button>
+          </router-link>
+          <router-link
+            class="sidenav-button list-group-item"
+            to="/individual/profile"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
@@ -38,72 +61,7 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/equipment"
-          >
-            <button
-              class="btn btn-primary btn-lg btn-block ph-2"
-              :class="[
-                currentRoute.includes('institute/equipment')
-                  ? 'button-active'
-                  : ''
-              ]"
-              type="button"
-            >
-              <div class="row">
-                <div class="col-3">
-                  <li class="fa fa-server"></li>
-                </div>
-                <div class="col-9 text-left">
-                  <span style="font-size: smaller;">Equipment</span>
-                </div>
-              </div>
-            </button>
-          </router-link>
-          <router-link
-            class="sidenav-button list-group-item"
-            to="/institute/bookings"
-          >
-            <button
-              class="btn btn-primary btn-lg btn-block ph-2"
-              :class="[
-                currentRoute.includes('bookings') ? 'button-active' : ''
-              ]"
-              type="button"
-            >
-              <div class="row">
-                <div class="col-3">
-                  <li class="fa fa-clock-o"></li>
-                </div>
-                <div class="col-9 text-left">
-                  <span style="font-size: smaller;">Customer Bookings</span>
-                </div>
-              </div>
-            </button>
-          </router-link>
-          <router-link
-            class="sidenav-button list-group-item"
-            to="/institute/reservations"
-          >
-            <button
-              class="btn btn-primary btn-lg btn-block ph-2"
-              :class="[
-                currentRoute.includes('reservations') ? 'button-active' : ''
-              ]"
-              type="button"
-            >
-              <div class="row">
-                <div class="col-3">
-                  <li class="fa fa-clock-o"></li>
-                </div>
-                <div class="col-9 text-left">
-                  <span style="font-size: smaller;">My Reservations</span>
-                </div>
-              </div>
-            </button>
-          </router-link>
-          <router-link
-            class="sidenav-button list-group-item"
-            to="/institute/catalog"
+            to="/individual/catalog"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
@@ -137,7 +95,7 @@
 .sidenav {
   background-color: rgb(9, 128, 255);
   height: 100vh;
-  min-height: 600px;
+  min-height: 500px;
   border-radius: 4px;
   position: relative;
 }
@@ -181,21 +139,17 @@
 button {
   border-radius: 0px;
 }
-.btn-lg {
-  font-size: 16px;
-}
 </style>
 
 <script>
 /* eslint-disable */
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex'
 export default {
   name: "SideNav",
-  data() {
+  data(){
     return {
-      user: {},
-      institute: {},
-    };
+      user: {}
+    }
   },
   computed: {
     currentRoute() {
@@ -203,16 +157,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["logout"]),
-    handleLogout() {
-      this.logout()
-        .then(() => this.$router.push({ name: "index" }))
-        .catch((err) => console.log(err));
-    },
+    ...mapActions(['logout']),
+    handleLogout(){
+      // this.logout().then(() =>  this.$router.push({ name: "index" })).catch((err)=> console.log(err))
+    }
   },
-  created() {
-    this.user = JSON.parse(localStorage.getItem("user"));
-    this.institute = JSON.parse(localStorage.getItem("institute"));
-  },
+  created(){
+    // this.user = JSON.parse(localStorage.getItem("user"))
+  }
 };
 </script>

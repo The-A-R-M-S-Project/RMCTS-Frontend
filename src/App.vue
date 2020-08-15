@@ -23,6 +23,7 @@ export default {
 <style>
 #app {
   font-family: "Montserrat", sans-serif;
+  overflow-y: hidden;
 }
 
 /* #nav {
