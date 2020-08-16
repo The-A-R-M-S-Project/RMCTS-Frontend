@@ -50,7 +50,7 @@
               <div class="login">
                 <button
                   class="btn btn-primary login"
-                  @click="handleSubmit"
+                  @click="validateBeforeLogin"
                   type="submit"
                 >
                   Login
@@ -68,7 +68,7 @@
         </div>
         <p>
           Don't have an account?
-          <router-link to="/individual-signup">Signup</router-link>
+          <router-link to="/individual-register">Signup</router-link>
         </p>
       </section>
     </main>

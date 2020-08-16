@@ -1,8 +1,7 @@
 /* eslint-disable */
 import axios from "axios";
 
-const api = "https://rmcts-api.herokuapp.com/"
-
+const api = "https://rmcts-api.herokuapp.com/";
 
 // state
 const state = {
@@ -33,7 +32,7 @@ const mutations = {
     state.loading = false;
     state.failed = true;
   },
-  signup_success: (state) => (state.signup = "success"),
+  // signup_success: (state) => (state.signup = "success"),
   verification_error: (state) => {
     (state.accountVerified = true), (state.loading = false);
   },
@@ -44,10 +43,7 @@ const actions = {
   login: async function({ commit }, data) {
     try {
       commit("auth_request");
-      let res = await axios.post(
-        api+"users/login",
-        data
-      );
+      let res = await axios.post(api + "users/login", data);
       console.log(res.body);
       localStorage.setItem("jwt", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.admin));
@@ -65,19 +61,16 @@ const actions = {
   individualLogin: async function({ commit }, data) {
     try {
       commit("auth_request");
-      let res = await axios.post(
-        api+"users/login",
-        data
-      );
+      let res = await axios.post(api + "users/login", data);
       console.log(res.data);
-      const user = res.data.data.user
-      const token = res.data.token
-      if(user.role === "individual"){
+      const user = res.data.data.user;
+      const token = res.data.token;
+      if (user.role === "individual") {
         localStorage.setItem("jwt", token);
         localStorage.setItem("user", JSON.stringify(user));
         commit("auth_success");
-      }else {
-        commit("auth_error")
+      } else {
+        commit("auth_error");
       }
     } catch (err) {
       console.log(err.response.data.type);
@@ -90,10 +83,7 @@ const actions = {
   },
   signup: async function({ commit }, user) {
     try {
-      let res = await axios.post(
-        api+"users",
-        user
-      );
+      let res = await axios.post(api + "users", user);
       console.log(res);
       commit("signup_success");
     } catch (err) {
@@ -101,12 +91,21 @@ const actions = {
       alert(err);
     }
   },
+  individualSignup: async function({ commit }, user) {
+    try {
+      commit("info_submission");
+      let res = await axios.post(api + "users", user);
+      console.log(res);
+      commit("submission_complete");
+      return res;
+    } catch (err) {
+      commit("submission_complete");
+      return err.response;
+    }
+  },
   orgSignup: async function({ commit }, institute) {
     try {
-      let res = await axios.post(
-        api+"users",
-        institute
-      );
+      let res = await axios.post(api + "users", institute);
       console.log(res);
       commit("signup_success");
     } catch (err) {
