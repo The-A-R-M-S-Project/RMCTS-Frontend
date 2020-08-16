@@ -14,7 +14,8 @@
               style="border-radius: 300px;"
               height
             />
-            <h5 class="m-3">{{ user.name || "username" }}</h5>
+            <h5 class="m-3">{{ user.username || "username" }}</h5>
+            <p class="m-3">{{ user.email }}</p>
             <!-- <p class="p-1">{{ user.email }}</p> -->
           </li>
           <router-link
@@ -35,7 +36,7 @@
                   <li class="fa fa-clock-o"></li>
                 </div>
                 <div class="col-9 text-left">
-                  <span style="font-size: smaller;">reservations</span>
+                  <span style="font-size: smaller;">Reservations</span>
                 </div>
               </div>
             </button>
