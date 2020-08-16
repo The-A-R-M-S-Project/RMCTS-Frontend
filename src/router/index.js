@@ -25,6 +25,7 @@ import IndividualLogin from "../views/individual/IndividualLogin";
 import IndividualProfile from "../views/individual/IndividualProfile";
 import IndividualCatalog from "../views/individual/IndividualCatalog";
 import IndividualEditProfile from "../views/individual/IndividualEditProfile";
+import IndividualRegister from "../views/individual/IndividualRegister.vue"
 
 Vue.use(VueRouter);
 
@@ -89,7 +90,15 @@ const routes = [
         },
     },
     {
-        path: "/token-sent",
+        path: "/individual-register",
+        name: "individual-register",
+        component: IndividualRegister,
+        meta: {
+            guest: true,
+        }
+    },
+    {
+        path: "/token-sent/:email",
         name: "token-sent",
         component: TokenSent,
         meta: {
