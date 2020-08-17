@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import api from "../../api";
 
 // state
@@ -127,6 +128,7 @@ const actions = {
     try {
       commit("info_submission");
       const user_id = JSON.parse(localStorage.getItem("user"))._id;
+      // eslint-disable-next-line no-unused-vars
       let user = await api.patch(`users/profile/${user_id}`, data);
       commit("submission_complete");
     } catch (err) {
