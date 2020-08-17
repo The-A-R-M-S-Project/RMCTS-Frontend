@@ -40,7 +40,6 @@ api.interceptors.response.use(
           // what to do;
           break;
         case 401:
-          alert("session expired");
           router.push("/session-expired");
           return Promise.reject(error.response);
       }

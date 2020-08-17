@@ -8,6 +8,7 @@ import Reservation from "../views/user/Reserve";
 import SignedUp from "../views/SignedUp";
 import FaceRecognition from "../views/FaceRecognition";
 import TokenSent from "../views/TokenSent";
+import SessionExpired from "../views/SessionExpired.vue"
 
 //institute
 import Institute from "../views/institute/Institute";
@@ -39,6 +40,14 @@ const routes = [
         meta: {
             guest: true,
         },
+    },
+    {
+        path: "/session-expired",
+        name: "session-expired",
+        component: SessionExpired, 
+        meta: {
+            requires_auth: true,
+        }
     },
     {
         path: "/institute-login",
