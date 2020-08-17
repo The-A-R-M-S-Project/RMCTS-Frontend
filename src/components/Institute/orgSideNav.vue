@@ -189,30 +189,40 @@ button {
 <script>
 /* eslint-disable */
 import { mapActions } from "vuex";
+import api from "../../api";
+
 export default {
   name: "SideNav",
   data() {
     return {
       user: {},
-      institute: {},
+      institute: {}
     };
   },
   computed: {
     currentRoute() {
       return this.$route.path;
-    },
+    }
   },
   methods: {
-    ...mapActions(["logout"]),
     handleLogout() {
-      this.logout()
-        .then(() => this.$router.push({ name: "index" }))
-        .catch((err) => console.log(err));
-    },
+      if (localStorage.getItem("jwt") != null) {
+        api
+          .post(`users/logout`)
+          .then(res => {
+            localStorage.clear();
+            sessionStorage.clear();
+            this.$router.push("/");
+          })
+          .catch(err => {
+            console.log(err.response.data.message);
+          });
+      }
+    }
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.institute = JSON.parse(localStorage.getItem("institute"));
-  },
+  }
 };
 </script>

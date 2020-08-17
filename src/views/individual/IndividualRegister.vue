@@ -6,10 +6,28 @@
     </div>
     <main class>
       <section class="main-body">
+        <div class="p-3" style="text-align: center">
+          <p v-if="error" class="text-danger">{{ errorMessage }}</p>
+        </div>
         <div class="form-card">
           <form>
             <div class="text-center">
-              <p class="text-info">LOGIN</p>
+              <p class="text-info">SIGNUP</p>
+            </div>
+            <div class="form-group">
+              <input
+                placeholder="username"
+                v-validate="'required'"
+                v-model="username"
+                :class="{ input: true, 'is-danger': errors.has('username') }"
+                name="username"
+                class="form-control item field"
+                type="text"
+                id="username"
+              />
+              <span v-show="errors.has('email')" class="help is-danger" id="msg"
+                ><small>{{ errors.first("email") }}</small></span
+              >
             </div>
             <div class="form-group">
               <input
@@ -45,30 +63,41 @@
                 ><small>{{ errors.first("password") }}</small></span
               >
             </div>
-            <small v-if="store_auth" id="msg">Wrong password or email</small>
+            <div class="form-group">
+              <input
+                placeholder="confirm password"
+                class="form-control item field"
+                v-model="passwordConfirm"
+                v-validate="'required|confirmed:password'"
+                name="password confirm"
+                :class="{ 'is-danger': errors.has('password') }"
+                type="password"
+                ref="password confirm"
+                id="password-confirm"
+              />
+              <span
+                v-show="errors.has('password')"
+                class="help is-danger"
+                id="msg"
+                ><small>{{ errors.first("password") }}</small></span
+              >
+            </div>
             <div class="buttons">
               <div class="login">
                 <button
                   class="btn btn-primary login"
-                  @click="validateBeforeLogin"
+                  @click="validateBeforeSignup"
                   type="submit"
                 >
-                  Login
+                  Signup
                 </button>
-              </div>
-              <div class>
-                <router-link to="face-auth" style="text-decoration: none">
-                  <button class="btn btn-success mt-3">
-                    Use face recognition
-                  </button>
-                </router-link>
               </div>
             </div>
           </form>
         </div>
         <p>
           Don't have an account?
-          <router-link to="/individual-register">Signup</router-link>
+          <router-link to="/individual-login">Login</router-link>
         </p>
       </section>
     </main>
@@ -83,55 +112,71 @@ import Loader from "@/components/loader";
 
 export default {
   name: "individual-login",
-    components: {
-      Loader
-    },
-    data() {
-      return {
-        email: "",
-        password: ""
-      };
-    },
-    computed: {
-      ...mapGetters({ store_loading: "loading", store_auth: "auth_failed" }),
-      ...mapGetters({ store_loading: "loading"}),
-  // create setter for loading computed property
-      loading: {
-        get() {
-          return this.store_loading;
-        },
-        set(loading) {
-          return loading;
-        }
-      }
-    },
-    methods: {
-      // load actions from store
-      ...mapActions(["individualLogin"]),
-      // method to handle login submission
-      handleSubmit(e) {
-        e.preventDefault();
-        this.loading = true;
-        this.individualLogin({ email: this.email, password: this.password })
-          .then(() => {
-            if (localStorage.getItem("jwt") != null) {
-              this.$emit("loggedIn");
-              this.$router.push({ name: "individual-profile" });
-            }
-          })
-          .catch(err => {console.log(err)});
+  components: {
+    Loader,
+  },
+  data() {
+    return {
+      username: "",
+      email: "",
+      password: "",
+      passwordConfirm: "",
+      role: "individual",
+      error: false,
+      errorMessage: "",
+    };
+  },
+  computed: {
+    ...mapGetters({ store_loading: "loading", store_auth: "auth_failed" }),
+    ...mapGetters({ store_loading: "loading" }),
+    // create setter for loading computed property
+    loading: {
+      get() {
+        return this.store_loading;
       },
-      // method to validate fields before submission
-      validateBeforeLogin(e) {
-        this.$validator.validateAll().then(result => {
-          if (result) {
-            // es-lint-disable-next-line
-            this.handleSubmit(e);
-            return;
+      set(loading) {
+        return loading;
+      },
+    },
+  },
+  methods: {
+    ...mapActions(["individualSignup"]),
+    // method to handle login submission
+    handleSubmit(e) {
+      e.preventDefault();
+      this.loading = true;
+      this.individualSignup({
+        email: this.email,
+        password: this.password,
+        username: this.username,
+        role: this.role,
+      })
+        .then((res) => {
+          console.log("response", res.status);
+          if (res.status === 400) {
+            this.errorMessage = res.data.msg;
+            this.error = true;
+          } else {
+            this.$router.push({
+              name: "token-sent",
+              params: { email: this.email },
+            });
           }
+        })
+        .catch((err) => {
+          console.log("error", err);
         });
-      }
-    }
+    },
+    // method to validate fields before submission
+    validateBeforeSignup(e) {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.handleSubmit(e);
+          return;
+        }
+      });
+    },
+  },
 };
 </script>
 
@@ -139,7 +184,7 @@ export default {
 $colors: (
   primary: #09a2ff,
   green: #1fb56f,
-  text: #707070
+  text: #707070,
 );
 
 @function color($thecolor) {

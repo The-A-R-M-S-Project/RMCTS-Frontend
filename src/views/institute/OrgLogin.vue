@@ -133,7 +133,7 @@ export default {
         .then(() => {
           if (localStorage.getItem("jwt") != null) {
             this.$emit("loggedIn");
-            this.$router.push({ name: "institute-profile" });
+            this.$router.push({ name: "institution-profile" });
           }
         })
         .catch(err => {});

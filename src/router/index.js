@@ -8,7 +8,7 @@ import Reservation from "../views/user/Reserve";
 import SignedUp from "../views/SignedUp";
 import FaceRecognition from "../views/FaceRecognition";
 import TokenSent from "../views/TokenSent";
-
+import SessionExpired from "../views/SessionExpired.vue"
 
 //institute
 import Institute from "../views/institute/Institute";
@@ -26,6 +26,7 @@ import IndividualLogin from "../views/individual/IndividualLogin";
 import IndividualProfile from "../views/individual/IndividualProfile";
 import IndividualCatalog from "../views/individual/IndividualCatalog";
 import IndividualEditProfile from "../views/individual/IndividualEditProfile";
+import IndividualRegister from "../views/individual/IndividualRegister.vue"
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,14 @@ const routes = [
         meta: {
             guest: true,
         },
+    },
+    {
+        path: "/session-expired",
+        name: "session-expired",
+        component: SessionExpired, 
+        meta: {
+            requires_auth: true,
+        }
     },
     {
         path: "/institute-login",
@@ -90,7 +99,15 @@ const routes = [
         },
     },
     {
-        path: "/token-sent",
+        path: "/individual-register",
+        name: "individual-register",
+        component: IndividualRegister,
+        meta: {
+            guest: true,
+        }
+    },
+    {
+        path: "/token-sent/:email",
         name: "token-sent",
         component: TokenSent,
         meta: {
@@ -106,24 +123,24 @@ const routes = [
         component: Institute,
         meta: {
             requiresAuth: true,
-            // guest: true
+            is_institution: true,
         },
         children: [{
                 path: "profile",
-                name: "institute-profile",
+                name: "institution-profile",
                 component: InstituteProfile,
                 meta: {
                     requiresAuth: true,
-                    // guest: true
+                    is_institution: true,
                 },
             },
             {
                 path: "equipment",
-                name: "institute-equipment",
+                name: "institution-equipment",
                 component: InstituteEquipment,
                 meta: {
                     requiresAuth: true,
-                    // guest: true
+                    is_institution: true,
                 },
             },
             {
@@ -132,7 +149,7 @@ const routes = [
                 component: EquipmentReservations,
                 meta: {
                     requiresAuth: true,
-                    // guest: true
+                    is_institution: true,
                 },
             },
             {
@@ -141,6 +158,7 @@ const routes = [
                 component: Catalog,
                 meta: {
                     requiresAuth: true,
+                    is_institution: true,
                 },
             },
             {
@@ -149,11 +167,12 @@ const routes = [
                 component: EquipmentBookings,
                 meta: {
                     requiresAuth: true,
+                    is_institution: true,
                 },
             },
             {
                 path: "details/:id",
-                name: "details",
+                name: "institution-details",
                 component: ItemDetails,
                 watch: {
                     // eslint-disable-next-line no-unused-vars
@@ -163,6 +182,7 @@ const routes = [
                 },
                 meta: {
                     requiresAuth: true,
+                    is_institution: true,
                 },
             },
             {
@@ -171,13 +191,17 @@ const routes = [
                 component: Reservation,
                 meta: {
                     requiresAuth: true,
+                    is_institution: true,
                 },
             },
             {
                 path: "catalog",
-                name: "individual-catalog",
+                name: "institution-catalog",
                 component: IndividualCatalog,
-                meta: {},
+                meta: {
+                    requiresAuth: true,
+                    is_institution: true,
+                },
             },
         ],
     },
@@ -193,7 +217,8 @@ const routes = [
                 name: "individual-profile",
                 component: IndividualProfile,
                 meta: {
-                    guest: true
+                    requires_auth: true,
+                    is_individual: true,
                 },
             },
             {
@@ -201,28 +226,31 @@ const routes = [
                 name: "individual-catalog",
                 component: IndividualCatalog,
                 meta: {
-                    guest: true
-                }
+                    requires_auth: true,
+                    is_individual: true,
+                },
             },
             {
                 path: "reservations",
                 name: "individual-reservations",
                 component: EquipmentReservations,
                 meta: {
-                    guest: true
-                }
+                    requires_auth: true,
+                    is_individual: true,
+                },
             },
             {
                 path: "edit-profile",
                 name: "individual-edit-profile",
                 component: IndividualEditProfile,
                 meta: {
-                    guest: true
-                }
+                    requires_auth: true,
+                    is_individual: true,
+                },
             },
             {
                 path: "details/:id",
-                name: "details",
+                name: "individual-details",
                 component: ItemDetails,
                 watch: {
                     // eslint-disable-next-line no-unused-vars
@@ -231,7 +259,8 @@ const routes = [
                     },
                 },
                 meta: {
-                    requiresAuth: true,
+                    requires_auth: true,
+                    is_individual: true,
                 },
             },
             {
@@ -239,7 +268,8 @@ const routes = [
                 name: "reservation",
                 component: Reservation,
                 meta: {
-                    requiresAuth: true,
+                    requires_auth: true,
+                    is_individual: true,
                 },
             },
         ],
@@ -254,20 +284,40 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.requiresAuth)) {
         if (localStorage.getItem("jwt") == null) {
-            alert("Signup/login");
+            alert("You're not logged in");
             next({
-                name: "register",
+                name: "index",
             });
         } else {
-            next();
+            const user = JSON.parse(localStorage.getItem("user"));
+            if (
+                to.matched.some((record) => record.meta.is_individual) &&
+                user.role === "individual"
+            ) {
+                next();
+            } else if (
+                to.matched.some((record) => record.meta.is_institution) &&
+                user.role === "institution"
+            ) {
+                next();
+            } else {
+                next();
+                return;
+            }
         }
         next();
     } else if (to.matched.some((record) => record.meta.guest)) {
         if (localStorage.getItem("jwt") == null) {
             next();
         } else {
-            next();
+            const role =  JSON.parse(localStorage.getItem("user")).role;
+            next(
+                {name: `${role}-profile`}
+            );
         }
+    }else{
+        next();
+        return
     }
 });
 export default router;
