@@ -1,4 +1,3 @@
-/* eslint-disable */
 import api from "../../api";
 
 // state
@@ -6,38 +5,38 @@ const state = {
   loading: false,
   failed: false,
   accountVerified: false,
-  userprofile: {},
+  userprofile: {}
 };
 
 // mutations
 const mutations = {
-  info_submission: (state) => {
+  info_submission: state => {
     state.loading = true;
   },
-  submission_complete: (state) => {
+  submission_complete: state => {
     state.loading = false;
   },
-  auth_request: (state) => {
+  auth_request: state => {
     state.loading = true;
     state.failed = false;
     state.accountVerified = false;
   },
-  auth_success: (state) => {
+  auth_success: state => {
     state.loading = false;
     state.failed = false;
     state.accountVerified = false;
   },
-  auth_error: (state) => {
+  auth_error: state => {
     state.loading = false;
     state.failed = true;
   },
   // signup_success: (state) => (state.signup = "success"),
-  verification_error: (state) => {
+  verification_error: state => {
     (state.accountVerified = true), (state.loading = false);
   },
   set_userprofile: (state, user) => {
     state.userprofile = user;
-  },
+  }
 };
 
 // actions
@@ -124,33 +123,32 @@ const actions = {
       console.log(err);
     }
   },
-  updateProfile: async function({commit}, data){
-    try{
-      commit("info_submission")
+  updateProfile: async function({ commit }, data) {
+    try {
+      commit("info_submission");
       const user_id = JSON.parse(localStorage.getItem("user"))._id;
       let user = await api.patch(`users/profile/${user_id}`, data);
-      commit("submission_complete")
-    }
-    catch(err){
+      commit("submission_complete");
+    } catch (err) {
       console.log(err.response);
-      commit("submission_complete")
+      commit("submission_complete");
     }
   }
 };
 
 // getters
 const getters = {
-  user: (state) => state.user,
-  institute: (state) => state.institute,
-  loading: (state) => state.loading,
-  auth_failed: (state) => state.failed,
-  account_verified: (state) => state.accountVerified,
-  user_profile: (state) => state.userprofile,
+  user: state => state.user,
+  institute: state => state.institute,
+  loading: state => state.loading,
+  auth_failed: state => state.failed,
+  account_verified: state => state.accountVerified,
+  user_profile: state => state.userprofile
 };
 
 export default {
   state,
   mutations,
   actions,
-  getters,
+  getters
 };
