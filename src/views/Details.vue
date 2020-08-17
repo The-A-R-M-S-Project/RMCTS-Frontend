@@ -155,8 +155,6 @@ img {
 }
 </style>
 <script>
-/* eslint-disable */
-import equipmentList from "@/services/equipment-service.js";
 // import Navbar from "@/components/User/Navigation";
 import addEventsModal from "@/components/User/addEventModal";
 
@@ -164,7 +162,8 @@ export default {
   name: "item-details",
   components: {
     // Navbar,
-    addEventsModal,
+    // eslint-disable-next-line vue/no-unused-components
+    addEventsModal
   },
   data() {
     return {
@@ -177,21 +176,23 @@ export default {
           description: "",
           userId: "",
           createdAt: "",
-          updatedAt: "",
+          updatedAt: ""
         },
         {
           ownerName: "",
           ownerEmail: "",
-          ownerContact: "",
-        },
-      ],
+          ownerContact: ""
+        }
+      ]
     };
   },
   created() {
     const id = this.$route.params.id;
-    this.$http.get(`https://rmcts-api.herokuapp.com/equipment/item/${id}`).then((res) => {
-      this.itemDetails = res.data;
-    });
-  },
+    this.$http
+      .get(`https://rmcts-api.herokuapp.com/equipment/item/${id}`)
+      .then(res => {
+        this.itemDetails = res.data;
+      });
+  }
 };
 </script>

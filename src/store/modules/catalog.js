@@ -1,7 +1,5 @@
-// import axios from "axios";
-/* eslint-disable*/
-
-import api from "../../api"
+/* eslint-disable no-console */
+import api from "../../api";
 
 const state = {
   equipment: [],

@@ -105,15 +105,15 @@
 </template>
 
 <script>
-/* eslint-disable */
-import axios from "axios";
+/* eslint-disable no-console */
+
 import { mapActions, mapGetters } from "vuex";
 import Loader from "@/components/loader";
 
 export default {
   name: "individual-login",
   components: {
-    Loader,
+    Loader
   },
   data() {
     return {
@@ -123,7 +123,7 @@ export default {
       passwordConfirm: "",
       role: "individual",
       error: false,
-      errorMessage: "",
+      errorMessage: ""
     };
   },
   computed: {
@@ -136,8 +136,8 @@ export default {
       },
       set(loading) {
         return loading;
-      },
-    },
+      }
+    }
   },
   methods: {
     ...mapActions(["individualSignup"]),
@@ -149,9 +149,9 @@ export default {
         email: this.email,
         password: this.password,
         username: this.username,
-        role: this.role,
+        role: this.role
       })
-        .then((res) => {
+        .then(res => {
           console.log("response", res.status);
           if (res.status === 400) {
             this.errorMessage = res.data.msg;
@@ -159,24 +159,24 @@ export default {
           } else {
             this.$router.push({
               name: "token-sent",
-              params: { email: this.email },
+              params: { email: this.email }
             });
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.log("error", err);
         });
     },
     // method to validate fields before submission
     validateBeforeSignup(e) {
-      this.$validator.validateAll().then((result) => {
+      this.$validator.validateAll().then(result => {
         if (result) {
           this.handleSubmit(e);
           return;
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -184,7 +184,7 @@ export default {
 $colors: (
   primary: #09a2ff,
   green: #1fb56f,
-  text: #707070,
+  text: #707070
 );
 
 @function color($thecolor) {

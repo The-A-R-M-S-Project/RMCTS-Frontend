@@ -52,28 +52,29 @@
 </template>
 
 <script>
-/* eslint-disable */
+/* eslint-disable no-console */
+
 export default {
   name: "individual-profile",
   data() {
     return {
-      user: {},
+      user: {}
     };
   },
   created() {
     this.$store.dispatch("profile");
     this.user = this.$store.getters.user_profile;
-    this.email = JSON.parse(localStorage.getItem("user")).email
-    console.log(this.user)
-  },
+    this.email = JSON.parse(localStorage.getItem("user")).email;
+    console.log(this.user);
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 $padding: 20px;
-.container {
-  // overflow-x: scroll;
-}
+// .container {
+//   // overflow-x: scroll;
+// }
 p {
   text-align: justify;
 }

@@ -52,12 +52,10 @@
 </style>
 
 <script>
-// import Navbar from "@/components/User/Navigation";
 import SideNav from "@/components/individual/sideNav";
 export default {
   name: "user",
   components: {
-    // Navbar,
     SideNav
   }
 };
