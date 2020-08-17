@@ -4,7 +4,7 @@
       <div class="col-3 side-nav">
         <SideNav />
       </div>
-      <div class="col-9 display-area">
+      <div class="col-9 mt-3 display-area">
         <router-view />
       </div>
     </div>

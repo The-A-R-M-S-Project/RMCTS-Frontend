@@ -119,7 +119,6 @@ const actions = {
     try {
       const user_id = JSON.parse(localStorage.getItem("user"))._id;
       let user = await api.get(`users/profile/${user_id}`);
-      console.log(user.data);
       commit("set_userprofile", user.data);
     } catch (err) {
       console.log(err);
@@ -127,12 +126,14 @@ const actions = {
   },
   updateProfile: async function({commit}, data){
     try{
+      commit("info_submission")
       const user_id = JSON.parse(localStorage.getItem("user"))._id;
-      let user = await api.patch(`users/profile/${user_id}`);
-      console.log(user.data)
+      let user = await api.patch(`users/profile/${user_id}`, data);
+      commit("submission_complete")
     }
     catch(err){
-      console.log(err);
+      console.log(err.response);
+      commit("submission_complete")
     }
   }
 };
