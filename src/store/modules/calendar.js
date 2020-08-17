@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-import axios from "axios";
-
-const api = "https://rmcts-api.herokuapp.com";
+import api from "../../api";
 
 //============================================================================================
 //                            STATE
@@ -40,7 +38,7 @@ const actions = {
   // Get account's reservations
   async myReservations({ commit }) {
     try {
-      let reservations = await axios.get(`${api}/reservations`);
+      let reservations = await api.get(`equipment/reservations`);
       reservations = reservations.data;
       console.log(reservations);
       commit("my_reservations", reservations);
@@ -52,7 +50,7 @@ const actions = {
   // Get account's bookings
   async myBookings({ commit }) {
     try {
-      let bookings = await axios.get(`${api}/bookings`);
+      let bookings = await api.get(`bookings`);
       bookings = bookings.data;
       console.log(bookings);
       commit("my_bookings", bookings);

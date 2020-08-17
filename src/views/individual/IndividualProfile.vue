@@ -2,7 +2,7 @@
   <div class="container">
     <section>
       <div class="row pt-5">
-        <p class="greeting">Hi username</p>
+        <p class="greeting">Hi {{ user.username }}</p>
         <router-link to="/individual/edit-profile"
           ><span class="edit-profile-link">edit profile</span></router-link
         >
@@ -13,10 +13,7 @@
         <h4 class="pt-3">Bio</h4>
         <hr />
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-          praesentium alias minima quis provident autem asperiores beatae
-          necessitatibus, maiores magni labore voluptates ullam nisi voluptas
-          dolor illum doloremque excepturi deleniti!
+          {{ user.bio }}
         </p>
       </div>
       <div class="container">
@@ -24,32 +21,28 @@
         <table class="table">
           <tbody>
             <tr>
-              <th>Institution</th>
-              <td>Makerere University</td>
+              <th>First Name</th>
+              <td>{{ user.firstname }}</td>
             </tr>
             <tr>
-              <th>Title</th>
-              <td>Student</td>
+              <th>Last Name</th>
+              <td>{{ user.lastname }}</td>
             </tr>
             <tr>
-              <th>Department</th>
-              <td>Electrical and Computer Engineering</td>
+              <th>Username</th>
+              <td>{{ user.username }}</td>
             </tr>
             <tr>
-              <th>District</th>
-              <td>Kampala</td>
-            </tr>
-            <tr>
-              <th>Gender</th>
-              <td>Male</td>
+              <th>Address</th>
+              <td>{{ user.address }}</td>
             </tr>
             <tr>
               <th>Contact</th>
-              <td>+256782862788</td>
+              <td>{{ user.contact }}</td>
             </tr>
             <tr>
               <th>Email</th>
-              <td>user@example.com</td>
+              <td>{{ email }}</td>
             </tr>
           </tbody>
         </table>
@@ -59,16 +52,29 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
+
 export default {
-  name: "individual-profile"
+  name: "individual-profile",
+  data() {
+    return {
+      user: {}
+    };
+  },
+  created() {
+    this.$store.dispatch("profile");
+    this.user = this.$store.getters.user_profile;
+    this.email = JSON.parse(localStorage.getItem("user")).email;
+    console.log(this.user);
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 $padding: 20px;
-.container {
-  // overflow-x: scroll;
-}
+// .container {
+//   // overflow-x: scroll;
+// }
 p {
   text-align: justify;
 }

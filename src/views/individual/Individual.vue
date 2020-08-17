@@ -4,7 +4,7 @@
       <div class="col-3 side-nav">
         <SideNav />
       </div>
-      <div class="col-9 display-area">
+      <div class="col-9 mt-3 display-area">
         <router-view />
       </div>
     </div>
@@ -52,12 +52,10 @@
 </style>
 
 <script>
-// import Navbar from "@/components/User/Navigation";
 import SideNav from "@/components/individual/sideNav";
 export default {
   name: "user",
   components: {
-    // Navbar,
     SideNav
   }
 };

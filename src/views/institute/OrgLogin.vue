@@ -92,11 +92,9 @@
 </style>
 
 <script>
-/* eslint-disable */
-import axios from "axios";
 import { mapActions, mapGetters } from "vuex";
 import Loader from "@/components/loader";
-import NotVerified from "@/components/notVerified"
+import NotVerified from "@/components/notVerified";
 
 export default {
   name: "login",
@@ -111,7 +109,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ store_loading: "loading", store_auth: "auth_failed", store_verification: "account_verified"}),
+    ...mapGetters({
+      store_loading: "loading",
+      store_auth: "auth_failed",
+      store_verification: "account_verified"
+    }),
     // create setter for loading computed property
     loading: {
       get() {
@@ -133,9 +135,10 @@ export default {
         .then(() => {
           if (localStorage.getItem("jwt") != null) {
             this.$emit("loggedIn");
-            this.$router.push({ name: "institute-profile" });
+            this.$router.push({ name: "institution-profile" });
           }
         })
+        // eslint-disable-next-line no-unused-vars
         .catch(err => {});
     },
     // method to validate fields before submission

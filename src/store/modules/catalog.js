@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-import axios from "axios";
-
-const api = "https://rmcts-api.herokuapp.com";
+import api from "../../api";
 
 const state = {
   equipment: [],
@@ -21,14 +19,14 @@ const mutations = {
 const actions = {
   catalogedEquipment: async ({ commit }) => {
     try {
-      let response = await axios.get(`${api}/equipment/catalog`);
+      let response = await api.get(`equipment/catalog`);
       await commit("UpdateEquipment", response.data);
     } catch (error) {
       console.log(error);
     }
   },
   searchTerm: ({ commit }, search) => {
-    axios.post(`${api}/equipment/search`, { search: search }).then(res => {
+    api.post(`equipment/search`, { search: search }).then(res => {
       console.log(res.data);
       console.log(search);
       commit("UpdateEquipment", res.data);

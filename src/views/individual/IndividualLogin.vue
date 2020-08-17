@@ -48,14 +48,13 @@
             <small v-if="store_auth" id="msg">Wrong password or email</small>
             <div class="buttons">
               <div class="login">
-                <router-link
-                  to="/individual/profile"
-                  style="text-decoration: none"
+                <button
+                  class="btn btn-primary login"
+                  @click="validateBeforeLogin"
+                  type="submit"
                 >
-                  <button class="btn btn-primary login" type="submit">
-                    Login
-                  </button>
-                </router-link>
+                  Login
+                </button>
               </div>
               <div class>
                 <router-link to="face-auth" style="text-decoration: none">
@@ -69,7 +68,7 @@
         </div>
         <p>
           Don't have an account?
-          <router-link to="/individual-signup">Signup</router-link>
+          <router-link to="/individual-register">Signup</router-link>
         </p>
       </section>
     </main>
@@ -77,63 +76,63 @@
 </template>
 
 <script>
-// /* eslint-disable */
-// // import axios from "axios";
-// import { mapActions, mapGetters } from "vuex";
-// import Loader from "@/components/loader";
+/* eslint-disable */
+import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
+import Loader from "@/components/loader";
 
-// export default {
-//   name: "individual-login",
-//     components: {
-//       Loader
-//     },
-//     data() {
-//       return {
-//         email: "",
-//         password: ""
-//       };
-//     },
-//     computed: {
-//     //   ...mapGetters({ store_loading: "loading", store_auth: "auth_failed" }),
-//       ...mapGetters({ store_loading: "loading"}),
-// //   create setter for loading computed property
-//       loading: {
-//         get() {
-//           return this.store_loading;
-//         },
-//         set(loading) {
-//           return loading;
-//         }
-//       }
-//     },
-//     methods: {
-//       // load actions from store
-//       ...mapActions(["login"]),
-//       // method to handle login submission
-//       handleSubmit(e) {
-//         e.preventDefault();
-//         this.loading = true;
-//         this.login({ email: this.email, password: this.password })
-//           .then(() => {
-//             if (localStorage.getItem("jwt") != null) {
-//               this.$emit("loggedIn");
-//               this.$router.push({ name: "user-profile" });
-//             }
-//           })
-//           .catch(err => {});
-//       },
-//       // method to validate fields before submission
-//       validateBeforeLogin(e) {
-//         this.$validator.validateAll().then(result => {
-//           if (result) {
-//             // es-lint-disable-next-line
-//             this.handleSubmit(e);
-//             return;
-//           }
-//         });
-//       }
-//     }
-// };
+export default {
+  name: "individual-login",
+    components: {
+      Loader
+    },
+    data() {
+      return {
+        email: "",
+        password: ""
+      };
+    },
+    computed: {
+      ...mapGetters({ store_loading: "loading", store_auth: "auth_failed" }),
+      ...mapGetters({ store_loading: "loading"}),
+  // create setter for loading computed property
+      loading: {
+        get() {
+          return this.store_loading;
+        },
+        set(loading) {
+          return loading;
+        }
+      }
+    },
+    methods: {
+      // load actions from store
+      ...mapActions(["individualLogin"]),
+      // method to handle login submission
+      handleSubmit(e) {
+        e.preventDefault();
+        this.loading = true;
+        this.individualLogin({ email: this.email, password: this.password })
+          .then(() => {
+            if (localStorage.getItem("jwt") != null) {
+              this.$emit("loggedIn");
+              this.$router.push({ name: "individual-profile" });
+            }
+          })
+          .catch(err => {console.log(err)});
+      },
+      // method to validate fields before submission
+      validateBeforeLogin(e) {
+        this.$validator.validateAll().then(result => {
+          if (result) {
+            // es-lint-disable-next-line
+            this.handleSubmit(e);
+            return;
+          }
+        });
+      }
+    }
+};
 </script>
 
 <style lang="scss" scoped>
