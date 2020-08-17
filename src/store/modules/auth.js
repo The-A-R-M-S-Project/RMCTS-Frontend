@@ -1,13 +1,12 @@
 /* eslint-disable */
-import axios from "axios";
-
-const api = "https://rmcts-api.herokuapp.com/";
+import api from "../../api";
 
 // state
 const state = {
   loading: false,
   failed: false,
   accountVerified: false,
+  userprofile: {},
 };
 
 // mutations
@@ -36,6 +35,9 @@ const mutations = {
   verification_error: (state) => {
     (state.accountVerified = true), (state.loading = false);
   },
+  set_userprofile: (state, user) => {
+    state.userprofile = user;
+  },
 };
 
 // actions
@@ -43,7 +45,7 @@ const actions = {
   login: async function({ commit }, data) {
     try {
       commit("auth_request");
-      let res = await axios.post(api + "users/login", data);
+      let res = await api.post("users/login", data);
       console.log(res.body);
       localStorage.setItem("jwt", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.admin));
@@ -61,7 +63,7 @@ const actions = {
   individualLogin: async function({ commit }, data) {
     try {
       commit("auth_request");
-      let res = await axios.post(api + "users/login", data);
+      let res = await api.post("users/login", data);
       console.log(res.data);
       const user = res.data.data.user;
       const token = res.data.token;
@@ -83,7 +85,7 @@ const actions = {
   },
   signup: async function({ commit }, user) {
     try {
-      let res = await axios.post(api + "users", user);
+      let res = await api.post("users", user);
       console.log(res);
       commit("signup_success");
     } catch (err) {
@@ -94,7 +96,7 @@ const actions = {
   individualSignup: async function({ commit }, user) {
     try {
       commit("info_submission");
-      let res = await axios.post(api + "users", user);
+      let res = await api.post("users", user);
       console.log(res);
       commit("submission_complete");
       return res;
@@ -105,7 +107,7 @@ const actions = {
   },
   orgSignup: async function({ commit }, institute) {
     try {
-      let res = await axios.post(api + "users", institute);
+      let res = await api.post("users", institute);
       console.log(res);
       commit("signup_success");
     } catch (err) {
@@ -113,6 +115,26 @@ const actions = {
       alert(err);
     }
   },
+  profile: async function({ commit }) {
+    try {
+      const user_id = JSON.parse(localStorage.getItem("user"))._id;
+      let user = await api.get(`users/profile/${user_id}`);
+      console.log(user.data);
+      commit("set_userprofile", user.data);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  updateProfile: async function({commit}, data){
+    try{
+      const user_id = JSON.parse(localStorage.getItem("user"))._id;
+      let user = await api.patch(`users/profile/${user_id}`);
+      console.log(user.data)
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
 };
 
 // getters
@@ -122,6 +144,7 @@ const getters = {
   loading: (state) => state.loading,
   auth_failed: (state) => state.failed,
   account_verified: (state) => state.accountVerified,
+  user_profile: (state) => state.userprofile,
 };
 
 export default {

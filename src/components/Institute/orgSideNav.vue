@@ -189,6 +189,8 @@ button {
 <script>
 /* eslint-disable */
 import { mapActions } from "vuex";
+import api from "../../api";
+
 export default {
   name: "SideNav",
   data() {
@@ -205,8 +207,8 @@ export default {
   methods: {
     handleLogout() {
       if (localStorage.getItem("jwt") != null) {
-        this.$http
-          .post(api + `users/logout`)
+        api
+          .post(`users/logout`)
           .then(res => {
             localStorage.clear();
             sessionStorage.clear();
