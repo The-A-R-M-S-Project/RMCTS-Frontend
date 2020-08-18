@@ -92,12 +92,14 @@
 </style>
 
 <script>
+/* eslint-disable no-console */
+
 import { mapActions, mapGetters } from "vuex";
 import Loader from "@/components/loader";
 import NotVerified from "@/components/notVerified";
 
 export default {
-  name: "login",
+  name: "instituteLogin",
   components: {
     Loader,
     NotVerified
@@ -114,6 +116,7 @@ export default {
       store_auth: "auth_failed",
       store_verification: "account_verified"
     }),
+    ...mapGetters({ store_loading: "loading" }),
     // create setter for loading computed property
     loading: {
       get() {
@@ -126,20 +129,21 @@ export default {
   },
   methods: {
     // load actions from store
-    ...mapActions(["login"]),
+    ...mapActions(["instituteLogin"]),
     // method to handle login submission
     handleSubmit(e) {
       e.preventDefault();
       this.loading = true;
-      this.login({ email: this.email, password: this.password })
+      this.instituteLogin({ email: this.email, password: this.password })
         .then(() => {
           if (localStorage.getItem("jwt") != null) {
             this.$emit("loggedIn");
             this.$router.push({ name: "institution-profile" });
           }
         })
-        // eslint-disable-next-line no-unused-vars
-        .catch(err => {});
+        .catch(err => {
+          console.log(err);
+        });
     },
     // method to validate fields before submission
     validateBeforeLogin(e) {
