@@ -191,7 +191,7 @@ const routes = [
         component: Reservation,
         meta: {
           requiresAuth: true,
-					is_institution: true
+          is_institution: true
         }
       },
       {

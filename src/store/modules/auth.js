@@ -49,7 +49,7 @@ const actions = {
       console.log(res.data);
       const user = res.data.data.user;
       const token = res.data.token;
-      if (user.role === "institute") {
+      if (user.role === "institution") {
         localStorage.setItem("jwt", token);
         localStorage.setItem("user", JSON.stringify(user));
         commit("auth_success");
