@@ -14,9 +14,9 @@ import Institute from "../views/institute/Institute";
 import InstituteEquipment from "../views/institute/Equipment";
 import InstituteProfile from "../views/institute/HomePage";
 import EquipmentBookings from "../views/institute/EquipmentBookings.vue";
+import InstituteEditProfile from "../views/institute/OrgEditProfile.vue";
 import InstituteLogin from "../views/institute/OrgLogin";
 import OrgForm1 from "../views/institute/OrgReg1";
-import OrgForm2 from "../views/institute/OrgReg2";
 import EquipmentReservations from "../views/user/EquipmentReservations";
 
 // individual
@@ -85,14 +85,6 @@ const routes = [
     path: "/institute-register/first-step",
     name: "first-step",
     component: OrgForm1,
-    meta: {
-      guest: true
-    }
-  },
-  {
-    path: "/institute-register/last-step",
-    name: "last-step",
-    component: OrgForm2,
     meta: {
       guest: true
     }
@@ -200,6 +192,15 @@ const routes = [
         component: IndividualCatalog,
         meta: {
           requiresAuth: true,
+          is_institution: true
+        }
+      },
+      {
+        path: "edit-profile",
+        name: "institution-edit-profile",
+        component: InstituteEditProfile,
+        meta: {
+          requires_auth: true,
           is_institution: true
         }
       }

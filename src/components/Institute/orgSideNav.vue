@@ -4,7 +4,7 @@
       <div class="pt-3">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center card-header">
-            <router-link to="">
+            <router-link to="/institute/edit-profile">
               <img
                 :src="
                   user.profileImage ||
