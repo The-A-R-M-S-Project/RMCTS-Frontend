@@ -16,7 +16,7 @@
                 style="border-radius: 300px;"
               />
             </router-link>
-            <h5 class="mt-3 p-0">{{ user.name }}</h5>
+            <h5 class="mt-3 p-0">{{ user.username }}</h5>
             <p class="p-1">{{ user.email }}</p>
           </li>
           <router-link
@@ -223,7 +223,7 @@ export default {
     }
   },
   created() {
-    this.institute = JSON.parse(localStorage.getItem("user"));
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 };
 </script>
