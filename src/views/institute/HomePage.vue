@@ -1,6 +1,6 @@
 <template>
   <div class="profile ml-5 mr-5">
-    <h1 class="text-center text-info">{{ institute.name }}</h1>
+    <h1 class="text-center text-info">{{ user.username }}</h1>
     <div class="row p-2">
       <div class="col-6 equipment">
         <p class="text-center">
@@ -99,11 +99,11 @@ export default {
   },
   data() {
     return {
-      institute: {}
+      user: {}
     };
   },
   created() {
-    this.institute = JSON.parse(localStorage.getItem("institute"));
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 };
 </script>
