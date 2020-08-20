@@ -48,7 +48,7 @@
 import SideNav from "@/components/Institute/orgSideNav";
 // import Body from "@/views/institute/homepage";
 export default {
-  name: "institute",
+  name: "institution-profile",
   components: {
     SideNav
   }
