@@ -81,8 +81,8 @@ const routes = [
     }
   },
   {
-    path: "/institute-register/first-step",
-    name: "first-step",
+    path: "/institute-register",
+    name: "institute-register",
     component: InstituteRegister,
     meta: {
       guest: true
