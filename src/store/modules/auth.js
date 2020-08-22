@@ -88,14 +88,16 @@ const actions = {
       }
     }
   },
-  signup: async function({ commit }, user) {
+  instituteSignup: async function({ commit }, user) {
     try {
+      commit("info_submission");
       let res = await api.post("users", user);
       console.log(res);
-      commit("signup_success");
+      commit("submission_complete");
+      return res;
     } catch (err) {
-      console.log(err);
-      alert(err);
+      commit("submission_complete");
+      return err.response;
     }
   },
   individualSignup: async function({ commit }, user) {
