@@ -16,7 +16,7 @@ import InstituteProfile from "../views/institute/HomePage";
 import EquipmentBookings from "../views/institute/EquipmentBookings.vue";
 import InstituteEditProfile from "../views/institute/OrgEditProfile.vue";
 import InstituteLogin from "../views/institute/OrgLogin";
-import OrgForm1 from "../views/institute/OrgReg1";
+import InstituteRegister from "../views/institute/OrgRegister";
 import EquipmentReservations from "../views/user/EquipmentReservations";
 
 // individual
@@ -72,7 +72,6 @@ const routes = [
       guest: true
     }
   },
-
   {
     path: "/face-auth",
     name: "face-recognition",
@@ -84,7 +83,7 @@ const routes = [
   {
     path: "/institute-register/first-step",
     name: "first-step",
-    component: OrgForm1,
+    component: InstituteRegister,
     meta: {
       guest: true
     }
