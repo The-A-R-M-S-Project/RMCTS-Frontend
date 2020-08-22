@@ -4,7 +4,7 @@
     <div v-if="loading">
       <Loader />
     </div>
-    <main class>
+    <main>
       <section class="main-body">
         <div class="p-3" style="text-align: center">
           <p v-if="error" class="text-danger">{{ errorMessage }}</p>
@@ -25,9 +25,6 @@
                 type="text"
                 id="username"
               />
-              <span v-show="errors.has('email')" class="help is-danger" id="msg"
-                ><small>{{ errors.first("email") }}</small></span
-              >
             </div>
             <div class="form-group">
               <input
@@ -111,7 +108,7 @@ import { mapActions, mapGetters } from "vuex";
 import Loader from "@/components/loader";
 
 export default {
-  name: "individual-login",
+  name: "individual-register",
   components: {
     Loader
   },
