@@ -4,18 +4,20 @@
       <div class="pt-3">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center card-header">
-            <img
-              :src="
-                institute.profileImage ||
-                  'https://image.freepik.com/free-icon/organization_318-1631.jpg'
-              "
-              class="mt-3 card-img-top img-fluid profile-image"
-              alt="profile
+            <router-link to="/institute/edit-profile">
+              <img
+                :src="
+                  user.profileImage ||
+                    'https://image.freepik.com/free-icon/organization_318-1631.jpg'
+                "
+                class="mt-3 card-img-top img-fluid profile-image"
+                alt="profile
             picture"
-              style="border-radius: 300px;"
-            />
-            <h5 class="mt-3 p-0">{{ institute.name }}</h5>
-            <p class="p-1">{{ institute.email }}</p>
+                style="border-radius: 300px;"
+              />
+            </router-link>
+            <h5 class="mt-3 p-0">{{ user.username }}</h5>
+            <p class="p-1">{{ user.email }}</p>
           </li>
           <router-link
             class="sidenav-button list-group-item"
@@ -195,8 +197,7 @@ export default {
   name: "SideNav",
   data() {
     return {
-      user: {},
-      institute: {}
+      user: {}
     };
   },
   computed: {
@@ -205,6 +206,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["logout"]),
     handleLogout() {
       if (localStorage.getItem("jwt") != null) {
         api
@@ -222,7 +224,6 @@ export default {
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("user"));
-    this.institute = JSON.parse(localStorage.getItem("institute"));
   }
 };
 </script>

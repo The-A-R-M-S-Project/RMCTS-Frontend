@@ -42,15 +42,20 @@ const mutations = {
 
 // actions
 const actions = {
-  login: async function({ commit }, data) {
+  instituteLogin: async function({ commit }, data) {
     try {
       commit("auth_request");
       let res = await api.post("users/login", data);
-      console.log(res.body);
-      localStorage.setItem("jwt", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.admin));
-      localStorage.setItem("institute", JSON.stringify(res.data.admin));
-      commit("auth_success");
+      console.log(res.data);
+      const user = res.data.data.user;
+      const token = res.data.token;
+      if (user.role === "institution") {
+        localStorage.setItem("jwt", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        commit("auth_success");
+      } else {
+        commit("auth_error");
+      }
     } catch (err) {
       console.log(err.response.data.type);
       if (err.response.data.type == "not-verified") {
@@ -83,14 +88,16 @@ const actions = {
       }
     }
   },
-  signup: async function({ commit }, user) {
+  instituteSignup: async function({ commit }, user) {
     try {
+      commit("info_submission");
       let res = await api.post("users", user);
       console.log(res);
-      commit("signup_success");
+      commit("submission_complete");
+      return res;
     } catch (err) {
-      console.log(err);
-      alert(err);
+      commit("submission_complete");
+      return err.response;
     }
   },
   individualSignup: async function({ commit }, user) {
@@ -109,10 +116,11 @@ const actions = {
     try {
       let res = await api.post("users", institute);
       console.log(res);
-      commit("signup_success");
+      commit("submission_complete");
+      return res;
     } catch (err) {
-      console.log(err);
-      alert(err);
+      commit("submmission_complete");
+      return err.response;
     }
   },
   profile: async function({ commit }) {
