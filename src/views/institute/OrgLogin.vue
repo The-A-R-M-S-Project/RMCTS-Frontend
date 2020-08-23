@@ -1,22 +1,22 @@
 <template>
   <div>
+    <div id="bg"></div>
     <div v-if="store_verification">
       <NotVerified />
     </div>
     <div v-if="loading">
       <Loader />
     </div>
-    <main class="login-page page registration-page">
-      <section class="clean-block clean-form dark overlay1">
-        <div class="container">
-          <div class="block-heading"></div>
+    <main>
+      <section class="main-body">
+        <div class="login-card">
           <form>
             <div class="text-center">
-              <h2 class="text-info">Log In</h2>
+              <h2 class="text-info">LOGIN</h2>
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
               <input
+                placeholder="Email"
                 v-validate="'required|email'"
                 v-model="email"
                 :class="{ input: true, 'is-danger': errors.has('email') }"
@@ -33,8 +33,8 @@
               >
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
               <input
+                placeholder="Password"
                 class="form-control item"
                 v-model="password"
                 v-validate="'required|max:20|min:7'"
@@ -51,43 +51,101 @@
                 >{{ errors.first("password") }}</span
               >
             </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="checkbox" />
-                <label class="form-check-label" for="checkbox"
-                  >Remember me</label
-                >
-              </div>
-            </div>
             <small v-if="store_auth" id="msg">Wrong password or email</small>
-            <div class="login">
-              <button
-                class="btn btn-primary btn-block login"
-                @click.prevent="validateBeforeLogin"
-                type="submit"
-              >
-                Log In
-              </button>
-            </div>
-            <div class="form-group">
-              <router-link to="/institute-register/first-step">
-                <p>Don't Have an account?</p>
-              </router-link>
+            <div class="buttons">
+              <div class="login">
+                <button
+                  class="btn btn-primary login"
+                  @click.prevent="validateBeforeLogin"
+                  type="submit"
+                >
+                  Log In
+                </button>
+              </div>
             </div>
           </form>
         </div>
+        <p>
+          Don't have an account?
+          <router-link to="/institute-register">Signup</router-link>
+        </p>
       </section>
     </main>
   </div>
 </template>
 
-<style scoped>
-.login:hover {
-  text-decoration: none;
+<style lang="scss" scoped>
+$colors: (
+  primary: #09a2ff,
+  green: #1fb56f,
+  text: #707070
+);
+
+@function color($thecolor) {
+  @return map-get($colors, $thecolor);
+}
+
+$radius: 20px;
+$padding: 15px;
+
+.text-info {
+  padding-top: 15px;
+  padding-bottom: $padding;
+  font-size: 20px;
+  color: color(primary);
+  font-weight: bold;
+}
+.main-body {
+  padding-top: 20vh;
+  p {
+    text-align: center;
+    padding-top: 30px;
+    color: color(text);
+  }
+}
+input {
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+.login-card {
+  box-shadow: 2px 5px 10px gray;
+  border-radius: $radius;
+  padding: $padding;
+  margin: auto;
+  height: auto;
+  max-height: 400px;
+  max-width: 30rem;
+}
+.btn {
+  text-align: center;
+  width: 200px;
+  font-size: 15px;
+  border-radius: $radius;
+}
+.buttons {
+  text-align: center;
+  padding-top: $padding;
+}
+.btn-primary {
+  background-color: color(primary);
+  border: 0px;
+}
+.btn-success {
+  background-color: color(green);
+  border: 0px;
+}
+.overlay1 {
+  background-image: url("~@/assets/img/tech/image8.jpg");
+  height: 100vh;
 }
 #msg {
-  color: red;
-  font-size: 14px;
+  color: rgb(70, 6, 6);
+  font-size: 11px;
+}
+.form-group {
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 </style>
 
