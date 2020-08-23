@@ -18,7 +18,7 @@
               <input
                 placeholder="Company Name"
                 class="form-control item"
-                v-model="username"
+                v-model="companyName"
                 name="name"
                 v-validate="'required|max:25'"
                 :class="{ input: true, 'is-danger': errors.has('name') }"
@@ -201,12 +201,11 @@ input {
 .reg-card {
   box-shadow: 2px 5px 10px gray;
   border-radius: $radius;
-  // width: 27rem;
   padding: $padding;
   margin: auto;
   height: auto;
   max-height: 460px;
-  max-width: 27rem;
+  max-width: 30rem;
 }
 .btn {
   text-align: center;
@@ -246,7 +245,7 @@ export default {
   components: { Loader },
   data() {
     return {
-      username: "",
+      companyName: "",
       password: "",
       passwordConfirm: "",
       email: "",
@@ -266,8 +265,9 @@ export default {
       this.instituteSignup({
         email: this.email,
         password: this.password,
-        username: this.username,
+        username: this.companyName,
         contact: this.contact,
+        websiteURL: this.websiteURL,
         address: this.address,
         role: this.role
       })
