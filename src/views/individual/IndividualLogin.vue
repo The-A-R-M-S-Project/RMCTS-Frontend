@@ -4,7 +4,7 @@
     <div v-if="loading">
       <Loader />
     </div>
-    <main class>
+    <main>
       <section class="main-body">
         <div class="form-card">
           <form>
@@ -56,7 +56,7 @@
                   Login
                 </button>
               </div>
-              <div class>
+              <div>
                 <router-link to="face-auth" style="text-decoration: none">
                   <button class="btn btn-success mt-3">
                     Use face recognition
