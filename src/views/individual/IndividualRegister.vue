@@ -25,6 +25,12 @@
                 type="text"
                 id="username"
               />
+              <span
+                v-show="errors.has('username')"
+                class="help is-danger"
+                id="msg"
+                >{{ errors.first("username") }}</span
+              >
             </div>
             <div class="form-group">
               <input
@@ -93,7 +99,7 @@
           </form>
         </div>
         <p>
-          Don't have an account?
+          Already have an account?
           <router-link to="/individual-login">Login</router-link>
         </p>
       </section>
