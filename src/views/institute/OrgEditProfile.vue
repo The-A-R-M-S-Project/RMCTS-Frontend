@@ -12,7 +12,7 @@
         ></textarea>
       </div>
       <div class="form-group">
-        <label for="institutionName">Username</label>
+        <label for="institutionName">Company Name</label>
         <input
           placeholder="Company Name"
           class="form-control"
@@ -81,10 +81,10 @@ export default {
     async handleSubmit(e) {
       e.preventDefault();
       await this.$store.dispatch("updateProfile", {
-        websiteURL: this.user.websiteURL,
         bio: this.user.bio,
         contact: `${this.contact.length == 9 ? `+256${this.contact}` : ""}`,
         address: this.user.address,
+        websiteurl: this.user.websiteURL,
         username: this.user.username
       });
       await this.$store.dispatch("profile");
