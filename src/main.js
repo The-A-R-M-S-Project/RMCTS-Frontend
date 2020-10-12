@@ -7,40 +7,43 @@ import VeeValidate from "vee-validate";
 import modal from "vue-js-modal";
 import api from "./api";
 // import PortalVue from "portal-vue";
-
+/* eslint-disable */
 Vue.prototype.$user = JSON.parse(localStorage.getItem("user"));
 Vue.prototype.$http = api;
 api.defaults.timeout = 10000;
 
 api.interceptors.request.use(
-  config => {
+  (config) => {
     const token = localStorage.getItem("jwt");
     if (token) {
       config.headers.Authorization = "Bearer " + token;
     }
     return config;
   },
-  error => {
+  (error) => {
     return Promise.reject(error);
   }
 );
 
 api.interceptors.response.use(
-  response => {
+  (response) => {
     if (response.status === 200 || response.status === 201) {
       return Promise.resolve(response);
     } else {
       return Promise.reject(response);
     }
   },
-  error => {
+  (error) => {
     if (error.response.status) {
       switch (error.response.status) {
         case 404:
           // what to do;
           break;
         case 401:
-          router.push("/session-expired");
+          if (error.response.data.type != "not-verified") {
+            console.log(error.response);
+            router.push("/session-expired");
+          }
           return Promise.reject(error.response);
       }
     }
@@ -52,8 +55,8 @@ Vue.use(VeeValidate, {
   validity: true,
   classNames: {
     valid: "is-valid",
-    invalid: "is-invalid"
-  }
+    invalid: "is-invalid",
+  },
 });
 
 Vue.use(modal, { dynamic: true });
@@ -62,5 +65,5 @@ Vue.use(modal, { dynamic: true });
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

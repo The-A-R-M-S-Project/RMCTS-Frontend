@@ -52,7 +52,7 @@ export default {
       this.$store.commit("info_submission");
       // const my = function()
       this.$http
-        .post("https://rmcts-api.herokuapp.com/admins/resend", data)
+        .post("https://rmcts-api.herokuapp.com/users/resend", data)
         .then((res)=>{
           console.log(res);
           this.$store.commit("submission_complete");
@@ -60,7 +60,7 @@ export default {
         })
         .catch((err)=>{
           this.$store.commit("submission_complete");
-          console.log(err.response);
+          console.log(err);
         });
     },
     // method to validate fields before submission
