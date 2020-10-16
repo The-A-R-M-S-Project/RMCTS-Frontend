@@ -1,27 +1,32 @@
 <template>
   <div class="camera d-flex align-items-center flex-column">
-    <div
-      v-if="detection"
-      style="color: white; text-align: center; font-weight: light"
-    >
-      <h2>Detecting...</h2>
-      <Loader />
-    </div>
     <div>
       <video autoplay id="v" class="webcam"></video>
     </div>
-    <!-- <input type="email"> -->
-    <div v-if="detectionComplete">
-      <p style="color: white">Your are {{ getUser }}</p>
-    </div>
     <div>
-      <button
-        class="btn btn-primary"
-        style="height: 75px; width: 75px; border-radius: 40px"
-        @click="recognizeFace"
-      >
-        {{ getaction }}
-      </button>
+      <form class="loginform">
+        <input
+          placeholder="Email"
+          v-validate="'required|email'"
+          v-model="email"
+          :class="{ input: true, 'is-danger': errors.has('email') }"
+          name="email"
+          class="form-control item field mt-3"
+          type="email"
+          id="email"
+        />
+        <span v-show="errors.has('email')" class="help is-danger" id="msg"
+          ><small>{{ errors.first("email") }}</small></span
+        >
+        <button
+          class="btn btn-primary mt-2"
+          style="height: 75px; width: 75px; border-radius: 40px; color: yellow; font-size: 18px;"
+          @click="validateBeforeLogin"
+        >
+          Login
+        </button>
+        <h3 v-if="auth_failed" class="text-danger">Login failed</h3>
+      </form>
     </div>
     <div>
       <canvas class="canvas" width="620" height="500" id="c"></canvas>
@@ -29,7 +34,12 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.loginform {
+  width: 300px;
+  justify-content: center;
+  text-align: center;
+}
 @media screen and (min-width: 500px) {
   .camera {
     background-image: linear-gradient(black, grey);
@@ -72,45 +82,81 @@
 <script>
 /* eslint-disable */
 import axios from "axios";
-import { mapActions, mapGetters } from 'vuex';
-import Loader from "../components/loader";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "face-recognition",
-  components: {
-    Loader
-  },
+  components: {},
   data() {
     return {
+      email: "",
+      prediction: "",
     };
   },
-  computed: mapGetters(['detectionComplete', 'getUser', 'detection', 'getaction']),
+  computed: {
+    ...mapGetters(["auth_failed"]),
+  },
   methods: {
-    ...mapActions(['detectFace', 'reset']),
+    ...mapActions(["faceRecognitionLogin"]),
     initialise() {
       if (
         "mediaDevices" in navigator &&
         "getUserMedia" in navigator.mediaDevices
       ) {
-        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+        navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
           const videoPlayer = document.querySelector("video");
           videoPlayer.srcObject = stream;
           videoPlayer.play();
         });
       }
     },
-    recognizeFace() {
+    async recognizeFace() {
       const canvas = document.getElementById("c");
       const video = document.getElementById("v");
       canvas.getContext("2d").drawImage(video, 0, 0);
-      this.detectFace({datauri: `${canvas.toDataURL("image/png")}`})
-    }
+      const res = await axios.post("http://localhost:5000/predict", {
+        datauri: `${canvas.toDataURL("image/png")}`,
+      });
+      return res;
+    },
+    handleSubmit(e) {
+      e.preventDefault();
+      this.$store.commit("auth_request");
+      this.recognizeFace()
+        .then((res) => {
+          console.log("prediction: ", res);
+          this.faceRecognitionLogin({
+            email: this.email,
+            faceCode: res.data.prediction,
+          })
+            .then(() => {
+              if (localStorage.getItem("jwt") != null) {
+                this.$emit("loggedIn");
+                this.$router.push({ name: "individual-profile" });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$store.commit("auth_error");
+        });
+    },
+    validateBeforeLogin(e) {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          // es-lint-disable-next-line
+          this.handleSubmit(e);
+          return;
+        }
+      });
+    },
   },
-  created(){
-    this.reset()
-  },
+  created() {},
   beforeMount() {
     this.initialise();
-  }
+  },
 };
 </script>
