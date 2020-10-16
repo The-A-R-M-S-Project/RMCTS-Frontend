@@ -266,7 +266,7 @@ const routes = [
       },
       {
         path: "make-reservation",
-        name: "reservation",
+        name: "make-reservation",
         component: Reservation,
         meta: {
           requires_auth: true,
