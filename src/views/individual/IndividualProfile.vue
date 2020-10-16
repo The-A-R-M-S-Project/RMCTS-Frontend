@@ -65,7 +65,6 @@ export default {
     this.$store.dispatch("profile");
     this.user = this.$store.getters.user_profile;
     this.email = JSON.parse(localStorage.getItem("user")).email;
-    console.log(this.user);
   }
 };
 </script>
