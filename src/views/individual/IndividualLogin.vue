@@ -1,6 +1,9 @@
 <template>
   <div>
     <div id="bg"></div>
+    <div v-if="store_verification">
+      <NotVerified />
+    </div>
     <div v-if="loading">
       <Loader />
     </div>
@@ -80,11 +83,13 @@
 import axios from "axios";
 import { mapActions, mapGetters } from "vuex";
 import Loader from "@/components/loader";
+import NotVerified from "@/components/notVerified"
 
 export default {
   name: "individual-login",
     components: {
-      Loader
+      Loader,
+      NotVerified
     },
     data() {
       return {
@@ -93,7 +98,7 @@ export default {
       };
     },
     computed: {
-      ...mapGetters({ store_loading: "loading", store_auth: "auth_failed" }),
+      ...mapGetters({ store_loading: "loading", store_auth: "auth_failed", store_verification: "account_verified" }),
       ...mapGetters({ store_loading: "loading"}),
   // create setter for loading computed property
       loading: {

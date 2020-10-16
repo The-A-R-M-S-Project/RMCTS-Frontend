@@ -58,7 +58,7 @@ const actions = {
         commit("auth_error");
       }
     } catch (err) {
-      console.log(err.data.type);
+      // console.log(err);
       if (err.data.type == "not-verified") {
         commit("verification_error");
       } else {
@@ -81,7 +81,7 @@ const actions = {
         commit("auth_error");
       }
     } catch (err) {
-      console.log(err.data.type);
+      // console.log(err);
       if (err.data.type == "not-verified") {
         commit("verification_error");
       } else {
