@@ -25,7 +25,7 @@
         >
           Login
         </button>
-        <h3 v-if="auth_failed" class="text-danger">Login failed</h3>
+        <h4 v-if="auth_failed" class="text-danger pt-3">Login failed</h4>
       </form>
     </div>
     <div>
@@ -42,7 +42,7 @@
 }
 @media screen and (min-width: 500px) {
   .camera {
-    background-image: linear-gradient(black, grey);
+    background-image: linear-gradient(rgb(34, 34, 34), #ffffff);
     padding-top: 10px;
     height: 100vh;
   }
@@ -72,7 +72,7 @@
     top: 20px;
   }
   .camera {
-    background-image: linear-gradient(black, grey);
+    background-image: linear-gradient(rgb(34, 34, 34), rgb(255, 255, 255));
     padding-top: 20px;
     height: 100vh;
   }
