@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import Axios from "axios";
+// import Axios from "axios";
 import api from "../../api";
 
 // state
@@ -88,12 +88,12 @@ const actions = {
   faceRecognitionLogin: async function({ commit }, data) {
     try {
       commit("auth_request");
-      // let res = await api.post("users/login", data);
-      console.log(data);
-      let res = await Axios.post(
-        "http://localhost:3000/users/login-face-recognition",
-        data
-      );
+      let res = await api.post("users/login-face-recognition", data);
+      // console.log(data);
+      // let res = await Axios.post(
+      //   "http://localhost:3000/users/login-face-recognition",
+      //   data
+      // );
       console.log(res.data);
       const user = res.data.data.user;
       const token = res.data.token;
