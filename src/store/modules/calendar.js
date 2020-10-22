@@ -1,21 +1,27 @@
 /* eslint-disable no-console */
 import api from "../../api";
 
+import { addDays } from "date-fns";
+
 //============================================================================================
 //                            STATE
 //============================================================================================
 const state = {
   events: [],
   my_reservations: [],
-  my_bookings: []
+  my_bookings: [
+    { id: 10, title: "All day event", date: new Date(), allDay: true },
+    { id: 20, title: "Timed event", start: addDays(new Date(), 1) },
+    { id: 30, title: "Timed event", start: addDays(new Date(), 2) }
+  ]
 };
 
 //============================================================================================
 //                            GETTERS
 //============================================================================================
 const getters = {
-  account_reservations: state => state.my_reservations,
-  account_bookings: state => state.my_bookings
+  account_reservations: (state) => state.my_reservations,
+  account_bookings: (state) => state.my_bookings
 };
 
 //============================================================================================
@@ -58,6 +64,13 @@ const actions = {
       console.log(error.response);
     }
   }
+
+  // Create event:
+  // async createEvent({ commit }) {
+  //   try {
+  //     let event = await api.push(``)
+  //   }
+  // }
 };
 
 export default {
