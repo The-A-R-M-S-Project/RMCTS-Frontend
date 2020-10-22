@@ -203,7 +203,7 @@ $padding: 15px;
   font-weight: bold;
 }
 .main-body {
-  padding-top: 20vh;
+  padding-top: 10vh;
   p {
     text-align: center;
     padding-top: 30px;

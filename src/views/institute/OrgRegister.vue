@@ -141,9 +141,8 @@
                 >{{ errors.first("address") }}
               </span>
             </div>
-
             <div class="buttons">
-              <div class="login">
+              <div class="mt-4">
                 <button
                   class="btn btn-primary login"
                   @click="validateBeforeSignup"
@@ -155,7 +154,7 @@
             </div>
           </form>
         </div>
-        <p>
+        <p class="mt-5 pt-4">
           Already have an account?
           <router-link to="/institute-login">Login</router-link>
         </p>
@@ -186,7 +185,7 @@ $padding: 15px;
   font-weight: bold;
 }
 .main-body {
-  padding-top: 20vh;
+  margin-top: 5vh;
   p {
     text-align: center;
     padding-top: 30px;

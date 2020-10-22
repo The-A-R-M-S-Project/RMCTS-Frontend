@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+// import Axios from "axios";
 import api from "../../api";
 
 // state
@@ -46,7 +47,6 @@ const actions = {
     try {
       commit("auth_request");
       let res = await api.post("users/login", data);
-      console.log(res.data);
       const user = res.data.data.user;
       const token = res.data.token;
       if (user.role === "institution") {
@@ -57,8 +57,7 @@ const actions = {
         commit("auth_error");
       }
     } catch (err) {
-      console.log(err.response.data.type);
-      if (err.response.data.type == "not-verified") {
+      if (err.data.type == "not-verified") {
         commit("verification_error");
       } else {
         commit("auth_error");
@@ -69,6 +68,32 @@ const actions = {
     try {
       commit("auth_request");
       let res = await api.post("users/login", data);
+      const user = res.data.data.user;
+      const token = res.data.token;
+      if (user.role === "individual") {
+        localStorage.setItem("jwt", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        commit("auth_success");
+      } else {
+        commit("auth_error");
+      }
+    } catch (err) {
+      if (err.data.type == "not-verified") {
+        commit("verification_error");
+      } else {
+        commit("auth_error");
+      }
+    }
+  },
+  faceRecognitionLogin: async function({ commit }, data) {
+    try {
+      commit("auth_request");
+      let res = await api.post("users/login-face-recognition", data);
+      // console.log(data);
+      // let res = await Axios.post(
+      //   "http://localhost:3000/users/login-face-recognition",
+      //   data
+      // );
       console.log(res.data);
       const user = res.data.data.user;
       const token = res.data.token;
@@ -80,12 +105,8 @@ const actions = {
         commit("auth_error");
       }
     } catch (err) {
-      console.log(err.response.data.type);
-      if (err.response.data.type == "not-verified") {
-        commit("verification_error");
-      } else {
-        commit("auth_error");
-      }
+      console.log(err);
+      commit("auth_error");
     }
   },
   instituteSignup: async function({ commit }, user) {

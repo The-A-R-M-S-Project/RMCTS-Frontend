@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import auth from "./modules/auth";
 import equipment from "./modules/equipment";
 import catalog from "./modules/catalog";
-import facerecon from "./modules/facerecon";
 import createPersistedState from "vuex-persistedstate";
 import calendar from "./modules/calendar";
 
@@ -25,7 +24,6 @@ export default new Vuex.Store({
     auth,
     equipment,
     catalog,
-    facerecon,
     calendar
   }
 });
