@@ -47,6 +47,7 @@ const actions = {
     try {
       commit("auth_request");
       let res = await api.post("users/login", data);
+      console.log(res);
       const user = res.data.data.user;
       const token = res.data.token;
       if (user.role === "institution") {
@@ -57,9 +58,13 @@ const actions = {
         commit("auth_error");
       }
     } catch (err) {
-      if (err.data.type == "not-verified") {
-        commit("verification_error");
-      } else {
+      console.log("err", err);
+      try {
+        if (err.data.type == "not-verified") {
+          commit("verification_error");
+          return;
+        }
+      } catch (err) {
         commit("auth_error");
       }
     }
@@ -68,6 +73,7 @@ const actions = {
     try {
       commit("auth_request");
       let res = await api.post("users/login", data);
+      console.log("res ", res);
       const user = res.data.data.user;
       const token = res.data.token;
       if (user.role === "individual") {
@@ -78,9 +84,13 @@ const actions = {
         commit("auth_error");
       }
     } catch (err) {
-      if (err.data.type == "not-verified") {
-        commit("verification_error");
-      } else {
+      console.log("err", err);
+      try {
+        if (err.data.type == "not-verified") {
+          commit("verification_error");
+          return;
+        }
+      } catch (err) {
         commit("auth_error");
       }
     }
