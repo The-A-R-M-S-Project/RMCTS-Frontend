@@ -14,6 +14,7 @@ import Institute from "../views/institute/Institute";
 import InstituteEquipment from "../views/institute/Equipment";
 import InstituteProfile from "../views/institute/HomePage";
 import EquipmentBookings from "../views/institute/EquipmentBookings.vue";
+import InstituteAbout from "../views/institute/About";
 import InstituteEditProfile from "../views/institute/OrgEditProfile.vue";
 import InstituteLogin from "../views/institute/OrgLogin";
 import InstituteRegister from "../views/institute/OrgRegister";
@@ -147,6 +148,15 @@ const routes = [
         path: "catalog",
         name: "catalog-view",
         component: Catalog,
+        meta: {
+          requiresAuth: true,
+          is_institution: true
+        }
+      },
+      {
+        path: "about",
+        name: "about-insitution",
+        component: InstituteAbout,
         meta: {
           requiresAuth: true,
           is_institution: true
