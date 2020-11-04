@@ -122,6 +122,25 @@
               </div>
             </button>
           </router-link>
+          <router-link
+            class="sidenav-button list-group-item"
+            to="/institute/about"
+          >
+            <button
+              class="btn btn-primary btn-lg btn-block ph-2"
+              :class="[currentRoute.includes('about') ? 'button-active' : '']"
+              type="button"
+            >
+              <div class="row">
+                <div class="col-3">
+                  <li class="fa fa-info-circle"></li>
+                </div>
+                <div class="col-9 text-left">
+                  <span style="font-size: smaller;">About</span>
+                </div>
+              </div>
+            </button>
+          </router-link>
         </ul>
       </div>
     </nav>

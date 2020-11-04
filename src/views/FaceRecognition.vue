@@ -114,7 +114,7 @@ export default {
       const canvas = document.getElementById("c");
       const video = document.getElementById("v");
       canvas.getContext("2d").drawImage(video, 0, 0);
-      const res = await axios.post("http://104.248.168.67/predict", {
+      const res = await axios.post("http://benwycliffmugalu.engineer/predict", {
         datauri: `${canvas.toDataURL("image/png")}`,
       });
       return res;
