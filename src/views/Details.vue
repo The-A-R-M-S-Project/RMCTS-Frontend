@@ -43,7 +43,7 @@
                   </p>
                   <div class="buttons">
                     <div class="m-3">
-                      <router-link to="/institute/make-reservation">
+                      <router-link :to="`/${this.$user.role}/make-reservation`">
                         <button
                           type="button"
                           class="btn btn-success"
