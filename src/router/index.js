@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Index from "../views/LandingPage";
@@ -275,7 +276,7 @@ const routes = [
         }
       },
       {
-        path: "make-reservation",
+        path: "make-reservation/:id",
         name: "make-reservation",
         component: Reservation,
         meta: {
