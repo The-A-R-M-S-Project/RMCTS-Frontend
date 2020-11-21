@@ -64,7 +64,7 @@ export default {
     ...mapActions(["catalogedEquipment"])
   },
   computed: mapGetters(["allEquipment"]),
-  mounted() {
+  created() {
     this.catalogedEquipment();
   }
 };
