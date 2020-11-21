@@ -91,7 +91,7 @@ export default {
 
     imageURL(reservation) {
       this.$http
-        .get(`https://rmcts-api.herokuapp.com/item/${reservation.itemId}`)
+        .get(`https://rmcts-api.herokuapp.com/equipment/item/${reservation.itemId}`)
         .then((res) => {
           this.url = res.data[0].imageURL;
         });

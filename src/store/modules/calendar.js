@@ -1,19 +1,13 @@
 /* eslint-disable no-console */
 import api from "../../api";
 
-import { addDays } from "date-fns";
-
 //============================================================================================
 //                            STATE
 //============================================================================================
 const state = {
   events: [],
   my_reservations: [],
-  my_bookings: [
-    { id: 10, title: "All day event", date: new Date(), allDay: true },
-    { id: 20, title: "Timed event", start: addDays(new Date(), 1) },
-    { id: 30, title: "Timed event", start: addDays(new Date(), 2) }
-  ]
+  my_bookings: []
 };
 
 //============================================================================================
@@ -55,7 +49,7 @@ const actions = {
   // Get account's bookings
   async myBookings({ commit }) {
     try {
-      let bookings = await api.get(`bookings`);
+      let bookings = await api.get(`equipment/bookings`);
       bookings = bookings.data;
       console.log(bookings);
       commit("my_bookings", bookings);
