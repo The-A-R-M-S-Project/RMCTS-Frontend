@@ -54,6 +54,7 @@ export default {
         interactionPlugin,
         listPlugin,
       ],
+      allEvents: [],
     };
   },
   methods: {
@@ -62,7 +63,6 @@ export default {
     },
     cancelEvent() {},
     handleDateClick(tap) {
-      console.log(this.$store)
       let currentDate = new Date().getTime();
       if (tap.start < currentDate) {
         alert("Date has passed");
@@ -76,19 +76,11 @@ export default {
           {
             height: "auto",
             width: "50%",
-          },
+          }
         );
       }
-      // eslint-disable-next-line no-console
-      // console.log(tap);
-      // this.$store.commit("SetEvents", {
-      //   id: new Date().getTime(),
-      //   title: "",
-      //   start: tap.start,
-      //   end: tap.end
-      //   // allDay: tap.allDay
-      // });
     },
+
     handleClick(clck) {
       this.$modal.show(
         EventModal,
@@ -107,10 +99,16 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["allEvents"]),
+    // ...mapGetters(["allEvents"])
   },
-  created() {
-    this.$store.dispatch("getEvents");
+  async created() {
+    const item = await this.$http.get(
+      `https://rmcts-api.herokuapp.com/equipment/item/${this.$route.params.id}`
+    );
+    // console.log(item)
+    this.allEvents = item.data[0].reservations;
+
+    // console.log(this.allEvents)
   },
 };
 </script>

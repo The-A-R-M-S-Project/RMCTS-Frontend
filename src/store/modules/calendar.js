@@ -20,8 +20,8 @@ const state = {
 //                            GETTERS
 //============================================================================================
 const getters = {
-  account_reservations: (state) => state.my_reservations,
-  account_bookings: (state) => state.my_bookings
+  account_reservations: state => state.my_reservations,
+  account_bookings: state => state.my_bookings
 };
 
 //============================================================================================
@@ -31,7 +31,6 @@ const mutations = {
   my_reservations: (state, res) => {
     state.my_reservations = res;
   },
-
   my_bookings: (state, res) => {
     state.my_bookings = res;
   }
@@ -63,14 +62,17 @@ const actions = {
     } catch (error) {
       console.log(error.response);
     }
+  },
+  // making reservation
+  async addReservation({ commit }, data) {
+    try {
+      let res = await api.post(`equipment/reservation/${data[1]}`, data[0]);
+      data = res.data;
+      commit("updateCurrentItem", data);
+    } catch (error) {
+      console.log(error.response);
+    }
   }
-
-  // Create event:
-  // async createEvent({ commit }) {
-  //   try {
-  //     let event = await api.push(``)
-  //   }
-  // }
 };
 
 export default {

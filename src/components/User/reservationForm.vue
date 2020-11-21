@@ -49,21 +49,36 @@
 /* eslint-disable */
 export default {
   name: "reservation-form",
+  data() {
+    return {
+      title: "",
+      start: "",
+      end: "",
+      description: "",
+    };
+  },
   methods: {
-      // mutation, addition of reservation
-    updateEvent() {
-      this.$store.commit("AddReservation", {
-        title: this.title,
-        start: this.start,
-        end: this.end,
-        description: this.description,
-      });
-      console.log({
-        title: this.title,
-        start: this.start,
-        end: this.end,
-        description: this.description,
-      });
+    // mutation, addition of reservation
+    updateEvent(e) {
+      e.preventDefault();
+      // trigger loader
+      this.$store.commit("info_submission");
+      // call reservation addition action
+      this.$store
+        .dispatch("addReservation", [
+          {
+            title: this.title,
+            start: this.start,
+            end: this.end,
+            description: this.description,
+          },
+          this.$route.params.id,
+        ])
+        .then(() => {
+          // reload page and kill loader
+          window.location.reload();
+          this.$store.commit("submission_complete");
+        });
     },
   },
 };

@@ -4,7 +4,7 @@
     <!-- <Navbar /> -->
     <div style="">
       <div class="breadcrumb">
-        <router-link class="pr-1 link" to="/institute/catalog"
+        <router-link class="pr-1 link" :to="`/${this.$user.role}/catalog`"
           >catalog</router-link
         >/
         <router-link
@@ -43,7 +43,9 @@
                   </p>
                   <div class="buttons">
                     <div class="m-3">
-                      <router-link :to="`/${this.$user.role}/make-reservation`">
+                      <router-link
+                        :to="`/${this.$user.role}/make-reservation/${this.id}`"
+                      >
                         <button
                           type="button"
                           class="btn btn-success"
@@ -64,33 +66,6 @@
               </div>
             </div>
           </div>
-          <!-- modal -->
-          <!-- <div
-            class="modal fade"
-            id="addEventsModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLongTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <div>
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <addEventsModal />
-                </div>
-              </div>
-            </div>
-          </div> -->
           <!-- bottom -->
           <div class="card mt-3 mb-4">
             <div class="card-body">
@@ -155,6 +130,7 @@ img {
 }
 </style>
 <script>
+/* eslint-disable */
 // import Navbar from "@/components/User/Navigation";
 import addEventsModal from "@/components/User/addEventModal";
 
@@ -163,11 +139,12 @@ export default {
   components: {
     // Navbar,
     // eslint-disable-next-line vue/no-unused-components
-    addEventsModal
+    addEventsModal,
   },
   data() {
     return {
       // _id: null,
+      id: "",
       itemDetails: [
         {
           title: "",
@@ -176,23 +153,25 @@ export default {
           description: "",
           userId: "",
           createdAt: "",
-          updatedAt: ""
+          updatedAt: "",
         },
         {
           ownerName: "",
           ownerEmail: "",
-          ownerContact: ""
-        }
-      ]
+          ownerContact: "",
+        },
+      ],
     };
   },
   created() {
-    const id = this.$route.params.id;
+    this.id = this.$route.params.id;
+    // console.log(this.id);
     this.$http
-      .get(`https://rmcts-api.herokuapp.com/equipment/item/${id}`)
-      .then(res => {
+      .get(`https://rmcts-api.herokuapp.com/equipment/item/${this.id}`)
+      .then((res) => {
         this.itemDetails = res.data;
       });
-  }
+    // console.log(this.itemDetails);
+  },
 };
 </script>
