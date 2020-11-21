@@ -4,7 +4,7 @@
       <div class="pt-3">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center card-header">
-            <router-link to="/institute/edit-profile">
+            <router-link to="/institution/edit-profile">
               <img
                 :src="
                   user.profileImage ||
@@ -21,7 +21,7 @@
           </li>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/profile"
+            to="/institution/profile"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
@@ -40,12 +40,12 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/equipment"
+            to="/institution/equipment"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
               :class="[
-                currentRoute.includes('institute/equipment')
+                currentRoute.includes('institution/equipment')
                   ? 'button-active'
                   : ''
               ]"
@@ -63,7 +63,7 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/bookings"
+            to="/institution/bookings"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
@@ -84,7 +84,7 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/reservations"
+            to="/institution/reservations"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
@@ -105,7 +105,7 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/catalog"
+            to="/institution/catalog"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
@@ -124,7 +124,7 @@
           </router-link>
           <router-link
             class="sidenav-button list-group-item"
-            to="/institute/about"
+            to="/institution/about"
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
