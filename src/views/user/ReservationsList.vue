@@ -25,9 +25,8 @@
           :key="reservation._id"
         >
           <Booked
-            :title="reservation.title"
             :duration="duration(reservation)"
-            :url="imageURL(reservation)"
+            :itemID="reservation.itemId"
             :dateScheduled="reservation.start.split('T')[0]"
             :timeScheduled="reservation.start.split('T')[1] + 'hrs (EAT)  '"
           />
@@ -57,14 +56,7 @@
 /* eslint-disable */
 
 import Booked from "@/components/User/booked";
-import Bookeditems from "@/services/user-bookings.js";
-import equipmentList from "@/services/equipment-service.js";
 import { mapGetters } from "vuex";
-
-// :url="equipment.imageURL"
-// :duration="bookings.duration"
-// :dateScheduled="bookings.date_scheduled"
-// :timeScheduled="bookings.time_scheduled"
 
 export default {
   name: "reservations-list",
@@ -95,14 +87,6 @@ export default {
       return hrs + "hrs " + mins + "mins";
     },
 
-    imageURL(reservation) {
-      this.$http
-        .get(`https://rmcts-api.herokuapp.com/item/${reservation.itemId}`)
-        .then((res) => {
-          this.url = res.data[0].imageURL;
-        });
-      return this.url;
-    },
   },
   created() {
     // get all reservations

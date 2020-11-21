@@ -1,9 +1,9 @@
 <template>
   <tr>
     <th scope="row">
-      <img class="imageSize" :src="url" alt="Image can,t load" />
+      <img class="imageSize" :src="item.imageURL" alt="Image can,t load" />
     </th>
-    <td>{{ title }}</td>
+    <td>{{ item.title }}</td>
     <td>{{ duration }}</td>
     <td>{{ timeScheduled }}</td>
     <td>{{ dateScheduled }}</td>
@@ -19,14 +19,25 @@
 </style>
 
 <script>
+/* eslint-disable */
 export default {
   name: "booked",
   data() {
-    return {};
+    return {
+      item: {}
+    };
+  },
+  created(){
+    this.$http
+      .get(`https://rmcts-api.herokuapp.com/equipment/item/${this.itemID}`)
+      .then((res) => {
+        // console.log(res)
+        this.item = res.data[0];
+      });
+    // console.log("Item",this.item)
   },
   props: {
-    title: String,
-    url: String,
+    itemID: String,
     dateScheduled: String,
     timeScheduled: String,
     duration: String
