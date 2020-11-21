@@ -110,7 +110,7 @@ const routes = [
   // ========= institute routes ===============
 
   {
-    path: "/institute",
+    path: "/institution",
     name: "institute",
     component: Institute,
     meta: {
