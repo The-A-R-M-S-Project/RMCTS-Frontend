@@ -188,7 +188,7 @@ const routes = [
         }
       },
       {
-        path: "make-reservation",
+        path: "make-reservation/:id",
         name: "reservation",
         component: Reservation,
         meta: {
