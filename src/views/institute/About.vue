@@ -3,7 +3,7 @@
     <section>
       <div class="row pt-5">
         <h3 class="greeting">About {{ user.username }}</h3>
-        <router-link to="/institute/edit-profile"
+        <router-link to="/institution/edit-profile"
           ><button class="edit-profile-link">edit profile</button></router-link
         >
       </div>
