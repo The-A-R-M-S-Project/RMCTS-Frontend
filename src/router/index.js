@@ -110,7 +110,7 @@ const routes = [
   // ========= institute routes ===============
 
   {
-    path: "/institute",
+    path: "/institution",
     name: "institute",
     component: Institute,
     meta: {
@@ -188,7 +188,7 @@ const routes = [
         }
       },
       {
-        path: "make-reservation",
+        path: "make-reservation/:id",
         name: "reservation",
         component: Reservation,
         meta: {
