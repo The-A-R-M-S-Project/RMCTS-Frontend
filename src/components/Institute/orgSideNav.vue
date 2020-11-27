@@ -227,12 +227,14 @@ export default {
   methods: {
     ...mapActions(["logout"]),
     handleLogout() {
+      this.$store.commit("info_submission")
       if (localStorage.getItem("jwt") != null) {
         api
           .post(`users/logout`)
           .then(res => {
             localStorage.clear();
             sessionStorage.clear();
+            this.$store.commit("submission_complete")
             this.$router.push("/");
           })
           .catch(err => {
