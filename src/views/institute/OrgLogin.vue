@@ -115,7 +115,7 @@ input {
   margin: auto;
   height: auto;
   max-height: 400px;
-  max-width: 30rem;
+  max-width: 300px;
 }
 .btn {
   text-align: center;
