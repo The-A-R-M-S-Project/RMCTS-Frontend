@@ -51,7 +51,7 @@ const actions = {
     try {
       let bookings = await api.get(`equipment/bookings`);
       bookings = bookings.data;
-      console.log(bookings);
+      // console.log(bookings);
       commit("my_bookings", bookings);
     } catch (error) {
       console.log(error.response);

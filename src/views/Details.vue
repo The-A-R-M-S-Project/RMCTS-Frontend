@@ -7,14 +7,7 @@
         <router-link class="pr-1 link" :to="`/${this.$user.role}/catalog`"
           >catalog</router-link
         >/
-        <router-link
-          class="pl-2 pr-2 current link"
-          :to="{
-            name: 'itemDetails[0]',
-            params: { id: this.$route.params.id }
-          }"
-          >item details</router-link
-        >
+        <a class="pl-2 pr-2 current link btn-primary">item details</a>
       </div>
       <div class="card-1">
         <h3 class="p-2 text-center">details</h3>

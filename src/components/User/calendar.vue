@@ -64,9 +64,13 @@ export default {
     cancelEvent() {},
     handleDateClick(tap) {
       let currentDate = new Date().getTime();
+      // check if user owns event
+
       if (tap.start < currentDate) {
         alert("Date has passed");
       } else {
+        console.log("tap", tap);
+        console.log("user", localStorage.getItem("user"));
         this.$modal.show(
           ReservationForm,
           {
@@ -82,20 +86,26 @@ export default {
     },
 
     handleClick(clck) {
-      this.$modal.show(
-        EventModal,
-        {
-          text: "From the component",
-          event: clck.event,
-        },
-        {
-          height: "auto",
-          width: "50%",
-        },
-        {
-          // draggable: true,
-        }
-      );
+      // console.log(clck.event.extendedProps.reserverId, JSON.parse(localStorage.getItem("user"))._id);
+      if (
+        //Checking if user owns the reservation
+        String(clck.event.extendedProps.reserverId) === JSON.parse(localStorage.getItem("user"))._id
+      ) {
+        this.$modal.show(
+          EventModal,
+          {
+            text: "From the component",
+            event: clck.event,
+          },
+          {
+            height: "auto",
+            width: "50%",
+          },
+          {
+            // draggable: true,
+          }
+        );
+      }
     },
   },
   computed: {
@@ -106,7 +116,12 @@ export default {
       `https://rmcts-api.herokuapp.com/equipment/item/${this.$route.params.id}`
     );
     // console.log(item)
-    this.allEvents = item.data[0].reservations;
+    //filtering out past reservations
+    this.allEvents = item.data[0].reservations.filter((x) => {
+      const now = new Date();
+      const end = new Date(x.end);
+      return end >= now;
+    });
 
     // console.log(this.allEvents)
   },

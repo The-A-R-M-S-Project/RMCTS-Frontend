@@ -7,7 +7,7 @@
     <td>{{ duration }}</td>
     <td>{{ timeScheduled }}</td>
     <td>{{ dateScheduled }}</td>
-    <td>{{ customer }}</td>
+    <td>{{ customer.username }}</td>
     <hr />
   </tr>
 </template>
@@ -20,10 +20,13 @@
 </style>
 
 <script>
+/*eslint-disable*/
 export default {
   name: "booked",
   data() {
-    return {};
+    return {
+      customer: {}
+    };
   },
   props: {
     title: String,
@@ -31,7 +34,20 @@ export default {
     dateScheduled: String,
     timeScheduled: String,
     duration: String,
-    customer: String
+    reservation: Object
+  },
+  methods: {
+    customerDetails(reservation){
+      this.$http.get(`https://rmcts-api.herokuapp.com/users/profile/${reservation.reserverId}`).then(res => {
+        this.customer = res.data
+      })
+      return this.customer
+    }
+  }
+  ,
+  created(){
+    // console.log("customer", this.customer)
+    this.customer = this.customerDetails(this.reservation)
   }
 };
 </script>

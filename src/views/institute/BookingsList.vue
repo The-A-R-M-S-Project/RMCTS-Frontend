@@ -28,7 +28,7 @@
             :url="imageURL(reservation)"
             :dateScheduled="reservation.start.split('T')[0]"
             :timeScheduled="reservation.start.split('T')[1] + 'hrs (EAT)  '"
-            :customer="'customer'"
+            :reservation="reservation"
           />
         </tbody>
       </table>
@@ -69,6 +69,7 @@ export default {
       url: "",
       date: "",
       time: "",
+      customer: {}
     };
   },
   components: {
@@ -96,11 +97,12 @@ export default {
           this.url = res.data[0].imageURL;
         });
       return this.url;
-    },
+    }
   },
   created() {
     // get all reservations
     this.$store.dispatch("myBookings");
+    // console.log(this.account_bookings)
   },
 };
 </script>

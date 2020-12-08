@@ -109,7 +109,13 @@
           >
             <button
               class="btn btn-primary btn-lg btn-block ph-2"
-              :class="[currentRoute.includes('catalog') ? 'button-active' : '']"
+              :class="[
+                currentRoute.includes('catalog') ||
+                currentRoute.includes('details') ||
+                currentRoute.includes('make-reservation')
+                  ? 'button-active'
+                  : ''
+              ]"
               type="button"
             >
               <div class="row">
@@ -216,33 +222,35 @@ export default {
   name: "SideNav",
   data() {
     return {
-      user: {}
+      user: {},
     };
   },
   computed: {
     currentRoute() {
       return this.$route.path;
-    }
+    },
   },
   methods: {
     ...mapActions(["logout"]),
     handleLogout() {
+      this.$store.commit("info_submission");
       if (localStorage.getItem("jwt") != null) {
         api
           .post(`users/logout`)
-          .then(res => {
+          .then((res) => {
             localStorage.clear();
             sessionStorage.clear();
+            this.$store.commit("submission_complete");
             this.$router.push("/");
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err.response.data.message);
           });
       }
-    }
+    },
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("user"));
-  }
+  },
 };
 </script>

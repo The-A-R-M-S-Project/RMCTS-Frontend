@@ -51,7 +51,9 @@
                 >{{ errors.first("password") }}</span
               >
             </div>
-            <small v-if="store_auth" id="msg">Wrong password or email</small>
+            <small style="color: red" v-if="store_auth" id="msg"
+              >Wrong password or email</small
+            >
             <div class="buttons">
               <div class="login">
                 <button
@@ -115,7 +117,7 @@ input {
   margin: auto;
   height: auto;
   max-height: 400px;
-  max-width: 30rem;
+  max-width: 300px;
 }
 .btn {
   text-align: center;

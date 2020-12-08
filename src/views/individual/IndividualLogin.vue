@@ -45,10 +45,14 @@
                 v-show="errors.has('password')"
                 class="help is-danger"
                 id="msg"
-                ><small>{{ errors.first("password") }}</small></span
+                ><small style="color: red">{{
+                  errors.first("password")
+                }}</small></span
               >
             </div>
-            <small v-if="store_auth" id="msg">Wrong password or email</small>
+            <small class="text-danger" v-if="store_auth" id="msg"
+              >Wrong password or email</small
+            >
             <div class="buttons">
               <div class="login">
                 <button
