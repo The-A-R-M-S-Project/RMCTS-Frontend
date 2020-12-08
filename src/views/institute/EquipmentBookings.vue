@@ -83,7 +83,7 @@ a:hover {
   min-height: 85vh;
   margin-top: 10px;
   padding-top: 10px;
-  background-color: #abf8db55;
+  background-color: #F2F3F4;
   border-radius: 5px;
 }
 .active {
